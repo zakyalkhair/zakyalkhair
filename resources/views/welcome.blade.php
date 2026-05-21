@@ -13,7 +13,6 @@
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=DM+Sans:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
 
-
     <style>
         /* PARTICLES BACKGROUND */
         .particles-container {
@@ -32,7 +31,6 @@
             display: block;
         }
 
-        /* pastikan semua section tetap di atas particles */
         nav,
         section {
             position: relative;
@@ -53,6 +51,13 @@
             --text: #2c3e50;
             --text-muted: #5a6a7a;
             --dark-glass: rgba(44, 44, 44, 0.42);
+        }
+
+        .section-title {
+            font-size: clamp(2.8rem, 4vw, 3.5rem);
+            line-height: 1.1;
+            color: var(--white);
+            text-align: center;
         }
 
         html {
@@ -87,22 +92,27 @@
         /* NAVIGATION */
         nav {
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
+            top: 22px;
+            left: 50%;
+            right: auto;
+            transform: translateX(-50%);
             z-index: 100;
-            padding: 22px 72px;
+            padding: 18px 46px;
             display: flex;
-            gap: 40px;
+            gap: 48px;
             align-items: center;
+            justify-content: center;
+            width: fit-content;
             background: rgba(232, 237, 244, .85);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
+            border-radius: 999px;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, .12);
         }
 
         nav a {
-            font-size: 15px;
-            font-weight: 500;
+            font-size: 18px;
+            font-weight: 600;
             color: var(--text-muted);
             text-decoration: none;
             letter-spacing: .01em;
@@ -118,17 +128,18 @@
         /* HERO */
         .hero-section {
             min-height: 100vh;
-            padding: 100px 72px 60px;
+            padding: 105px 72px 45px;
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 0.95fr 1.05fr;
             align-items: center;
             justify-items: center;
+            column-gap: 10px;
         }
 
         .card-wrapper {
             position: relative;
-            width: 780px;
-            height: 760px;
+            width: 560px;
+            height: 550px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -151,7 +162,7 @@
             z-index: 2;
             width: 100%;
             height: 100%;
-            padding: 40px;
+            padding: 32px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -160,21 +171,21 @@
         }
 
         .card-name {
-            padding-left: 40px;
-            margin-bottom: 20px;
+            padding-left: 22px;
+            margin-bottom: 14px;
             font-family: 'Playfair Display', serif;
             font-style: italic;
-            font-size: clamp(3rem, 3.5vw, 3.4rem);
-            line-height: 1.15;
+            font-size: clamp(2.2rem, 2.6vw, 2.65rem);
+            line-height: 1.12;
             color: var(--navy);
         }
 
         .card-bio {
-            max-width: 480px;
-            margin-bottom: 30px;
-            padding-left: 20px;
-            font-size: 20px;
-            line-height: 1.78;
+            max-width: 360px;
+            margin-bottom: 20px;
+            padding-left: 10px;
+            font-size: 15.5px;
+            line-height: 1.58;
             font-weight: 300;
             color: var(--text);
         }
@@ -185,7 +196,7 @@
 
         .socials {
             display: flex;
-            gap: 40px;
+            gap: 24px;
             justify-content: center;
         }
 
@@ -193,8 +204,8 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 64px;
-            height: 64px;
+            width: 46px;
+            height: 46px;
             border-radius: 10px;
             text-decoration: none;
             transition: transform .2s ease;
@@ -205,16 +216,16 @@
         }
 
         .socials img {
-            width: 64px;
-            height: 64px;
+            width: 46px;
+            height: 46px;
             object-fit: contain;
         }
 
         /* PHOTO COLLAGE */
         .photo-collage {
             position: relative;
-            width: 660px;
-            height: 720px;
+            width: 480px;
+            height: 540px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -238,27 +249,27 @@
         }
 
         .polaroid-1 {
-            width: 520px;
-            height: 580px;
-            padding: 20px 20px 64px;
-            transform: rotate(-5deg) translate(-160px, -94px);
+            width: 360px;
+            height: 430px;
+            padding: 16px 16px 48px;
+            transform: rotate(-5deg) translate(-105px, -68px);
             z-index: 1;
         }
 
         .polaroid-2 {
-            width: 520px;
-            height: 600px;
-            padding: 20px 20px 64px;
-            transform: rotate(4deg) translate(142px, 58px);
+            width: 360px;
+            height: 440px;
+            padding: 16px 16px 48px;
+            transform: rotate(4deg) translate(96px, 38px);
             z-index: 2;
         }
 
         .polaroid-1:hover {
-            transform: rotate(-5deg) translate(-220px, -94px);
+            transform: rotate(-5deg) translate(-135px, -68px);
         }
 
         .polaroid-2:hover {
-            transform: rotate(4deg) translate(202px, 58px);
+            transform: rotate(4deg) translate(126px, 38px);
         }
 
         /* SCROLL INDICATOR */
@@ -295,23 +306,16 @@
 
         /* PROJECTS */
         .projects-section {
-            min-height: 100vh;
-            padding: 140px 72px;
+            min-height: 80vh;
+            padding: 110px 72px 60px;
             display: flex;
             flex-direction: column;
-            align-items: center;
             justify-content: center;
         }
 
         .projects-header {
-            margin-bottom: 285px;
+            margin-bottom: 265px;
             text-align: center;
-        }
-
-        .projects-header h2,
-        .skills-header h2 {
-            font-size: clamp(3rem, 5vw, 4rem);
-            color: var(--white);
         }
 
         .projects-folder-wrapper {
@@ -323,7 +327,7 @@
 
         .projects-folder {
             position: relative;
-            top: -160px;
+            top: -175px;
             width: 420px;
             height: 320px;
         }
@@ -338,7 +342,7 @@
         }
 
         .folder-shell img {
-            width: 850px;
+            width: 750px;
             height: auto;
             object-fit: contain;
         }
@@ -353,7 +357,7 @@
             position: absolute;
             top: 50%;
             left: 50%;
-            width: 580px;
+            width: 560px;
             aspect-ratio: 16 / 9;
             overflow: hidden;
             border-radius: 24px;
@@ -408,7 +412,7 @@
             -webkit-backdrop-filter: blur(8px);
             box-shadow: 0 12px 34px rgba(0, 0, 0, 0.26);
             color: var(--white);
-            font-size: 20px;
+            font-size: 16px;
             font-weight: 500;
             line-height: 1.25;
             text-shadow: 0 3px 14px rgba(0, 0, 0, 0.35);
@@ -422,42 +426,42 @@
 
         .projects-folder:hover .project-card-1,
         .projects-folder.mobile-open .project-card-1 {
-            transform: translate(-900px, -280px) rotate(-22deg);
+            transform: translate(-800px, -320px) rotate(-17deg);
         }
 
         .projects-folder:hover .project-card-2,
         .projects-folder.mobile-open .project-card-2 {
-            transform: translate(-700px, 20px) rotate(-8deg);
+            transform: translate(-700px, -20px) rotate(-8deg);
         }
 
         .projects-folder:hover .project-card-3,
         .projects-folder.mobile-open .project-card-3 {
-            transform: translate(-300px, -240px) rotate(0deg);
+            transform: translate(-300px, -220px) rotate(0deg);
         }
 
         .projects-folder:hover .project-card-4,
         .projects-folder.mobile-open .project-card-4 {
-            transform: translate(80px, 30px) rotate(8deg);
+            transform: translate(80px, -25px) rotate(8deg);
         }
 
         .projects-folder:hover .project-card-5,
         .projects-folder.mobile-open .project-card-5 {
-            transform: translate(310px, -290px) rotate(20deg);
+            transform: translate(240px, -330px) rotate(16deg);
         }
 
         /* SKILLS */
         .skills-section {
             min-height: 100vh;
-            padding: 140px 72px;
+            padding: 110px 72px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-start;
         }
 
         .skills-header {
             max-width: 720px;
-            margin-bottom: 70px;
+            margin-bottom: 24px;
             text-align: center;
         }
 
@@ -480,7 +484,7 @@
         }
 
         .skill-card {
-            min-height: 320px;
+            min-height: 180px;
             padding: 34px;
             overflow: hidden;
             border-radius: 28px;
@@ -496,7 +500,7 @@
         }
 
         .skill-card h3 {
-            margin-bottom: 28px;
+            margin-bottom: 16px;
             color: var(--white);
             font-size: 24px;
         }
@@ -522,7 +526,7 @@
         /* EXPERIENCES */
         .experiences-section {
             min-height: 100vh;
-            padding: 140px 72px;
+            padding: 110px 64px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -530,109 +534,130 @@
 
         .experiences-header {
             max-width: 760px;
-            margin: 0 auto 70px;
+            margin: 0 auto 24px;
             text-align: center;
         }
 
         .experiences-header h2 {
-            margin-bottom: 18px;
-            font-size: clamp(3rem, 5vw, 4rem);
-            color: var(--white);
+            margin-bottom: 12px;
         }
 
-        .experiences-header p {
-            font-size: 17px;
-            line-height: 1.7;
-            color: rgba(255, 255, 255, 0.78);
+        .experiences-grid {
+            width: 100%;
+            max-width: 1580px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 28px;
         }
-
-        /* EXPERIENCES GRID */
-.experiences-grid {
-    width: 100%;
-    max-width: 1180px;
-    margin: 0 auto;
-
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 28px;
-}
 
         .experience-card {
-    min-height: 430px;
-    padding: 42px;
-    border-radius: 36px;
-
-    background: rgba(20, 28, 38, 0.62);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-
-    color: var(--white);
-    box-shadow: 0 18px 55px rgba(0, 0, 0, .32);
-
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-
-    transition: transform .3s ease, background .3s ease;
-}
+            position: relative;
+            min-height: 325px;
+            height: 325px;
+            padding: 28px;
+            border-radius: 36px;
+            background: rgba(20, 28, 38, 0.62);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            color: var(--white);
+            box-shadow: 0 18px 55px rgba(0, 0, 0, .32);
+            display: grid;
+            grid-template-columns: 190px 1fr;
+            gap: 30px;
+            align-items: start;
+            overflow: hidden;
+            transition: transform .3s ease, background .3s ease;
+        }
 
         .experience-card:hover {
             transform: translateY(-8px);
             background: rgba(20, 28, 38, 0.72);
         }
 
+        .experience-photo {
+            width: 100%;
+            aspect-ratio: 3 / 4;
+            align-self: start;
+            border-radius: 22px;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.12);
+            box-shadow: 0 14px 35px rgba(0, 0, 0, .24);
+        }
+
+        .experience-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .experience-content {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            padding-top: 4px;
+        }
+
         .experience-top {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 80px;
+            margin-bottom: 26px;
         }
 
         .experience-period {
             display: inline-flex;
-            padding: 9px 18px;
+            padding: 8px 18px;
             border-radius: 999px;
-
             background: rgba(255, 255, 255, 0.14);
             color: rgba(255, 255, 255, 0.9);
-
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 600;
         }
 
         .experience-number {
-            font-size: 46px;
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            font-size: 42px;
             font-weight: 700;
             line-height: 1;
             color: rgba(255, 255, 255, 0.18);
         }
 
         .experience-company {
-            margin-bottom: 12px;
-
-            font-size: 15px;
-            font-weight: 600;
+            margin-bottom: 10px;
+            font-size: 13px;
+            font-weight: 700;
             letter-spacing: .08em;
             text-transform: uppercase;
-
             color: rgba(255, 255, 255, 0.68);
         }
 
         .experience-main h3 {
             max-width: 560px;
-            margin-bottom: 20px;
-
-            font-size: clamp(2rem, 3vw, 3rem);
-            line-height: 1.08;
+            margin-bottom: 14px;
+            font-size: clamp(1.35rem, 2vw, 2rem);
+            line-height: 1.12;
             color: var(--white);
         }
 
         .experience-description {
             max-width: 560px;
-
-            font-size: 16px;
-            line-height: 1.75;
+            padding-left: 18px;
+            font-size: 14px;
+            line-height: 1.65;
             color: rgba(255, 255, 255, 0.78);
+        }
+
+        .experience-description li {
+            margin-bottom: 8px;
+        }
+
+        .experience-description li:last-child {
+            margin-bottom: 0;
         }
 
         @keyframes fadeUp {
@@ -673,39 +698,68 @@
 
         @media (max-width: 960px) {
             nav {
-                padding: 18px 28px;
-                gap: 24px;
+                padding: 14px 22px;
+                gap: 22px;
+                max-width: calc(100% - 32px);
+                overflow-x: auto;
+            }
+
+            nav a {
+                font-size: 15px;
+                white-space: nowrap;
+            }
+
+            .section-title {
+                font-size: clamp(2.2rem, 8vw, 3rem);
             }
 
             .hero-section,
             .projects-section,
-            .skills-section {
+            .skills-section,
+            .experiences-section {
                 padding-inline: 28px;
             }
 
             .card-wrapper {
-                width: min(100%, 620px);
-                height: 620px;
+                width: min(100%, 460px);
+                height: 460px;
+            }
+
+            .card-content {
+                padding: 26px;
             }
 
             .card-name {
-                padding-left: 20px;
+                padding-left: 12px;
+                font-size: 2.05rem;
             }
 
             .card-bio {
-                padding-left: 10px;
-                font-size: 17px;
+                max-width: 320px;
+                padding-left: 6px;
+                font-size: 14px;
+                line-height: 1.55;
+            }
+
+            .socials {
+                gap: 20px;
+            }
+
+            .socials a,
+            .socials img {
+                width: 42px;
+                height: 42px;
             }
 
             .photo-collage {
-                width: min(100%, 520px);
-                height: 580px;
+                width: min(100%, 380px);
+                height: 440px;
             }
 
             .polaroid-1,
             .polaroid-2 {
-                width: 380px;
-                height: 460px;
+                width: 280px;
+                height: 350px;
             }
 
             .projects-header {
@@ -754,25 +808,36 @@
                 transform: none;
             }
 
-            .skills-grid {
+            .skills-grid,
+            .experiences-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .experience-card {
+                height: auto;
+                min-height: 420px;
+                grid-template-columns: 1fr;
+                padding: 28px;
+            }
+
+            .experience-photo {
+                width: 180px;
             }
         }
     </style>
 </head>
 
-
 <body>
     <div class="particles-container">
         <canvas id="particlesCanvas"></canvas>
     </div>
+
     <nav>
         <a class="active" href="#about">About</a>
         <a href="#projects">Projects</a>
         <a href="#skills">Skills</a>
         <a href="#experiences">Experiences</a>
     </nav>
-
 
     <section id="about" class="hero-section">
         <div class="card-wrapper">
@@ -831,7 +896,7 @@
 
     <section id="projects" class="projects-section">
         <div class="projects-header">
-            <h2>My Projects</h2>
+            <h2 class="section-title">My Projects</h2>
         </div>
 
         <div class="projects-folder-wrapper">
@@ -840,25 +905,20 @@
                     <img src="{{ asset('images/folder.png') }}" alt="Folder">
                 </div>
 
-                {{-- PROJECT CARDS --}}
                 <div class="project-card project-card-1">
                     <a href="#">
-
                         <div class="project-image">
                             <img src="{{ asset('images/project1.png') }}" alt="Project 1">
                         </div>
 
                         <div class="project-content">
                             <h3>Sentiment Analysis of Alfagift on Google Play Reviews</h3>
-
                         </div>
-
                     </a>
                 </div>
 
                 <div class="project-card project-card-2">
                     <a href="#">
-
                         <div class="project-image">
                             <img src="{{ asset('images/project2.png') }}" alt="Project 2">
                         </div>
@@ -866,27 +926,23 @@
                         <div class="project-content">
                             <h3>IT Balanced Scorecard Dashboard Development for Company Performance Monitoring</h3>
                         </div>
-
                     </a>
                 </div>
 
                 <div class="project-card project-card-3">
                     <a href="#">
-
                         <div class="project-image">
-                            <img src="{{ asset('images/project3.png') }}" alt="Project 4">
+                            <img src="{{ asset('images/project3.png') }}" alt="Project 3">
                         </div>
 
                         <div class="project-content">
                             <h3>Sentiment Analysis of Ali Khamenei's Death on Indonesian News Media</h3>
                         </div>
-
                     </a>
                 </div>
 
                 <div class="project-card project-card-4">
                     <a href="#">
-
                         <div class="project-image">
                             <img src="{{ asset('images/project4.png') }}" alt="Project 4">
                         </div>
@@ -894,13 +950,11 @@
                         <div class="project-content">
                             <h3>Health Burden Clustering in South Korea Using K-Means</h3>
                         </div>
-
                     </a>
                 </div>
 
                 <div class="project-card project-card-5">
                     <a href="#">
-
                         <div class="project-image">
                             <img src="{{ asset('images/project5.png') }}" alt="Project 5">
                         </div>
@@ -908,32 +962,21 @@
                         <div class="project-content">
                             <h3>Data Warehouse Design for Information System Academic</h3>
                         </div>
-
                     </a>
                 </div>
             </div>
-        </div>
-
-        <div class="scroll-indicator">
-            <a href="#skills">
-                <span>Skills & Tools</span>
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <path d="M6 9L12 15L18 9" stroke="white" stroke-width="8" stroke-linecap="round"
-                        stroke-linejoin="round" />
-                </svg>
-            </a>
         </div>
     </section>
 
     <section id="skills" class="skills-section">
         <div class="skills-header">
-            <h2>Skills & Tools</h2>
-            <p>A collection of tools and technologies I use for data analysis, visualization, and web development.</p>
+            <h2 class="section-title">Skills & Tools</h2>
         </div>
 
         <div class="skills-grid">
             <div class="skill-card">
                 <h3>Data Analytics</h3>
+
                 <div class="skill-list">
                     <span>Python</span>
                     <span>Pandas</span>
@@ -945,6 +988,7 @@
 
             <div class="skill-card">
                 <h3>Data Visualization</h3>
+
                 <div class="skill-list">
                     <span>Power BI</span>
                     <span>Tableau</span>
@@ -955,6 +999,7 @@
 
             <div class="skill-card">
                 <h3>Web Development</h3>
+
                 <div class="skill-list">
                     <span>Laravel</span>
                     <span>HTML</span>
@@ -963,93 +1008,112 @@
                 </div>
             </div>
         </div>
-        <div class="scroll-indicator">
-            <a href="#experiences">
-                <span>Experiences</span>
-
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <path d="M6 9L12 15L18 9" stroke="white" stroke-width="8" stroke-linecap="round"
-                        stroke-linejoin="round" />
-                </svg>
-            </a>
-        </div>
     </section>
 
     <section id="experiences" class="experiences-section">
+        <div class="experiences-header">
+            <h2 class="section-title">Experiences</h2>
+        </div>
 
-    <div class="experiences-header">
-        <h2>Experiences</h2>
-    </div>
+        <div class="experiences-grid">
+            <article class="experience-card">
+                <div class="experience-photo">
+                    <img src="{{ asset('images/astra.png') }}" alt="Astra Infra Toll Road Tangerang-Merak">
+                </div>
 
-    <div class="experiences-grid">
+                <div class="experience-content">
+                    <div class="experience-top">
+                        <span class="experience-period">January 2026 — February 2026</span>
+                        <span class="experience-number">01</span>
+                    </div>
 
-        <article class="experience-card">
-            <div class="experience-top">
-                <span class="experience-period">2025 — Present</span>
-                <span class="experience-number">01</span>
-            </div>
+                    <div class="experience-main">
+                        <p class="experience-company">Astra Infra Toll Road Tangerang-Merak</p>
+                        <h3>Information Technology Intern</h3>
 
-            <div class="experience-main">
-                <p class="experience-company">Company Name</p>
-                <h3>Position Name</h3>
-                <p class="experience-description">
-                    Briefly describe your responsibilities, contributions, and achievements in this role. Focus on
-                    what you did, what tools you used, and the impact of your work.
-                </p>
-            </div>
-        </article>
+                        <ul class="experience-description">
+                            <li>Developed IT Asset Management application using PHP Laravel and JWT authentication.</li>
+                            <li>Created 5 system architecture diagrams and helped writing company agreement
+                                documentations.</li>
+                        </ul>
+                    </div>
+                </div>
+            </article>
 
-        <article class="experience-card">
-            <div class="experience-top">
-                <span class="experience-period">2024 — 2025</span>
-                <span class="experience-number">02</span>
-            </div>
+            <article class="experience-card">
+                <div class="experience-photo">
+                    <img src="{{ asset('images/hmsi.png') }}" alt="Himpunan Sistem Informasi ITS">
+                </div>
 
-            <div class="experience-main">
-                <p class="experience-company">Company Name</p>
-                <h3>Position Name</h3>
-                <p class="experience-description">
-                    Briefly describe your role, team contribution, project involvement, or leadership experience.
-                    Keep it concise but strong for portfolio readability.
-                </p>
-            </div>
-        </article>
+                <div class="experience-content">
+                    <div class="experience-top">
+                        <span class="experience-period">March 2025 — Desember 2025</span>
+                        <span class="experience-number">02</span>
+                    </div>
 
-        <article class="experience-card">
-            <div class="experience-top">
-                <span class="experience-period">2024</span>
-                <span class="experience-number">03</span>
-            </div>
+                    <div class="experience-main">
+                        <p class="experience-company">Himpunan Mahasiswa Sistem Informasi ITS</p>
+                        <h3>Internal Affair Staff</h3>
 
-            <div class="experience-main">
-                <p class="experience-company">Organization Name</p>
-                <h3>Position Name</h3>
-                <p class="experience-description">
-                    Briefly explain your responsibilities, events handled, analysis performed, or collaboration
-                    experience that demonstrates your professional growth.
-                </p>
-            </div>
-        </article>
+                        <ul class="experience-description">
+                            <li>Oversaw financial planning, transaction documentation, and transparent reporting for the
+                                132nd Graduation Ceremony.</li>
+                            <li>Assisted in planning and coordinating the event series for Dies Natalis HMSI 2025.</li>
+                        </ul>
+                    </div>
+                </div>
+            </article>
 
-        <article class="experience-card">
-            <div class="experience-top">
-                <span class="experience-period">2023 — 2024</span>
-                <span class="experience-number">04</span>
-            </div>
+            <article class="experience-card">
+                <div class="experience-photo">
+                    <img src="{{ asset('images/ise.png') }}" alt="ISE! 2025">
+                </div>
 
-            <div class="experience-main">
-                <p class="experience-company">Organization Name</p>
-                <h3>Position Name</h3>
-                <p class="experience-description">
-                    Describe your contribution in a clear and outcome-oriented way. Mention relevant skills such as
-                    communication, data analysis, project management, or teamwork.
-                </p>
-            </div>
-        </article>
+                <div class="experience-content">
+                    <div class="experience-top">
+                        <span class="experience-period">April 2025 — Desember 2025</span>
+                        <span class="experience-number">03</span>
+                    </div>
 
-    </div>
+                    <div class="experience-main">
+                        <p class="experience-company">ISE! 2025</p>
+                        <h3>Marketing Expert Staff</h3>
 
-</section>
+                        <ul class="experience-description">
+                            <li>Guided marketing team to creating digital marketing content on instagram and tiktok that
+                                achieved 10M+ total views and increased audience engagement by more than 100% across
+                                platforms.</li>
+                        </ul>
+                    </div>
+                </div>
+            </article>
+
+            <article class="experience-card">
+                <div class="experience-photo">
+                    <img src="{{ asset('images/asdos.png') }}" alt="Departemen Sistem Informasi ITS">
+                </div>
+
+                <div class="experience-content">
+                    <div class="experience-top">
+                        <span class="experience-period">August 2025 — Oktober 2025</span>
+                        <span class="experience-number">04</span>
+                    </div>
+
+                    <div class="experience-main">
+                        <p class="experience-company">Departemen Sistem Informasi</p>
+                        <h3>Enterprise System Teaching Assistant</h3>
+
+                        <ul class="experience-description">
+                            <li>Developed Odoo learning modules for Sales, Procurement, Material Management, Point of
+                                Sale (PoS), and Finance.</li>
+                            <li>Taught and conducted final assessments for Information Systems students using Odoo
+                                modules.</li>
+                        </ul>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
 
     <script>
         const projectsFolder = document.getElementById('projectsFolder');
@@ -1062,6 +1126,44 @@
             });
         }
     </script>
+    <script>
+        const navLinks = document.querySelectorAll('nav a');
+        const sections = document.querySelectorAll('section[id]');
+
+        function setActiveNav() {
+            const scrollPosition = window.scrollY + 180;
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.offsetHeight;
+                const sectionId = section.getAttribute('id');
+
+                if (
+                    scrollPosition >= sectionTop &&
+                    scrollPosition < sectionTop + sectionHeight
+                ) {
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+
+                        if (link.getAttribute('href') === `#${sectionId}`) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }
+
+        window.addEventListener('scroll', setActiveNav);
+        window.addEventListener('load', setActiveNav);
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.forEach(nav => nav.classList.remove('active'));
+                link.classList.add('active');
+            });
+        });
+    </script>
+
     <script>
         const canvas = document.getElementById('particlesCanvas');
         const ctx = canvas.getContext('2d');
