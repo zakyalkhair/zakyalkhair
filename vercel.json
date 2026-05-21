@@ -1,5 +1,7 @@
 {
     "version": 2,
+    "buildCommand": "npm install && npm run build",
+    "outputDirectory": "public",
     "functions": {
         "api/index.php": {
             "runtime": "vercel-php@0.7.3"
@@ -15,8 +17,12 @@
             "dest": "/public/images/$1"
         },
         {
-            "src": "/icons/(.*)",
-            "dest": "/public/icons/$1"
+            "src": "/css/(.*)",
+            "dest": "/public/css/$1"
+        },
+        {
+            "src": "/js/(.*)",
+            "dest": "/public/js/$1"
         },
         {
             "src": "/favicon.ico",
@@ -30,7 +36,5 @@
             "src": "/(.*)",
             "dest": "/api/index.php"
         }
-    ],
-    "installCommand": "composer install --no-dev --optimize-autoloader && npm install",
-    "buildCommand": "npm run build && php artisan config:clear && php artisan route:clear && php artisan view:clear"
+    ]
 }
