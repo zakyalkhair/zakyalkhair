@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zaky — Portfolio</title>
+    <title>Zaky</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -270,38 +270,6 @@
 
         .polaroid-2:hover {
             transform: rotate(4deg) translate(126px, 38px);
-        }
-
-        /* SCROLL INDICATOR */
-        .scroll-indicator {
-            position: absolute;
-            bottom: 50px;
-            left: 50%;
-            z-index: 20;
-            transform: translateX(-50%);
-        }
-
-        .scroll-indicator a {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-            color: rgba(255, 255, 255, 0.88);
-            font-size: 14px;
-            font-weight: 400;
-            letter-spacing: .08em;
-            text-decoration: none;
-            text-transform: uppercase;
-            transition: opacity .3s ease;
-        }
-
-        .scroll-indicator a:hover {
-            opacity: .7;
-        }
-
-        .scroll-indicator svg {
-            animation: bounce 1.8s infinite;
-            filter: drop-shadow(0 4px 12px rgba(0, 0, 0, .2));
         }
 
         /* PROJECTS */
@@ -881,16 +849,6 @@
                 <img src="{{ asset('images/about2.jpg') }}" alt="Zaky presenting in front of a whiteboard"
                     loading="lazy">
             </div>
-        </div>
-
-        <div class="scroll-indicator">
-            <a href="#projects">
-                <span>My Projects</span>
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <path d="M6 9L12 15L18 9" stroke="white" stroke-width="8" stroke-linecap="round"
-                        stroke-linejoin="round" />
-                </svg>
-            </a>
         </div>
     </section>
 
