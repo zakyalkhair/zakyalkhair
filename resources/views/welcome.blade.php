@@ -857,15 +857,15 @@
                 </p>
 
                 <div class="socials">
-                    <a href="mailto:your@email.com" aria-label="Gmail">
+                    <a href="mailto:alzakykhair@email.com" aria-label="Gmail">
                         <img src="{{ asset('icons/gmail.png') }}" alt="Gmail">
                     </a>
 
-                    <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener" aria-label="LinkedIn">
+                    <a href="https://linkedin.com/in/zakyalkhair/" target="_blank" rel="noopener" aria-label="LinkedIn">
                         <img src="{{ asset('icons/linkedin.png') }}" alt="LinkedIn">
                     </a>
 
-                    <a href="https://github.com/yourusername" target="_blank" rel="noopener" aria-label="GitHub">
+                    <a href="https://github.com/zakyalkhair" target="_blank" rel="noopener" aria-label="GitHub">
                         <img src="{{ asset('icons/github.png') }}" alt="GitHub">
                     </a>
                 </div>
