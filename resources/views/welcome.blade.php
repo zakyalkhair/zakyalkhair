@@ -546,57 +546,35 @@
             color: rgba(255, 255, 255, 0.78);
         }
 
-        /* HORIZONTAL SCROLL */
-        .experiences-horizontal {
-            display: grid;
-            grid-auto-flow: column;
-            grid-auto-columns: minmax(520px, 680px);
-            gap: 28px;
+        /* EXPERIENCES GRID */
+.experiences-grid {
+    width: 100%;
+    max-width: 1180px;
+    margin: 0 auto;
 
-            overflow-x: auto;
-            overflow-y: hidden;
-
-            padding: 12px 0 34px;
-            scroll-snap-type: x mandatory;
-            scroll-padding-inline: 72px;
-
-            scrollbar-width: thin;
-            scrollbar-color: rgba(255, 255, 255, 0.35) transparent;
-        }
-
-        .experiences-horizontal::-webkit-scrollbar {
-            height: 8px;
-        }
-
-        .experiences-horizontal::-webkit-scrollbar-track {
-            background: transparent;
-        }
-
-        .experiences-horizontal::-webkit-scrollbar-thumb {
-            background: rgba(255, 255, 255, 0.28);
-            border-radius: 999px;
-        }
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 28px;
+}
 
         .experience-card {
-            scroll-snap-align: center;
+    min-height: 430px;
+    padding: 42px;
+    border-radius: 36px;
 
-            min-height: 430px;
-            padding: 42px;
-            border-radius: 36px;
+    background: rgba(20, 28, 38, 0.62);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
 
-            background: rgba(20, 28, 38, 0.62);
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
+    color: var(--white);
+    box-shadow: 0 18px 55px rgba(0, 0, 0, .32);
 
-            color: var(--white);
-            box-shadow: 0 18px 55px rgba(0, 0, 0, .32);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-
-            transition: transform .3s ease, background .3s ease;
-        }
+    transition: transform .3s ease, background .3s ease;
+}
 
         .experience-card:hover {
             transform: translateY(-8px);
@@ -999,79 +977,79 @@
 
     <section id="experiences" class="experiences-section">
 
-        <div class="experiences-header">
-            <h2>Experiences</h2>
-        </div>
+    <div class="experiences-header">
+        <h2>Experiences</h2>
+    </div>
 
-        <div class="experiences-horizontal">
+    <div class="experiences-grid">
 
-            <article class="experience-card">
-                <div class="experience-top">
-                    <span class="experience-period">2025 — Present</span>
-                    <span class="experience-number">01</span>
-                </div>
+        <article class="experience-card">
+            <div class="experience-top">
+                <span class="experience-period">2025 — Present</span>
+                <span class="experience-number">01</span>
+            </div>
 
-                <div class="experience-main">
-                    <p class="experience-company">Company Name</p>
-                    <h3>Position Name</h3>
-                    <p class="experience-description">
-                        Briefly describe your responsibilities, contributions, and achievements in this role. Focus on
-                        what you did, what tools you used, and the impact of your work.
-                    </p>
-                </div>
-            </article>
+            <div class="experience-main">
+                <p class="experience-company">Company Name</p>
+                <h3>Position Name</h3>
+                <p class="experience-description">
+                    Briefly describe your responsibilities, contributions, and achievements in this role. Focus on
+                    what you did, what tools you used, and the impact of your work.
+                </p>
+            </div>
+        </article>
 
-            <article class="experience-card">
-                <div class="experience-top">
-                    <span class="experience-period">2024 — 2025</span>
-                    <span class="experience-number">02</span>
-                </div>
+        <article class="experience-card">
+            <div class="experience-top">
+                <span class="experience-period">2024 — 2025</span>
+                <span class="experience-number">02</span>
+            </div>
 
-                <div class="experience-main">
-                    <p class="experience-company">Company Name</p>
-                    <h3>Position Name</h3>
-                    <p class="experience-description">
-                        Briefly describe your role, team contribution, project involvement, or leadership experience.
-                        Keep it concise but strong for portfolio readability.
-                    </p>
-                </div>
-            </article>
+            <div class="experience-main">
+                <p class="experience-company">Company Name</p>
+                <h3>Position Name</h3>
+                <p class="experience-description">
+                    Briefly describe your role, team contribution, project involvement, or leadership experience.
+                    Keep it concise but strong for portfolio readability.
+                </p>
+            </div>
+        </article>
 
-            <article class="experience-card">
-                <div class="experience-top">
-                    <span class="experience-period">2024</span>
-                    <span class="experience-number">03</span>
-                </div>
+        <article class="experience-card">
+            <div class="experience-top">
+                <span class="experience-period">2024</span>
+                <span class="experience-number">03</span>
+            </div>
 
-                <div class="experience-main">
-                    <p class="experience-company">Organization Name</p>
-                    <h3>Position Name</h3>
-                    <p class="experience-description">
-                        Briefly explain your responsibilities, events handled, analysis performed, or collaboration
-                        experience that demonstrates your professional growth.
-                    </p>
-                </div>
-            </article>
+            <div class="experience-main">
+                <p class="experience-company">Organization Name</p>
+                <h3>Position Name</h3>
+                <p class="experience-description">
+                    Briefly explain your responsibilities, events handled, analysis performed, or collaboration
+                    experience that demonstrates your professional growth.
+                </p>
+            </div>
+        </article>
 
-            <article class="experience-card">
-                <div class="experience-top">
-                    <span class="experience-period">2023 — 2024</span>
-                    <span class="experience-number">04</span>
-                </div>
+        <article class="experience-card">
+            <div class="experience-top">
+                <span class="experience-period">2023 — 2024</span>
+                <span class="experience-number">04</span>
+            </div>
 
-                <div class="experience-main">
-                    <p class="experience-company">Organization Name</p>
-                    <h3>Position Name</h3>
-                    <p class="experience-description">
-                        Describe your contribution in a clear and outcome-oriented way. Mention relevant skills such as
-                        communication, data analysis, project management, or teamwork.
-                    </p>
-                </div>
-            </article>
+            <div class="experience-main">
+                <p class="experience-company">Organization Name</p>
+                <h3>Position Name</h3>
+                <p class="experience-description">
+                    Describe your contribution in a clear and outcome-oriented way. Mention relevant skills such as
+                    communication, data analysis, project management, or teamwork.
+                </p>
+            </div>
+        </article>
 
-        </div>
+    </div>
 
-    </section>
+</section>
 
     <script>
         const projectsFolder = document.getElementById('projectsFolder');
@@ -1097,11 +1075,11 @@
         const particleSettings = {
             count: 200,
             color: '255, 255, 255',
-            speed: 0.25,
-            baseSize: 1.8,
-            spread: 1.2,
-            hoverDistance: 120,
-            hoverForce: 0.8
+            speed: 0.6,
+            baseSize: 3.0,
+            spread: 2.8,
+            hoverDistance: 300,
+            hoverForce: 2.8
         };
 
         function resizeCanvas() {
