@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
-abstract class Controller
+class Controller
 {
-    //
+    public function viewalfagift()
+    {
+        return view('alfagift');
+    }
 }

@@ -14,29 +14,9 @@
         rel="stylesheet">
 
     <style>
-        /* PARTICLES BACKGROUND */
-        .particles-container {
-            position: fixed;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            pointer-events: none;
-            overflow: hidden;
-        }
-
-        #particlesCanvas {
-            width: 100%;
-            height: 100%;
-            display: block;
-        }
-
-        nav,
-        section {
-            position: relative;
-            z-index: 2;
-        }
-
+        /* =========================
+           BASE
+        ========================= */
         *,
         *::before,
         *::after {
@@ -50,100 +30,139 @@
             --white: #ffffff;
             --text: #2c3e50;
             --text-muted: #5a6a7a;
-            --dark-glass: rgba(44, 44, 44, 0.42);
-        }
-
-        .section-title {
-            font-size: clamp(2.8rem, 4vw, 3.5rem);
-            line-height: 1.1;
-            color: var(--white);
-            text-align: center;
+            --dark-glass: rgba(20, 28, 38, 0.62);
+            --dark-glass-2: rgba(20, 28, 38, 0.72);
+            --soft-glass: rgba(232, 237, 244, 0.85);
+            --section-x: clamp(28px, 5vw, 72px);
+            --nav-height-offset: 108px;
         }
 
         html {
-            height: 100%;
+            min-height: 100%;
             scroll-behavior: smooth;
-            font-family: 'DM Sans', sans-serif;
+            scroll-padding-top: var(--nav-height-offset);
             overflow-x: hidden;
+            font-family: 'DM Sans', sans-serif;
         }
 
         body {
             position: relative;
             min-height: 100%;
-            font-family: 'DM Sans', sans-serif;
+            overflow-x: hidden;
             background: url("{{ asset('images/background.jpg') }}") center/cover no-repeat fixed;
             color: var(--text);
-            overflow-x: hidden;
+            font-family: 'DM Sans', sans-serif;
         }
 
         body::before {
             content: "";
             position: fixed;
             inset: 0;
-            background: rgba(0, 0, 0, 0.4);
             z-index: -1;
+            background: rgba(0, 0, 0, 0.4);
         }
 
         section {
             position: relative;
+            z-index: 2;
             width: 100%;
         }
 
-        /* NAVIGATION */
+        img {
+            max-width: 100%;
+        }
+
+        a {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .section-title {
+            color: var(--white);
+            font-size: clamp(2.35rem, 4vw, 3.5rem);
+            line-height: 1.08;
+            text-align: center;
+        }
+
+        /* =========================
+           PARTICLES BACKGROUND
+        ========================= */
+        .particles-container {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        #particlesCanvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* =========================
+           NAVIGATION
+        ========================= */
         nav {
             position: fixed;
             top: 22px;
             left: 50%;
-            right: auto;
-            transform: translateX(-50%);
             z-index: 100;
-            padding: 18px 46px;
             display: flex;
-            gap: 48px;
             align-items: center;
             justify-content: center;
+            gap: clamp(24px, 3vw, 48px);
             width: fit-content;
-            background: rgba(232, 237, 244, .85);
+            max-width: calc(100% - 32px);
+            padding: 18px 46px;
+            border-radius: 999px;
+            background: var(--soft-glass);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.12);
+            transform: translateX(-50%);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            border-radius: 999px;
-            box-shadow: 0 12px 35px rgba(0, 0, 0, .12);
         }
 
         nav a {
-            font-size: 18px;
-            font-weight: 600;
+            flex: 0 0 auto;
             color: var(--text-muted);
+            font-size: clamp(15px, 1.2vw, 18px);
+            font-weight: 600;
+            letter-spacing: 0.01em;
             text-decoration: none;
-            letter-spacing: .01em;
-            transition: color .2s ease, font-weight .2s ease;
+            transition: color 0.2s ease, font-weight 0.2s ease;
         }
 
-        nav a.active,
-        nav a:hover {
+        nav a:hover,
+        nav a.active {
             color: var(--navy);
             font-weight: 700;
         }
 
-        /* HERO */
+        /* =========================
+           HERO
+        ========================= */
         .hero-section {
-            min-height: 100vh;
-            padding: 105px 72px 45px;
             display: grid;
-            grid-template-columns: 0.95fr 1.05fr;
+            grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
             align-items: center;
             justify-items: center;
-            column-gap: 10px;
+            min-height: 100svh;
+            padding: 105px var(--section-x) 45px;
+            column-gap: clamp(10px, 3vw, 44px);
         }
 
         .card-wrapper {
             position: relative;
-            width: 560px;
-            height: 550px;
             display: flex;
             align-items: center;
             justify-content: center;
-            animation: fadeUp .7s ease both;
+            width: min(560px, 42vw);
+            min-width: 440px;
+            aspect-ratio: 56 / 55;
+            animation: fadeUp 0.7s ease both;
         }
 
         .card-bg {
@@ -160,34 +179,34 @@
         .card-content {
             position: relative;
             z-index: 2;
-            width: 100%;
-            height: 100%;
-            padding: 32px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            width: 100%;
+            height: 100%;
+            padding: clamp(24px, 3vw, 32px);
             text-align: center;
         }
 
         .card-name {
-            padding-left: 22px;
             margin-bottom: 14px;
-            font-family: 'Playfair Display', serif;
-            font-style: italic;
-            font-size: clamp(2.2rem, 2.6vw, 2.65rem);
-            line-height: 1.12;
+            padding-left: 22px;
             color: var(--navy);
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.05rem, 2.5vw, 2.65rem);
+            font-style: italic;
+            line-height: 1.12;
         }
 
         .card-bio {
             max-width: 360px;
             margin-bottom: 20px;
             padding-left: 10px;
-            font-size: 15.5px;
-            line-height: 1.58;
-            font-weight: 300;
             color: var(--text);
+            font-size: clamp(14px, 1.05vw, 15.5px);
+            font-weight: 300;
+            line-height: 1.58;
         }
 
         .card-bio strong {
@@ -196,8 +215,8 @@
 
         .socials {
             display: flex;
-            gap: 24px;
             justify-content: center;
+            gap: 24px;
         }
 
         .socials a {
@@ -208,7 +227,7 @@
             height: 46px;
             border-radius: 10px;
             text-decoration: none;
-            transition: transform .2s ease;
+            transition: transform 0.2s ease;
         }
 
         .socials a:hover {
@@ -221,15 +240,18 @@
             object-fit: contain;
         }
 
-        /* PHOTO COLLAGE */
+        /* =========================
+           PHOTO COLLAGE
+        ========================= */
         .photo-collage {
             position: relative;
-            width: 480px;
-            height: 540px;
             display: flex;
             align-items: center;
             justify-content: center;
-            animation: fadeUp .7s .15s ease both;
+            width: min(480px, 39vw);
+            min-width: 380px;
+            aspect-ratio: 8 / 9;
+            animation: fadeUp 0.7s 0.15s ease both;
         }
 
         .polaroid {
@@ -237,8 +259,8 @@
             overflow: hidden;
             border-radius: 8px;
             background: var(--white);
-            box-shadow: 0 12px 40px rgba(27, 58, 92, .22);
-            transition: transform .35s ease;
+            box-shadow: 0 12px 40px rgba(27, 58, 92, 0.22);
+            transition: transform 0.35s ease;
         }
 
         .polaroid img {
@@ -249,36 +271,38 @@
         }
 
         .polaroid-1 {
-            width: 360px;
-            height: 430px;
-            padding: 16px 16px 48px;
-            transform: rotate(-5deg) translate(-105px, -68px);
             z-index: 1;
+            width: 75%;
+            height: 79.6%;
+            padding: 16px 16px 48px;
+            transform: rotate(-5deg) translate(-29%, -16%);
         }
 
         .polaroid-2 {
-            width: 360px;
-            height: 440px;
-            padding: 16px 16px 48px;
-            transform: rotate(4deg) translate(96px, 38px);
             z-index: 2;
+            width: 75%;
+            height: 81.5%;
+            padding: 16px 16px 48px;
+            transform: rotate(4deg) translate(27%, 9%);
         }
 
         .polaroid-1:hover {
-            transform: rotate(-5deg) translate(-135px, -68px);
+            transform: rotate(-5deg) translate(-37%, -16%);
         }
 
         .polaroid-2:hover {
-            transform: rotate(4deg) translate(126px, 38px);
+            transform: rotate(4deg) translate(35%, 9%);
         }
 
-        /* PROJECTS */
+        /* =========================
+           PROJECTS
+        ========================= */
         .projects-section {
-            min-height: 80vh;
-            padding: 110px 72px 60px;
             display: flex;
             flex-direction: column;
             justify-content: center;
+            min-height: 80svh;
+            padding: 20px var(--section-x) 60px;
         }
 
         .projects-header {
@@ -288,9 +312,9 @@
 
         .projects-folder-wrapper {
             position: relative;
-            width: 100%;
             display: flex;
             justify-content: center;
+            width: 100%;
         }
 
         .projects-folder {
@@ -304,13 +328,14 @@
             position: absolute;
             inset: 0;
             display: flex;
-            justify-content: center;
             align-items: center;
-            transition: opacity .45s ease, transform .45s ease;
+            justify-content: center;
+            transition: opacity 0.45s ease, transform 0.45s ease;
         }
 
         .folder-shell img {
-            width: 750px;
+            width: 800px;
+            max-width: none;
             height: auto;
             object-fit: contain;
         }
@@ -318,7 +343,7 @@
         .projects-folder:hover .folder-shell,
         .projects-folder.mobile-open .folder-shell {
             opacity: 0;
-            transform: scale(.85);
+            transform: scale(0.85);
         }
 
         .project-card {
@@ -331,11 +356,12 @@
             border-radius: 24px;
             opacity: 0;
             pointer-events: none;
-            transform: translate(-50%, -50%) scale(.7);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, .2);
+            transform: translate(-50%, -50%) scale(0.7);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
             transition:
-                transform .5s cubic-bezier(.2, .8, .2, 1),
-                opacity .4s ease;
+                transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1),
+                opacity 0.4s ease,
+                box-shadow 0.25s ease;
         }
 
         .project-card a {
@@ -343,8 +369,37 @@
             display: block;
             width: 100%;
             height: 100%;
+            overflow: hidden;
+            border-radius: inherit;
             color: var(--white);
             text-decoration: none;
+            transition: transform 0.14s ease;
+        }
+
+        .project-card a::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            background: rgba(0, 0, 0, 0);
+            pointer-events: none;
+            transition: background 0.25s ease;
+        }
+
+        .project-card:hover {
+            box-shadow: 0 18px 55px rgba(0, 0, 0, 0.38);
+        }
+
+        .project-card:hover a::after {
+            background: rgba(0, 0, 0, 0.28);
+        }
+
+        .project-card:active a {
+            transform: scale(0.965);
+        }
+
+        .project-card:active a::after {
+            background: rgba(0, 0, 0, 0.42);
         }
 
         .project-image,
@@ -372,18 +427,18 @@
 
         .project-content h3 {
             max-width: 75%;
-            padding: 12px 18px;
             margin: 0;
+            padding: 12px 18px;
             border-radius: 12px;
             background: var(--dark-glass);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
             box-shadow: 0 12px 34px rgba(0, 0, 0, 0.26);
             color: var(--white);
             font-size: 16px;
             font-weight: 500;
             line-height: 1.25;
             text-shadow: 0 3px 14px rgba(0, 0, 0, 0.35);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
         }
 
         .projects-folder:hover .project-card,
@@ -404,7 +459,7 @@
 
         .projects-folder:hover .project-card-3,
         .projects-folder.mobile-open .project-card-3 {
-            transform: translate(-300px, -220px) rotate(0deg);
+            transform: translate(-300px, -220px);
         }
 
         .projects-folder:hover .project-card-4,
@@ -417,14 +472,16 @@
             transform: translate(240px, -330px) rotate(16deg);
         }
 
-        /* SKILLS */
+        /* =========================
+           SKILLS
+        ========================= */
         .skills-section {
-            min-height: 100vh;
-            padding: 110px 72px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: flex-start;
+            min-height: 80svh;
+            padding: 110px var(--section-x) 60px;
         }
 
         .skills-header {
@@ -433,38 +490,28 @@
             text-align: center;
         }
 
-        .skills-header h2 {
-            margin-bottom: 18px;
-        }
-
-        .skills-header p {
-            font-size: 17px;
-            line-height: 1.7;
-            color: rgba(255, 255, 255, 0.78);
-        }
-
         .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 28px;
             width: 100%;
             max-width: 1180px;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 28px;
         }
 
         .skill-card {
             min-height: 180px;
-            padding: 34px;
             overflow: hidden;
+            padding: 34px;
             border-radius: 28px;
             background: rgba(20, 28, 38, 0.58);
+            transition: transform 0.3s ease, background 0.3s ease;
             backdrop-filter: blur(14px);
             -webkit-backdrop-filter: blur(14px);
-            transition: transform .3s ease, background .3s ease;
         }
 
         .skill-card:hover {
-            transform: translateY(-8px);
             background: rgba(20, 28, 38, 0.68);
+            transform: translateY(-8px);
         }
 
         .skill-card h3 {
@@ -491,13 +538,15 @@
             font-weight: 500;
         }
 
-        /* EXPERIENCES */
+        /* =========================
+           EXPERIENCES
+        ========================= */
         .experiences-section {
-            min-height: 100vh;
-            padding: 110px 64px;
             display: flex;
             flex-direction: column;
             justify-content: center;
+            min-height: 100svh;
+            padding: 110px 64px;
         }
 
         .experiences-header {
@@ -506,65 +555,60 @@
             text-align: center;
         }
 
-        .experiences-header h2 {
-            margin-bottom: 12px;
-        }
-
         .experiences-grid {
-            width: 100%;
-            max-width: 1580px;
-            margin: 0 auto;
             display: grid;
             grid-template-columns: repeat(2, minmax(0, 1fr));
             gap: 28px;
+            width: 100%;
+            max-width: 1580px;
+            margin: 0 auto;
         }
 
         .experience-card {
             position: relative;
+            display: grid;
+            grid-template-columns: minmax(150px, 190px) minmax(0, 1fr);
+            align-items: start;
+            gap: clamp(18px, 2vw, 30px);
             min-height: 325px;
-            height: 325px;
-            padding: 28px;
+            height: auto;
+            overflow: hidden;
+            padding: clamp(22px, 2vw, 28px);
             border-radius: 36px;
-            background: rgba(20, 28, 38, 0.62);
+            background: var(--dark-glass);
+            box-shadow: 0 18px 55px rgba(0, 0, 0, 0.32);
+            color: var(--white);
+            transition: transform 0.3s ease, background 0.3s ease;
             backdrop-filter: blur(14px);
             -webkit-backdrop-filter: blur(14px);
-            color: var(--white);
-            box-shadow: 0 18px 55px rgba(0, 0, 0, .32);
-            display: grid;
-            grid-template-columns: 190px 1fr;
-            gap: 30px;
-            align-items: start;
-            overflow: hidden;
-            transition: transform .3s ease, background .3s ease;
         }
 
         .experience-card:hover {
+            background: var(--dark-glass-2);
             transform: translateY(-8px);
-            background: rgba(20, 28, 38, 0.72);
         }
 
         .experience-photo {
             width: 100%;
             aspect-ratio: 3 / 4;
-            align-self: start;
-            border-radius: 22px;
             overflow: hidden;
+            border-radius: 22px;
             background: rgba(255, 255, 255, 0.12);
-            box-shadow: 0 14px 35px rgba(0, 0, 0, .24);
+            box-shadow: 0 14px 35px rgba(0, 0, 0, 0.24);
         }
 
         .experience-photo img {
+            display: block;
             width: 100%;
             height: 100%;
             object-fit: cover;
-            display: block;
         }
 
         .experience-content {
-            height: 100%;
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
+            height: 100%;
             padding-top: 4px;
         }
 
@@ -573,6 +617,7 @@
             align-items: center;
             justify-content: space-between;
             margin-bottom: 26px;
+            padding-right: 54px;
         }
 
         .experience-period {
@@ -589,45 +634,44 @@
             position: absolute;
             top: 24px;
             right: 24px;
+            color: rgba(255, 255, 255, 0.18);
             font-size: 42px;
             font-weight: 700;
             line-height: 1;
-            color: rgba(255, 255, 255, 0.18);
         }
 
         .experience-company {
             margin-bottom: 10px;
+            color: rgba(255, 255, 255, 0.68);
             font-size: 13px;
             font-weight: 700;
-            letter-spacing: .08em;
+            letter-spacing: 0.08em;
             text-transform: uppercase;
-            color: rgba(255, 255, 255, 0.68);
         }
 
         .experience-main h3 {
             max-width: 560px;
             margin-bottom: 14px;
+            color: var(--white);
             font-size: clamp(1.35rem, 2vw, 2rem);
             line-height: 1.12;
-            color: var(--white);
         }
 
         .experience-description {
             max-width: 560px;
             padding-left: 18px;
+            color: rgba(255, 255, 255, 0.78);
             font-size: 14px;
             line-height: 1.65;
-            color: rgba(255, 255, 255, 0.78);
         }
 
-        .experience-description li {
+        .experience-description li:not(:last-child) {
             margin-bottom: 8px;
         }
 
-        .experience-description li:last-child {
-            margin-bottom: 0;
-        }
-
+        /* =========================
+           ANIMATIONS
+        ========================= */
         @keyframes fadeUp {
             from {
                 opacity: 0;
@@ -640,36 +684,198 @@
             }
         }
 
-        @keyframes bounce {
-
-            0%,
-            100% {
-                transform: translateY(0);
+        @media (max-width: 1440px) {
+            .experiences-section {
+                padding-top: 130px;
             }
 
-            50% {
-                transform: translateY(8px);
+            .experiences-grid {
+                max-width: 1220px;
+            }
+
+            .experience-card {
+                grid-template-columns: minmax(140px, 165px) minmax(0, 1fr);
+                min-height: 345px;
+                border-radius: 32px;
+            }
+
+            .experience-top {
+                margin-bottom: 22px;
+                padding-right: 46px;
+            }
+
+            .experience-period {
+                padding: 8px 14px;
+                font-size: 12px;
+                line-height: 1.2;
+            }
+
+            .experience-number {
+                top: 22px;
+                right: 22px;
+                font-size: 40px;
+            }
+
+            .experience-company {
+                font-size: 12px;
+                line-height: 1.35;
+            }
+
+            .experience-main h3 {
+                font-size: clamp(1.35rem, 2.05vw, 1.75rem);
+            }
+
+            .experience-description {
+                font-size: 13.5px;
+                line-height: 1.6;
             }
         }
 
-        /* RESPONSIVE */
-        @media (max-width: 1200px) {
+        /* =========================
+           RESPONSIVE - LARGE LAPTOP / TABLET LANDSCAPE
+        ========================= */
+        @media (max-width: 1280px) {
             .hero-section {
                 grid-template-columns: 1fr;
-                gap: 40px;
+                gap: 24px;
+                padding-top: 112px;
+            }
+
+            .card-wrapper {
+                width: min(560px, 90vw);
+                min-width: 0;
+            }
+
+            .photo-collage {
+                width: min(460px, 86vw);
+                min-width: 0;
+                height: auto;
+            }
+
+            .projects-section {
+                min-height: auto;
+                padding-top: 110px;
+            }
+
+            .projects-header {
+                margin-bottom: 36px;
+            }
+
+            .projects-folder-wrapper {
+                display: block;
             }
 
             .projects-folder {
-                transform: scale(.75);
+                top: 0;
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 24px;
+                width: 100%;
+                max-width: 1040px;
+                height: auto;
+                margin: 0 auto;
+            }
+
+            .folder-shell {
+                display: none;
+            }
+
+            .project-card,
+            .projects-folder:hover .project-card,
+            .projects-folder.mobile-open .project-card,
+            .projects-folder:hover .project-card-1,
+            .projects-folder:hover .project-card-2,
+            .projects-folder:hover .project-card-3,
+            .projects-folder:hover .project-card-4,
+            .projects-folder:hover .project-card-5,
+            .projects-folder.mobile-open .project-card-1,
+            .projects-folder.mobile-open .project-card-2,
+            .projects-folder.mobile-open .project-card-3,
+            .projects-folder.mobile-open .project-card-4,
+            .projects-folder.mobile-open .project-card-5 {
+                position: relative;
+                top: auto;
+                left: auto;
+                width: 100%;
+                max-width: none;
+                margin: 0;
+                opacity: 1;
+                pointer-events: auto;
+                transform: none;
+            }
+
+            .experiences-grid {
+                grid-template-columns: 1fr;
+                max-width: 760px;
+            }
+
+            .experience-card {
+                grid-template-columns: 180px minmax(0, 1fr);
+                min-height: auto;
             }
         }
 
+        /* =========================
+           RESPONSIVE - TABLET / MOBILE
+        ========================= */
         @media (max-width: 960px) {
+
+            .particles-container {
+                display: none;
+            }
+
+            :root {
+                --section-x: 28px;
+                --nav-height-offset: 92px;
+            }
+
+            /* =========================
+   MOBILE FIXED BACKGROUND
+========================= */
+
+            body {
+                background-image: none;
+                background-color: #7fb8df;
+            }
+
+            body::after {
+                content: "";
+                position: fixed;
+                inset: 0;
+                z-index: -2;
+
+                background-image: url("{{ asset('images/mobilebg.png') }}");
+                background-position: center top;
+                background-size: cover;
+                background-repeat: no-repeat;
+
+                pointer-events: none;
+                transform: translateZ(0);
+                will-change: transform;
+            }
+
+            body::before {
+                z-index: -1;
+                background:
+                    linear-gradient(to bottom,
+                        rgba(0, 0, 0, 0.36),
+                        rgba(0, 0, 0, 0.54));
+            }
+
+
             nav {
-                padding: 14px 22px;
-                gap: 22px;
-                max-width: calc(100% - 32px);
+                top: 14px;
+                justify-content: flex-start;
+                gap: 18px;
+                width: max-content;
+                max-width: calc(100% - 24px);
+                padding: 12px 18px;
                 overflow-x: auto;
+                scrollbar-width: none;
+            }
+
+            nav::-webkit-scrollbar {
+                display: none;
             }
 
             nav a {
@@ -678,19 +884,19 @@
             }
 
             .section-title {
-                font-size: clamp(2.2rem, 8vw, 3rem);
+                font-size: clamp(2.15rem, 8vw, 3rem);
             }
 
-            .hero-section,
-            .projects-section,
-            .skills-section,
-            .experiences-section {
-                padding-inline: 28px;
+            .hero-section {
+                min-height: auto;
+                padding-top: 104px;
+                padding-bottom: 52px;
+                gap: 30px;
             }
 
             .card-wrapper {
                 width: min(100%, 460px);
-                height: 460px;
+                aspect-ratio: 1 / 1;
             }
 
             .card-content {
@@ -720,76 +926,267 @@
             }
 
             .photo-collage {
-                width: min(100%, 380px);
-                height: 440px;
+                width: min(100%, 390px);
+                aspect-ratio: 39 / 44;
             }
 
-            .polaroid-1,
+            .polaroid-1 {
+                padding: 13px 13px 40px;
+                transform: rotate(-5deg) translate(-22%, -13%);
+            }
+
             .polaroid-2 {
-                width: 280px;
-                height: 350px;
+                padding: 13px 13px 40px;
+                transform: rotate(4deg) translate(22%, 8%);
             }
 
-            .projects-header {
-                margin-bottom: 120px;
+            .polaroid-1:hover {
+                transform: rotate(-5deg) translate(-22%, -13%);
+            }
+
+            .polaroid-2:hover {
+                transform: rotate(4deg) translate(22%, 8%);
+            }
+
+            .projects-section,
+            .skills-section,
+            .experiences-section {
+                min-height: auto;
+                padding-top: 92px;
+                padding-bottom: 56px;
             }
 
             .projects-folder {
-                top: 0;
-                width: 100%;
-                height: auto;
-                transform: none;
-                display: grid;
-                gap: 22px;
+                grid-template-columns: 1fr;
+                gap: 18px;
             }
 
-            .folder-shell {
-                position: relative;
-                min-height: 240px;
+            .project-card {
+                border-radius: 22px;
             }
 
-            .folder-shell img {
-                width: min(100%, 420px);
+            .project-content {
+                padding: 18px;
             }
 
-            .project-card,
-            .projects-folder:hover .project-card,
-            .projects-folder.mobile-open .project-card,
-            .projects-folder:hover .project-card-1,
-            .projects-folder:hover .project-card-2,
-            .projects-folder:hover .project-card-3,
-            .projects-folder:hover .project-card-4,
-            .projects-folder:hover .project-card-5,
-            .projects-folder.mobile-open .project-card-1,
-            .projects-folder.mobile-open .project-card-2,
-            .projects-folder.mobile-open .project-card-3,
-            .projects-folder.mobile-open .project-card-4,
-            .projects-folder.mobile-open .project-card-5 {
-                position: relative;
-                top: auto;
-                left: auto;
-                width: 100%;
-                max-width: 580px;
-                margin: 0 auto;
-                opacity: 1;
-                pointer-events: auto;
-                transform: none;
+            .project-content h3 {
+                max-width: 86%;
+                font-size: 14.5px;
             }
 
             .skills-grid,
             .experiences-grid {
                 grid-template-columns: 1fr;
+                gap: 18px;
+            }
+
+            .skill-card {
+                min-height: auto;
+                padding: 26px;
+                border-radius: 24px;
+            }
+
+            .skill-card h3 {
+                font-size: 22px;
+            }
+
+            .skill-list span {
+                padding: 10px 15px;
+                font-size: 13px;
+            }
+
+            .experiences-section {
+                padding-inline: var(--section-x);
             }
 
             .experience-card {
-                height: auto;
-                min-height: 420px;
                 grid-template-columns: 1fr;
-                padding: 28px;
+                gap: 20px;
+                height: auto;
+                min-height: auto;
+                padding: 24px;
+                border-radius: 28px;
+                overflow: visible;
             }
 
             .experience-photo {
-                width: 180px;
+                display: none;
+            }
+
+            .experience-top {
+                align-items: flex-start;
+                margin-bottom: 20px;
+                padding-right: 52px;
+            }
+
+            .experience-period {
+                max-width: calc(100% - 56px);
+                padding: 8px 14px;
+                font-size: 11.5px;
+                line-height: 1.2;
+            }
+
+            .experience-number {
+                top: 24px;
+                right: 24px;
+                font-size: 36px;
+            }
+
+            .experience-company {
+                font-size: 12px;
+                line-height: 1.45;
+            }
+
+            .experience-main h3 {
+                font-size: clamp(1.35rem, 7vw, 2rem);
+            }
+
+            .experience-description {
+                font-size: 13.5px;
+                line-height: 1.65;
+            }
+        }
+
+        /* =========================
+           RESPONSIVE - SMALL PHONE
+        ========================= */
+        @media (max-width: 560px) {
+            :root {
+                --section-x: 18px;
+                --nav-height-offset: 84px;
+            }
+
+            nav {
+                top: 10px;
+                max-width: calc(100% - 16px);
+                padding: 10px 14px;
+                gap: 14px;
+            }
+
+            nav a {
+                font-size: 14px;
+            }
+
+            .hero-section {
+                padding-top: 86px;
+                gap: 22px;
+            }
+
+            .card-wrapper {
+                width: min(100%, 350px);
+            }
+
+            .card-content {
+                padding: 22px;
+            }
+
+            .card-name {
+                margin-bottom: 10px;
+                padding-left: 8px;
+                font-size: 1.72rem;
+            }
+
+            .card-bio {
+                max-width: 240px;
+                margin-bottom: 7px;
+                margin-top: 7px;
+                padding-left: 2px;
+                font-size: 11px;
+                line-height: 1.48;
+            }
+
+            .socials {
+                gap: 14px;
+            }
+
+            .socials a,
+            .socials img {
+                width: 34px;
+                height: 34px;
+            }
+
+            .photo-collage {
+                width: min(100%, 310px);
+            }
+
+            .polaroid-1,
+            .polaroid-2 {
+                padding: 10px 10px 32px;
+            }
+
+            .section-title {
+                font-size: clamp(2rem, 10vw, 2.65rem);
+            }
+
+            .projects-section,
+            .skills-section,
+            .experiences-section {
+                padding-top: 78px;
+                padding-bottom: 46px;
+            }
+
+            .projects-header,
+            .skills-header,
+            .experiences-header {
+                margin-bottom: 20px;
+            }
+
+            .project-card {
+                border-radius: 18px;
+            }
+
+            .project-content h3 {
+                max-width: 90%;
+                padding: 10px 13px;
+                font-size: 13px;
+            }
+
+            .skill-card {
+                padding: 22px;
+                border-radius: 22px;
+            }
+
+            .experience-card {
+                padding: 20px;
+                border-radius: 24px;
+            }
+
+            .experience-top {
+                margin-bottom: 18px;
+                padding-right: 44px;
+            }
+
+            .experience-period {
+                max-width: calc(100% - 44px);
+                padding: 7px 12px;
+                font-size: 10.8px;
+            }
+
+            .experience-number {
+                top: 20px;
+                right: 20px;
+                font-size: 31px;
+            }
+
+            .experience-main h3 {
+                margin-bottom: 12px;
+            }
+        }
+
+
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                scroll-behavior: auto !important;
+                transition-duration: 0.01ms !important;
             }
         }
     </style>
@@ -800,7 +1197,7 @@
         <canvas id="particlesCanvas"></canvas>
     </div>
 
-    <nav>
+    <nav aria-label="Main navigation">
         <a class="active" href="#about">About</a>
         <a href="#projects">Projects</a>
         <a href="#skills">Skills</a>
@@ -864,9 +1261,9 @@
                 </div>
 
                 <div class="project-card project-card-1">
-                    <a href="#">
+                    <a href="{{ route('alfagift') }}">
                         <div class="project-image">
-                            <img src="{{ asset('images/project1.png') }}" alt="Project 1">
+                            <img src="{{ asset('images/project1.png') }}" alt="Sentiment Analysis of Alfagift project">
                         </div>
 
                         <div class="project-content">
@@ -878,7 +1275,8 @@
                 <div class="project-card project-card-2">
                     <a href="#">
                         <div class="project-image">
-                            <img src="{{ asset('images/project2.png') }}" alt="Project 2">
+                            <img src="{{ asset('images/project2.png') }}"
+                                alt="IT Balanced Scorecard Dashboard project">
                         </div>
 
                         <div class="project-content">
@@ -890,7 +1288,8 @@
                 <div class="project-card project-card-3">
                     <a href="#">
                         <div class="project-image">
-                            <img src="{{ asset('images/project3.png') }}" alt="Project 3">
+                            <img src="{{ asset('images/project3.png') }}"
+                                alt="Ali Khamenei sentiment analysis project">
                         </div>
 
                         <div class="project-content">
@@ -902,7 +1301,7 @@
                 <div class="project-card project-card-4">
                     <a href="#">
                         <div class="project-image">
-                            <img src="{{ asset('images/project4.png') }}" alt="Project 4">
+                            <img src="{{ asset('images/project4.png') }}" alt="Health Burden Clustering project">
                         </div>
 
                         <div class="project-content">
@@ -914,7 +1313,7 @@
                 <div class="project-card project-card-5">
                     <a href="#">
                         <div class="project-image">
-                            <img src="{{ asset('images/project5.png') }}" alt="Project 5">
+                            <img src="{{ asset('images/project5.png') }}" alt="Data Warehouse Design project">
                         </div>
 
                         <div class="project-content">
@@ -1075,95 +1474,81 @@
 
     <script>
         const projectsFolder = document.getElementById('projectsFolder');
+        const navLinks = document.querySelectorAll('nav a');
+        const sections = document.querySelectorAll('section[id]');
+        const canvas = document.getElementById('particlesCanvas');
+        const ctx = canvas?.getContext('2d');
+
+        let particles = [];
+        const mouse = {
+            x: null,
+            y: null
+        };
+
+        const getParticleCount = () => {
+            if (window.innerWidth <= 560) return 70;
+            if (window.innerWidth <= 960) return 110;
+            return 200;
+        };
+
+        const particleSettings = {
+            color: '255, 255, 255',
+            speed: 0.6,
+            baseSize: 3,
+            hoverDistance: 300,
+            hoverForce: 2.8
+        };
 
         if (projectsFolder) {
-            projectsFolder.addEventListener('click', () => {
-                if (window.innerWidth <= 960) {
+            projectsFolder.addEventListener('click', event => {
+                if (window.innerWidth <= 1280 && event.target.closest('.folder-shell')) {
                     projectsFolder.classList.toggle('mobile-open');
                 }
             });
         }
-    </script>
-    <script>
-        const navLinks = document.querySelectorAll('nav a');
-        const sections = document.querySelectorAll('section[id]');
 
         function setActiveNav() {
             const scrollPosition = window.scrollY + 180;
 
             sections.forEach(section => {
                 const sectionTop = section.offsetTop;
-                const sectionHeight = section.offsetHeight;
+                const sectionBottom = sectionTop + section.offsetHeight;
                 const sectionId = section.getAttribute('id');
 
-                if (
-                    scrollPosition >= sectionTop &&
-                    scrollPosition < sectionTop + sectionHeight
-                ) {
+                if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
                     navLinks.forEach(link => {
-                        link.classList.remove('active');
-
-                        if (link.getAttribute('href') === `#${sectionId}`) {
-                            link.classList.add('active');
-                        }
+                        link.classList.toggle('active', link.getAttribute('href') === `#${sectionId}`);
                     });
                 }
             });
         }
 
-        window.addEventListener('scroll', setActiveNav);
-        window.addEventListener('load', setActiveNav);
+        function createParticles() {
+            if (!canvas) return;
 
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.forEach(nav => nav.classList.remove('active'));
-                link.classList.add('active');
-            });
-        });
-    </script>
-
-    <script>
-        const canvas = document.getElementById('particlesCanvas');
-        const ctx = canvas.getContext('2d');
-
-        let particles = [];
-        let mouse = {
-            x: null,
-            y: null
-        };
-
-        const particleSettings = {
-            count: 200,
-            color: '255, 255, 255',
-            speed: 0.6,
-            baseSize: 3.0,
-            spread: 2.8,
-            hoverDistance: 300,
-            hoverForce: 2.8
-        };
+            particles = Array.from({
+                length: getParticleCount()
+            }, () => ({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                vx: (Math.random() - 0.5) * particleSettings.speed,
+                vy: (Math.random() - 0.5) * particleSettings.speed,
+                size: Math.random() * particleSettings.baseSize + 0.6,
+                alpha: Math.random() * 0.45 + 0.25
+            }));
+        }
 
         function resizeCanvas() {
+            if (!canvas) return;
+
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
             createParticles();
         }
 
-        function createParticles() {
-            particles = [];
-
-            for (let i = 0; i < particleSettings.count; i++) {
-                particles.push({
-                    x: Math.random() * canvas.width,
-                    y: Math.random() * canvas.height,
-                    vx: (Math.random() - 0.5) * particleSettings.speed,
-                    vy: (Math.random() - 0.5) * particleSettings.speed,
-                    size: Math.random() * particleSettings.baseSize + 0.6,
-                    alpha: Math.random() * 0.45 + 0.25
-                });
-            }
-        }
-
         function drawParticles() {
+            if (!ctx || !canvas) return;
+
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
             particles.forEach(particle => {
@@ -1171,7 +1556,7 @@
                 const dy = mouse.y - particle.y;
                 const distance = Math.sqrt(dx * dx + dy * dy);
 
-                if (mouse.x !== null && distance < particleSettings.hoverDistance) {
+                if (mouse.x !== null && distance > 0 && distance < particleSettings.hoverDistance) {
                     const force = (particleSettings.hoverDistance - distance) / particleSettings.hoverDistance;
                     particle.x -= (dx / distance) * force * particleSettings.hoverForce;
                     particle.y -= (dy / distance) * force * particleSettings.hoverForce;
@@ -1194,11 +1579,17 @@
             requestAnimationFrame(drawParticles);
         }
 
+        window.addEventListener('scroll', setActiveNav, {
+            passive: true
+        });
+        window.addEventListener('load', setActiveNav);
         window.addEventListener('resize', resizeCanvas);
 
-        window.addEventListener('mousemove', e => {
-            mouse.x = e.clientX;
-            mouse.y = e.clientY;
+        window.addEventListener('mousemove', event => {
+            mouse.x = event.clientX;
+            mouse.y = event.clientY;
+        }, {
+            passive: true
         });
 
         window.addEventListener('mouseleave', () => {
