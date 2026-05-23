@@ -1388,12 +1388,12 @@
 
         <div class="photo-collage" aria-label="Foto Zaky">
             <div class="polaroid polaroid-1">
-                <img src="{{ asset('images/about1.webp') }}" alt="Zaky presenting at ANFORCOM 2024" loading="lazy"
+                <img src="{{ asset('images/about1.jpg') }}" alt="Zaky presenting at ANFORCOM 2024" loading="lazy"
                     decoding="async">
             </div>
 
             <div class="polaroid polaroid-2">
-                <img src="{{ asset('images/about2.webp') }}" alt="Zaky presenting in front of a whiteboard"
+                <img src="{{ asset('images/about2.jpg') }}" alt="Zaky presenting in front of a whiteboard"
                     loading="lazy" decoding="async">
             </div>
         </div>
@@ -1464,7 +1464,7 @@
         <div class="experiences-grid">
             <article class="experience-card">
                 <div class="experience-photo">
-                    <img src="{{ asset('images/astra.webp') }}" alt="Astra Infra Toll Road Tangerang-Merak"
+                    <img src="{{ asset('images/astra.png') }}" alt="Astra Infra Toll Road Tangerang-Merak"
                         loading="lazy" decoding="async">
                 </div>
 
@@ -1489,7 +1489,7 @@
 
             <article class="experience-card">
                 <div class="experience-photo">
-                    <img src="{{ asset('images/hmsi.webp') }}" alt="Himpunan Sistem Informasi ITS" loading="lazy"
+                    <img src="{{ asset('images/hmsi.png') }}" alt="Himpunan Sistem Informasi ITS" loading="lazy"
                         decoding="async">
                 </div>
 
@@ -1514,7 +1514,7 @@
 
             <article class="experience-card">
                 <div class="experience-photo">
-                    <img src="{{ asset('images/ise.webp') }}" alt="ISE! 2025" loading="lazy" decoding="async">
+                    <img src="{{ asset('images/ise.png') }}" alt="ISE! 2025" loading="lazy" decoding="async">
                 </div>
 
                 <div class="experience-content">
@@ -1538,7 +1538,7 @@
 
             <article class="experience-card">
                 <div class="experience-photo">
-                    <img src="{{ asset('images/asdos.webp') }}" alt="Departemen Sistem Informasi ITS" loading="lazy"
+                    <img src="{{ asset('images/asdos.png') }}" alt="Departemen Sistem Informasi ITS" loading="lazy"
                         decoding="async">
                 </div>
 
