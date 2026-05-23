@@ -31,12 +31,20 @@
             --muted-white: rgba(255, 255, 255, 0.72);
             --soft-white: rgba(255, 255, 255, 0.14);
             --soft-white-2: rgba(255, 255, 255, 0.22);
-            --blue: #236cd3;
-            --blue-soft: rgba(35, 108, 211, 0.82);
-            --blue-hover: rgba(72, 122, 192, 0.45);
+
+            --accent: #ffd400;
+            --accent-soft: rgba(255, 212, 0, 0.82);
+            --accent-hover: rgba(255, 212, 0, 0.28);
+            --accent-border: rgba(255, 212, 0, 0.42);
+
             --dark: rgba(4, 10, 20, 0.74);
             --dark-soft: rgba(7, 14, 28, 0.56);
             --card-border: rgba(255, 255, 255, 0.16);
+
+            --soft-glass: rgba(255, 255, 255, 0.14);
+            --text-muted: rgba(255, 255, 255, 0.72);
+            --navy: var(--accent);
+
             --section-x: clamp(20px, 5vw, 64px);
         }
 
@@ -83,7 +91,7 @@
             z-index: -1;
             background:
                 linear-gradient(180deg, rgba(0, 0, 0, 0.26), rgba(0, 0, 0, 0.54)),
-                radial-gradient(circle at 22% 18%, rgba(35, 108, 211, 0.34), transparent 34%),
+                radial-gradient(circle at 22% 18%, rgba(255, 212, 0, 0.26), transparent 34%),
                 radial-gradient(circle at 78% 22%, rgba(255, 255, 255, 0.12), transparent 28%);
         }
 
@@ -95,7 +103,6 @@
         /* =========================
            NAVIGATION
         ========================= */
-
         nav {
             position: fixed;
             top: 22px;
@@ -205,19 +212,21 @@
             background: rgba(255, 255, 255, 0.10);
             color: rgba(255, 255, 255, 0.76);
             cursor: pointer;
-            transition: background 0.25s ease, transform 0.25s ease, color 0.25s ease;
+            transition: background 0.25s ease, transform 0.25s ease, color 0.25s ease, border-color 0.25s ease;
         }
 
         .category-tab:hover {
             transform: translateY(-2px);
-            background: var(--blue-hover);
+            background: var(--accent-hover);
+            border-color: var(--accent-border);
             color: var(--white);
         }
 
         .category-tab.active {
-            background: var(--blue-soft);
-            color: var(--white);
-            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+            background: var(--accent-soft);
+            color: #111827;
+            border-color: var(--accent-border);
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.14);
         }
 
         .search-box {
@@ -244,6 +253,12 @@
             color: var(--white);
             backdrop-filter: blur(14px);
             -webkit-backdrop-filter: blur(14px);
+            transition: border-color 0.25s ease, background 0.25s ease;
+        }
+
+        .search-box input:focus {
+            border-color: var(--accent-border);
+            background: rgba(255, 255, 255, 0.14);
         }
 
         .search-box input::placeholder {
@@ -272,7 +287,7 @@
 
         .project-card:hover {
             transform: translateY(-8px);
-            border-color: rgba(255, 255, 255, 0.28);
+            border-color: var(--accent-border);
             background: rgba(5, 12, 24, 0.72);
         }
 
@@ -285,7 +300,7 @@
             height: 235px;
             overflow: hidden;
             background:
-                linear-gradient(135deg, rgba(35, 108, 211, 0.38), rgba(255, 255, 255, 0.10)),
+                linear-gradient(135deg, rgba(255, 212, 0, 0.32), rgba(255, 255, 255, 0.10)),
                 rgba(255, 255, 255, 0.08);
         }
 
@@ -373,16 +388,17 @@
             min-height: 40px;
             padding: 0 14px;
             border-radius: 12px;
-            background: var(--blue-soft);
-            color: var(--white);
+            background: var(--accent-soft);
+            color: #111827;
             font-size: 13px;
             font-weight: 800;
-            transition: transform 0.25s ease, background 0.25s ease;
+            transition: transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
         }
 
         .project-link:hover {
             transform: translateY(-2px);
-            background: rgba(35, 108, 211, 0.96);
+            background: var(--accent);
+            box-shadow: 0 12px 28px rgba(255, 212, 0, 0.22);
         }
 
         .project-year {
@@ -503,7 +519,6 @@
            RESPONSIVE
         ========================= */
         @media (max-width: 1180px) {
-
             .project-grid {
                 grid-template-columns: repeat(2, minmax(0, 1fr));
             }
@@ -514,26 +529,23 @@
         }
 
         @media (max-width: 900px) {
-            .navbar {
+            nav {
                 top: 18px;
-                right: 50%;
                 width: calc(100% - 32px);
-                transform: translateX(50%);
-            }
-
-            .nav-menu {
-                width: 100%;
+                max-width: calc(100% - 32px);
+                justify-content: flex-start;
+                gap: 18px;
+                padding: 12px 18px;
                 overflow-x: auto;
                 scrollbar-width: none;
             }
 
-            .nav-menu::-webkit-scrollbar {
+            nav::-webkit-scrollbar {
                 display: none;
             }
 
-            .nav-menu a {
-                flex: 1 0 auto;
-                padding: 0 16px;
+            nav a {
+                white-space: nowrap;
                 font-size: 13px;
             }
 
@@ -552,7 +564,6 @@
         }
 
         @media (max-width: 720px) {
-
             .gallery-section {
                 padding: 86px 18px 72px;
             }
@@ -673,7 +684,7 @@
                         </p>
 
                         <div class="project-footer">
-                            <a href="#" class="project-link">
+                            <a href="{{ route('powerbi') }}" class="project-link">
                                 View Project
                                 <i class="fa-solid fa-arrow-right"></i>
                             </a>
@@ -737,7 +748,7 @@
                         </p>
 
                         <div class="project-footer">
-                            <a href="#" class="project-link">
+                            <a href="{{ url('/projects/news-sentiment') }}" class="project-link">
                                 View Project
                                 <i class="fa-solid fa-arrow-right"></i>
                             </a>
@@ -769,7 +780,7 @@
                         </p>
 
                         <div class="project-footer">
-                            <a href="#" class="project-link">
+                            <a href="{{ url('/projects/it-asset-management') }}" class="project-link">
                                 View Project
                                 <i class="fa-solid fa-arrow-right"></i>
                             </a>
@@ -801,7 +812,7 @@
                         </p>
 
                         <div class="project-footer">
-                            <a href="#" class="project-link">
+                            <a href="{{ url('/projects/data-lakehouse') }}" class="project-link">
                                 View Project
                                 <i class="fa-solid fa-arrow-right"></i>
                             </a>
@@ -833,7 +844,7 @@
                         </p>
 
                         <div class="project-footer">
-                            <a href="#" class="project-link">
+                            <a href="{{ url('/projects/health-burden-clustering') }}" class="project-link">
                                 View Project
                                 <i class="fa-solid fa-arrow-right"></i>
                             </a>
@@ -865,7 +876,7 @@
                         </p>
 
                         <div class="project-footer">
-                            <a href="#" class="project-link">
+                            <a href="{{ url('/projects/personal-portfolio') }}" class="project-link">
                                 View Project
                                 <i class="fa-solid fa-arrow-right"></i>
                             </a>
@@ -897,7 +908,7 @@
                         </p>
 
                         <div class="project-footer">
-                            <a href="#" class="project-link">
+                            <a href="{{ url('/projects/mentor-mentee-platform') }}" class="project-link">
                                 View Project
                                 <i class="fa-solid fa-arrow-right"></i>
                             </a>
@@ -909,28 +920,6 @@
 
             <div class="empty-state" id="emptyState">
                 Project tidak ditemukan. Coba gunakan kategori lain atau hapus keyword pencarian.
-            </div>
-        </section>
-
-        <section class="asset-section" id="assets">
-            <div class="asset-card reveal">
-                <h2>Recommended assets to make this page less monotonous</h2>
-                <p>
-                    Untuk membuat halaman ini lebih kuat secara visual, siapkan thumbnail project dengan rasio 16:9.
-                    Simpan di <strong>public/images/</strong>, lalu sesuaikan nama file di tag gambar pada card.
-                    Idealnya setiap gambar sudah dikompres ke WebP agar halaman tetap ringan.
-                </p>
-
-                <div class="asset-list">
-                    <span>gallery-data-1.webp</span>
-                    <span>gallery-data-2.webp</span>
-                    <span>gallery-bi-1.webp</span>
-                    <span>gallery-software-1.webp</span>
-                    <span>gallery-software-2.webp</span>
-                    <span>gallery-ml-1.webp</span>
-                    <span>gallery-dashboard-1.webp</span>
-                    <span>gallery-ux-1.webp</span>
-                </div>
             </div>
         </section>
     </main>

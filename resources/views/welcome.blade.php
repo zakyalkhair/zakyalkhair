@@ -39,21 +39,32 @@
         }
 
         html {
-            min-height: 100%;
-            scroll-behavior: smooth;
-            scroll-padding-top: var(--nav-height-offset);
-            overflow-x: hidden;
-            font-family: 'DM Sans', sans-serif;
-        }
+    min-height: 100%;
+    scroll-behavior: smooth;
+    scroll-padding-top: var(--nav-height-offset);
+    overflow-x: clip;
+    overflow-y: auto;
+    scrollbar-gutter: stable;
+    font-family: 'DM Sans', sans-serif;
+}
 
-        body {
-            position: relative;
-            min-height: 100%;
-            overflow-x: hidden;
-            background: url("{{ asset('images/background.webp') }}") center/cover no-repeat fixed;
-            color: var(--text);
-            font-family: 'DM Sans', sans-serif;
-        }
+body {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    min-height: 100%;
+    overflow-x: clip;
+    background: url("{{ asset('images/background.webp') }}") center/cover no-repeat fixed;
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+}
+
+@supports not (overflow: clip) {
+    html,
+    body {
+        overflow-x: hidden;
+    }
+}
 
         body::before {
             content: "";
@@ -302,12 +313,12 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            min-height: 80svh;
-            padding: 40px var(--section-x) 20px;
+            min-height: 60svh;
+            padding: 40px var(--section-x) 0px;
         }
 
         .projects-header {
-            margin-bottom: 265px;
+            margin-bottom: 245px;
             text-align: center;
         }
 
@@ -320,7 +331,7 @@
 
         .projects-folder {
             position: relative;
-            top: -105px;
+            top: -165px;
             width: 420px;
             height: 320px;
         }
@@ -478,7 +489,7 @@
         ========================= */
         .skills-section {
             min-height: 60svh;
-            padding: 40px var(--section-x);
+            padding: 0px var(--section-x);
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -583,7 +594,7 @@
 
     color: rgba(255, 255, 255, 0.92);
     background: var(--dark-glass);
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.488);
             box-shadow: none;
 
             font-size: 17px;
@@ -673,6 +684,7 @@
             height: auto;
             overflow: hidden;
             padding: clamp(22px, 2vw, 28px);
+            border: 1px solid rgba(255, 255, 255, 0.388);
             border-radius: 36px;
             background: var(--dark-glass);
             box-shadow: 0 18px 55px rgba(0, 0, 0, 0.32);
@@ -1419,7 +1431,7 @@
             $skillRowTwo = [
                 ['name' => 'Laravel', 'icon' => 'laravel.png'],
                 ['name' => 'HTML5', 'icon' => 'html.png'],
-                ['name' => 'CSS3', 'icon' => 'css.png'],
+                ['name' => 'CSS', 'icon' => 'css.png'],
                 ['name' => 'JavaScript', 'icon' => 'javascript.png'],
                 ['name' => 'Git', 'icon' => 'git.png'],
                 ['name' => 'Supabase', 'icon' => 'supabase.png'],
