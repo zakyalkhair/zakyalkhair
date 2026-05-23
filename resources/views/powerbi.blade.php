@@ -52,7 +52,7 @@
             font-family: 'DM Sans', sans-serif;
             background:
                 linear-gradient(rgba(0, 0, 0, .54), rgba(0, 0, 0, .66)),
-                url("{{ asset('images/background.jpg') }}") center / cover fixed no-repeat;
+                url("{{ asset('images/background.webp') }}") center / cover fixed no-repeat;
         }
 
         body::before {
@@ -98,31 +98,24 @@
             z-index: 2;
         }
 
-        /* =========================
-           TOP BAR
-        ========================= */
         .project-topbar {
             position: fixed;
             top: 22px;
             left: 50%;
             z-index: 1000;
-
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
-
             width: max-content;
             max-width: calc(100% - 32px);
             padding: 7px;
-
             border-radius: 999px;
             border: 1px solid rgba(255, 255, 255, .16);
             background: rgba(20, 28, 38, .34);
             box-shadow:
                 0 18px 48px rgba(0, 0, 0, .20),
                 inset 0 1px 0 rgba(255, 255, 255, .10);
-
             transform: translateX(-50%);
             backdrop-filter: blur(18px);
             -webkit-backdrop-filter: blur(18px);
@@ -133,17 +126,13 @@
         .next-arrow {
             height: 42px;
             border-radius: 999px;
-
             display: inline-flex;
             align-items: center;
             justify-content: center;
-
             color: var(--white);
             text-decoration: none;
-
             border: 1px solid rgba(255, 255, 255, .14);
             background: rgba(255, 255, 255, .08);
-
             transition:
                 color .2s ease,
                 background .2s ease,
@@ -199,7 +188,7 @@
 
         section {
             width: 100%;
-            padding: 110px 72px;
+            padding: 40px 72px;
         }
 
         .container {
@@ -255,6 +244,10 @@
             align-items: center;
         }
 
+        .hero-copy {
+            min-width: 0;
+        }
+
         .eyebrow {
             display: inline-flex;
             align-items: center;
@@ -277,7 +270,7 @@
 
         h1 {
             max-width: 720px;
-            font-size: clamp(3rem, 5vw, 4.75rem);
+            font-size: clamp(3rem, 4.3vw, 3.2rem);
             line-height: .98;
             letter-spacing: -.055em;
         }
@@ -379,7 +372,7 @@
 
         .hero-panel {
             position: relative;
-            min-height: 520px;
+            min-height: 200px;
             border-radius: 40px;
             padding: 18px;
             overflow: visible;
@@ -540,7 +533,7 @@
 
         .bar-row {
             display: grid;
-            grid-template-columns: 150px 1fr 48px;
+            grid-template-columns: 1fr auto;
             gap: 12px;
             align-items: center;
             margin-bottom: 14px;
@@ -552,17 +545,18 @@
             margin-bottom: 0;
         }
 
-        .bar-track {
-            height: 12px;
-            overflow: hidden;
+        .bar-row strong {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 42px;
+            min-height: 30px;
+            padding: 0 10px;
             border-radius: 999px;
-            background: rgba(255, 255, 255, .10);
-        }
-
-        .bar-fill {
-            height: 100%;
-            border-radius: inherit;
-            background: linear-gradient(90deg, var(--accent), #f59e0b);
+            color: #1b2a34;
+            background: var(--accent);
+            font-size: 12px;
+            font-weight: 900;
         }
 
         .floating-resource-stack {
@@ -625,14 +619,14 @@
         }
 
         .section-heading h2 {
-            max-width: 740px;
-            font-size: clamp(2.3rem, 4vw, 4rem);
+            max-width: 720px;
+            font-size: clamp(3rem, 4vw, 3rem);
             line-height: 1;
             letter-spacing: -.045em;
         }
 
         .section-heading p {
-            max-width: 440px;
+            max-width: 560px;
             color: rgba(255, 255, 255, .86);
             line-height: 1.7;
         }
@@ -1016,13 +1010,15 @@
                 font-size: 13px;
             }
 
-            .project-arrow {
+            .prev-arrow,
+            .next-arrow {
                 width: 38px;
                 height: 38px;
                 flex-basis: 38px;
             }
 
-            .project-arrow svg {
+            .prev-arrow svg,
+            .next-arrow svg {
                 width: 19px;
                 height: 19px;
             }
@@ -1085,7 +1081,7 @@
             }
 
             .bar-row {
-                grid-template-columns: 96px 1fr 42px;
+                grid-template-columns: 1fr auto;
                 font-size: 12px;
             }
 
@@ -1166,7 +1162,7 @@
             Home
         </a>
 
-        <a class="next-arrow" href="" aria-label="Next project">
+        <a class="next-arrow" href="{{ url('khamenei') }}" aria-label="Next project">
             <svg viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M9 5l7 7-7 7" />
             </svg>
@@ -1177,7 +1173,7 @@
         <section id="overview" class="hero">
             <div class="container hero-grid">
                 <div class="hero-copy">
-                    <h1>Power BI KPI Dashboard for <span>United Tractors</span>.</h1>
+                    <h1>Power BI KPI Dashboard for <span>Company Performance</span></h1>
 
                     <p class="lead">
                         A performance dashboard prototype that translates IT Balanced Scorecard indicators into a clear,
@@ -1222,50 +1218,26 @@
                                     <div class="score-pill">4</div>
                                 </div>
 
-                                <div class="mini-grid">
-                                    <div class="mini-card spotlight-card">
-                                        <span>KPI Groups</span>
-                                        <strong>4</strong>
-                                    </div>
-
-                                    <div class="mini-card spotlight-card">
-                                        <span>Dashboard Levels</span>
-                                        <strong>2</strong>
-                                    </div>
-                                </div>
-
                                 <div class="bar-list spotlight-card">
                                     <p class="mini-title">Perspective Coverage</p>
 
                                     <div class="bar-row">
                                         <span>Corporate Contribution</span>
-                                        <div class="bar-track">
-                                            <div class="bar-fill" style="width: 92%"></div>
-                                        </div>
                                         <strong>CC</strong>
                                     </div>
 
                                     <div class="bar-row">
                                         <span>Customer Orientation</span>
-                                        <div class="bar-track">
-                                            <div class="bar-fill" style="width: 84%"></div>
-                                        </div>
                                         <strong>CO</strong>
                                     </div>
 
                                     <div class="bar-row">
                                         <span>Operational Excellence</span>
-                                        <div class="bar-track">
-                                            <div class="bar-fill" style="width: 88%"></div>
-                                        </div>
                                         <strong>OE</strong>
                                     </div>
 
                                     <div class="bar-row">
                                         <span>Future Orientation</span>
-                                        <div class="bar-track">
-                                            <div class="bar-fill" style="width: 80%"></div>
-                                        </div>
                                         <strong>FO</strong>
                                     </div>
                                 </div>
@@ -1536,24 +1508,34 @@
 
     <script>
         const backgroundCanvas = document.getElementById('backgroundCanvas');
-        const backgroundCtx = backgroundCanvas.getContext('2d');
+        const backgroundCtx = backgroundCanvas?.getContext('2d');
 
         let backgroundParticles = [];
+        let backgroundAnimationFrame = null;
         let backgroundMouse = {
             x: null,
             y: null
         };
 
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+        const smallViewport = window.matchMedia('(max-width: 720px)');
+
         const backgroundSettings = {
-            count: 180,
+            count: 150,
             color: '255, 255, 255',
-            speed: 0.45,
-            baseSize: 2.8,
-            hoverDistance: 280,
-            hoverForce: 2.4
+            speed: 0.42,
+            baseSize: 2.6,
+            hoverDistance: 260,
+            hoverForce: 2.1
         };
 
+        function shouldRunBackground() {
+            return backgroundCanvas && backgroundCtx && !prefersReducedMotion.matches && !smallViewport.matches;
+        }
+
         function resizeBackgroundCanvas() {
+            if (!shouldRunBackground()) return;
+
             backgroundCanvas.width = window.innerWidth;
             backgroundCanvas.height = window.innerHeight;
             createBackgroundParticles();
@@ -1569,12 +1551,17 @@
                     vx: (Math.random() - 0.5) * backgroundSettings.speed,
                     vy: (Math.random() - 0.5) * backgroundSettings.speed,
                     size: Math.random() * backgroundSettings.baseSize + 0.6,
-                    alpha: Math.random() * 0.45 + 0.22
+                    alpha: Math.random() * 0.42 + 0.20
                 });
             }
         }
 
         function drawBackgroundParticles() {
+            if (!shouldRunBackground()) {
+                backgroundAnimationFrame = null;
+                return;
+            }
+
             backgroundCtx.clearRect(0, 0, backgroundCanvas.width, backgroundCanvas.height);
 
             backgroundParticles.forEach(particle => {
@@ -1603,14 +1590,39 @@
                 backgroundCtx.fill();
             });
 
-            requestAnimationFrame(drawBackgroundParticles);
+            backgroundAnimationFrame = requestAnimationFrame(drawBackgroundParticles);
         }
 
-        window.addEventListener('resize', resizeBackgroundCanvas);
+        function startBackgroundParticles() {
+            if (!shouldRunBackground() || backgroundAnimationFrame) return;
+
+            resizeBackgroundCanvas();
+            backgroundAnimationFrame = requestAnimationFrame(drawBackgroundParticles);
+        }
+
+        function stopBackgroundParticles() {
+            if (backgroundAnimationFrame) {
+                cancelAnimationFrame(backgroundAnimationFrame);
+                backgroundAnimationFrame = null;
+            }
+
+            if (backgroundCtx && backgroundCanvas) {
+                backgroundCtx.clearRect(0, 0, backgroundCanvas.width, backgroundCanvas.height);
+            }
+        }
+
+        window.addEventListener('resize', () => {
+            stopBackgroundParticles();
+            startBackgroundParticles();
+        }, {
+            passive: true
+        });
 
         window.addEventListener('mousemove', event => {
             backgroundMouse.x = event.clientX;
             backgroundMouse.y = event.clientY;
+        }, {
+            passive: true
         });
 
         window.addEventListener('mouseleave', () => {
@@ -1618,8 +1630,20 @@
             backgroundMouse.y = null;
         });
 
-        resizeBackgroundCanvas();
-        drawBackgroundParticles();
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                stopBackgroundParticles();
+            } else {
+                startBackgroundParticles();
+            }
+        });
+
+        smallViewport.addEventListener('change', () => {
+            stopBackgroundParticles();
+            startBackgroundParticles();
+        });
+
+        startBackgroundParticles();
 
         const spotlightCards = document.querySelectorAll('.spotlight-card');
 
@@ -1633,6 +1657,8 @@
 
                 card.style.setProperty('--mouse-x', `${x}px`);
                 card.style.setProperty('--mouse-y', `${y}px`);
+            }, {
+                passive: true
             });
         });
 

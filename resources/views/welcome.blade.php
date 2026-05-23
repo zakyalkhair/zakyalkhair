@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=DM+Sans:wght@300;400;500;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=DM+Sans:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet">
 
     <style>
@@ -33,6 +33,7 @@
             --dark-glass: rgba(20, 28, 38, 0.62);
             --dark-glass-2: rgba(20, 28, 38, 0.72);
             --soft-glass: rgba(232, 237, 244, 0.85);
+            --gold: #e4d994;
             --section-x: clamp(28px, 5vw, 72px);
             --nav-height-offset: 108px;
         }
@@ -476,66 +477,164 @@
            SKILLS
         ========================= */
         .skills-section {
+            min-height: 60svh;
+            padding: 40px var(--section-x);
             display: flex;
             flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-            min-height: 40svh;
-            padding: 20px var(--section-x) 20px;
+            justify-content: center;
+            overflow: hidden;
         }
 
         .skills-header {
-            max-width: 720px;
-            margin-bottom: 24px;
+            max-width: 790px;
+            margin: 0 auto 22px;
             text-align: center;
         }
 
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 28px;
-            width: 100%;
-            max-width: 1180px;
-        }
-
-        .skill-card {
-            min-height: 180px;
-            overflow: hidden;
-            padding: 34px;
-            border-radius: 28px;
-            background: rgba(20, 28, 38, 0.58);
-            transition: transform 0.3s ease, background 0.3s ease;
+        .section-kicker {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 14px;
+            padding: 8px 15px;
+            border-radius: 999px;
+            color: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.11);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
             backdrop-filter: blur(14px);
             -webkit-backdrop-filter: blur(14px);
         }
 
-        .skill-card:hover {
-            background: rgba(20, 28, 38, 0.68);
-            transform: translateY(-8px);
+        .skills-header p {
+            max-width: 730px;
+            margin: 18px auto 0;
+            color: rgba(255, 255, 255, 0.82);
+            font-size: clamp(14px, 1.25vw, 17px);
+            line-height: 1.75;
         }
 
-        .skill-card h3 {
-            margin-bottom: 16px;
-            color: var(--white);
-            font-size: 24px;
+        .skills-marquee-shell {
+            position: relative;
+            width: min(1220px, 100%);
+            height: 160px;
+            margin: 0 auto;
+            display: grid;
+            gap: 18px;
+            background: transparent;
+            border: 0;
+            box-shadow: none;
         }
 
-        .skill-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 14px;
+        .skills-marquee-shell::before {
+            display: none;
         }
 
-        .skill-list span {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 11px 18px;
+        .skills-marquee {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            padding-block: 10px;
+            margin-block: -10px;
             border-radius: 999px;
-            background: rgba(255, 255, 255, 0.14);
+
+            mask-image: linear-gradient(90deg,
+                    transparent 0%,
+                    #000 9%,
+                    #000 91%,
+                    transparent 100%);
+            -webkit-mask-image: linear-gradient(90deg,
+                    transparent 0%,
+                    #000 9%,
+                    #000 91%,
+                    transparent 100%);
+        }
+
+        .skills-track {
+            display: flex;
+            align-items: center;
+            width: max-content;
+            gap: 14px;
+            padding-block: 10px;
+            animation: skillMarqueeLeft 34s linear infinite;
+            will-change: transform;
+        }
+
+        .skills-marquee.reverse .skills-track {
+            animation-name: skillMarqueeRight;
+            animation-duration: 38s;
+        }
+
+
+        .skill-pill {
+            flex: 0 0 auto;
+    min-width: 156px;
+    height: 58px;
+    padding: 0 22px;
+    border-radius: 999px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 11px;
+
+    color: rgba(255, 255, 255, 0.92);
+    background: var(--dark-glass);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: none;
+
+            font-size: 17px;
+            font-weight: 800;
+            white-space: nowrap;
+
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+
+            transition:
+                transform 0.25s ease,
+                color 0.25s ease,
+                background 0.25s ease,
+                border-color 0.25s ease;
+        }
+
+        .skill-pill:hover {
+            transform: translateY(-5px) scale(1.025);
             color: var(--white);
-            font-size: 14px;
-            font-weight: 500;
+            background: linear-gradient(135deg,
+                    rgba(228, 217, 148, 0.22),
+                    rgba(255, 255, 255, 0.10));
+            border-color: rgba(228, 217, 148, 0.42);
+        }
+
+        .skill-pill img {
+            width: 28px;
+            height: 28px;
+            object-fit: contain;
+            filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.22));
+        }
+
+
+        @keyframes skillMarqueeLeft {
+            from {
+                transform: translate3d(0, 0, 0);
+            }
+
+            to {
+                transform: translate3d(-50%, 0, 0);
+            }
+        }
+
+        @keyframes skillMarqueeRight {
+            from {
+                transform: translate3d(-50%, 0, 0);
+            }
+
+            to {
+                transform: translate3d(0, 0, 0);
+            }
         }
 
         /* =========================
@@ -820,7 +919,6 @@
            RESPONSIVE - TABLET / MOBILE
         ========================= */
         @media (max-width: 960px) {
-
             .particles-container {
                 display: none;
             }
@@ -829,10 +927,6 @@
                 --section-x: 28px;
                 --nav-height-offset: 92px;
             }
-
-            /* =========================
-   MOBILE FIXED BACKGROUND
-========================= */
 
             body {
                 background-image: none;
@@ -844,12 +938,10 @@
                 position: fixed;
                 inset: 0;
                 z-index: -2;
-
-                background-image: url("{{ asset('images/mobilebg.png') }}");
+                background-image: url("{{ asset('images/mobilebg.webp') }}");
                 background-position: center top;
                 background-size: cover;
                 background-repeat: no-repeat;
-
                 pointer-events: none;
                 transform: translateZ(0);
                 will-change: transform;
@@ -862,7 +954,6 @@
                         rgba(0, 0, 0, 0.36),
                         rgba(0, 0, 0, 0.54));
             }
-
 
             nav {
                 top: 14px;
@@ -975,29 +1066,43 @@
                 font-size: 14.5px;
             }
 
-            .skills-grid,
-            .experiences-grid {
-                grid-template-columns: 1fr;
-                gap: 18px;
+            .skills-section {
+                padding-top: 92px;
+                padding-bottom: 64px;
             }
 
-            .skill-card {
-                min-height: auto;
-                padding: 26px;
-                border-radius: 24px;
+            .skills-header {
+                margin-bottom: 34px;
             }
 
-            .skill-card h3 {
-                font-size: 22px;
+            .skills-marquee-shell {
+                gap: 14px;
             }
 
-            .skill-list span {
-                padding: 10px 15px;
-                font-size: 13px;
+            .skill-pill {
+                min-width: 146px;
+                height: 54px;
+                padding: 0 18px;
+                font-size: 15px;
+            }
+
+            .skill-pill img {
+                width: 25px;
+                height: 25px;
+            }
+
+            .skills-focus-row {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 24px 18px;
             }
 
             .experiences-section {
                 padding-inline: var(--section-x);
+            }
+
+            .experiences-grid {
+                grid-template-columns: 1fr;
+                gap: 18px;
             }
 
             .experience-card {
@@ -1120,14 +1225,12 @@
             }
 
             .projects-section,
-            .skills-section,
             .experiences-section {
                 padding-top: 78px;
                 padding-bottom: 46px;
             }
 
             .projects-header,
-            .skills-header,
             .experiences-header {
                 margin-bottom: 20px;
             }
@@ -1142,9 +1245,55 @@
                 font-size: 13px;
             }
 
-            .skill-card {
-                padding: 22px;
-                border-radius: 22px;
+            .skills-section {
+                padding-top: 88px;
+                padding-bottom: 58px;
+            }
+
+            .skills-header p {
+                font-size: 14px;
+                line-height: 1.65;
+            }
+
+            .skills-marquee-shell {
+                width: calc(100% + 36px);
+                margin-left: -18px;
+            }
+
+            .skills-marquee {
+                border-radius: 0;
+            }
+
+            .skills-track {
+                gap: 10px;
+                animation-duration: 26s;
+            }
+
+            .skills-marquee.reverse .skills-track {
+                animation-duration: 30s;
+            }
+
+            .skill-pill {
+                min-width: 128px;
+                height: 50px;
+                padding: 0 15px;
+                gap: 8px;
+                font-size: 13.5px;
+            }
+
+            .skill-pill img {
+                width: 23px;
+                height: 23px;
+            }
+
+            .skills-focus-row {
+                grid-template-columns: 1fr;
+                margin-top: 32px;
+                gap: 20px;
+            }
+
+            .skill-focus-item p {
+                max-width: 92%;
             }
 
             .experience-card {
@@ -1173,8 +1322,6 @@
                 margin-bottom: 12px;
             }
         }
-
-
 
         @media (prefers-reduced-motion: reduce) {
             html {
@@ -1207,7 +1354,8 @@
 
     <section id="about" class="hero-section">
         <div class="card-wrapper">
-            <img class="card-bg" src="{{ asset('images/card-stack.webp') }}" alt="" aria-hidden="true" decoding="async">
+            <img class="card-bg" src="{{ asset('images/card-stack.webp') }}" alt="" aria-hidden="true"
+                decoding="async">
 
             <div class="card-content">
                 <h1 class="card-name">Hi, I'm Zaky</h1>
@@ -1240,11 +1388,12 @@
 
         <div class="photo-collage" aria-label="Foto Zaky">
             <div class="polaroid polaroid-1">
-                <img src="{{ asset('images/about1.jpg') }}" alt="Zaky presenting at ANFORCOM 2024" loading="lazy" decoding="async">
+                <img src="{{ asset('images/about1.webp') }}" alt="Zaky presenting at ANFORCOM 2024" loading="lazy"
+                    decoding="async">
             </div>
 
             <div class="polaroid polaroid-2">
-                <img src="{{ asset('images/about2.jpg') }}" alt="Zaky presenting in front of a whiteboard"
+                <img src="{{ asset('images/about2.webp') }}" alt="Zaky presenting in front of a whiteboard"
                     loading="lazy" decoding="async">
             </div>
         </div>
@@ -1255,41 +1404,56 @@
             <h2 class="section-title">Skills & Tools</h2>
         </div>
 
-        <div class="skills-grid">
-            <div class="skill-card">
-                <h3>Data Analytics</h3>
+        @php
+            $skillRowOne = [
+                ['name' => 'Python', 'icon' => 'python.png'],
+                ['name' => 'Pandas', 'icon' => 'pandas.png'],
+                ['name' => 'NumPy', 'icon' => 'numpy.png'],
+                ['name' => 'Scikit-learn', 'icon' => 'scikitlearn.png'],
+                ['name' => 'Power BI', 'icon' => 'powerbi.png'],
+                ['name' => 'Tableau', 'icon' => 'tableau.png'],
+                ['name' => 'MySQL', 'icon' => 'mysql.png'],
+                ['name' => 'Neo4j', 'icon' => 'neo4j.png'],
+            ];
 
-                <div class="skill-list">
-                    <span>Python</span>
-                    <span>Pandas</span>
-                    <span>NumPy</span>
-                    <span>Scikit-learn</span>
-                    <span>R Studio</span>
+            $skillRowTwo = [
+                ['name' => 'Laravel', 'icon' => 'laravel.png'],
+                ['name' => 'HTML5', 'icon' => 'html.png'],
+                ['name' => 'CSS3', 'icon' => 'css.png'],
+                ['name' => 'JavaScript', 'icon' => 'javascript.png'],
+                ['name' => 'Git', 'icon' => 'git.png'],
+                ['name' => 'Supabase', 'icon' => 'supabase.png'],
+                ['name' => 'R Studio', 'icon' => 'r.png'],
+                ['name' => 'Figma', 'icon' => 'figma.png'],
+            ];
+        @endphp
+
+        <div class="skills-marquee-shell" aria-label="Technology stack marquee">
+            <div class="skills-marquee">
+                <div class="skills-track">
+                    @foreach (array_merge($skillRowOne, $skillRowOne) as $skill)
+                        <div class="skill-pill">
+                            <img src="{{ asset('icons/' . $skill['icon']) }}" alt="{{ $skill['name'] }}" loading="lazy"
+                                decoding="async">
+                            <span>{{ $skill['name'] }}</span>
+                        </div>
+                    @endforeach
                 </div>
             </div>
 
-            <div class="skill-card">
-                <h3>Data Visualization</h3>
-
-                <div class="skill-list">
-                    <span>Power BI</span>
-                    <span>Tableau</span>
-                    <span>Matplotlib</span>
-                    <span>Seaborn</span>
-                </div>
-            </div>
-
-            <div class="skill-card">
-                <h3>Web Development</h3>
-
-                <div class="skill-list">
-                    <span>Laravel</span>
-                    <span>HTML</span>
-                    <span>CSS</span>
-                    <span>JavaScript</span>
+            <div class="skills-marquee reverse">
+                <div class="skills-track">
+                    @foreach (array_merge($skillRowTwo, $skillRowTwo) as $skill)
+                        <div class="skill-pill">
+                            <img src="{{ asset('icons/' . $skill['icon']) }}" alt="{{ $skill['name'] }}"
+                                loading="lazy" decoding="async">
+                            <span>{{ $skill['name'] }}</span>
+                        </div>
+                    @endforeach
                 </div>
             </div>
         </div>
+
     </section>
 
     <section id="experiences" class="experiences-section">
@@ -1300,7 +1464,8 @@
         <div class="experiences-grid">
             <article class="experience-card">
                 <div class="experience-photo">
-                    <img src="{{ asset('images/astra.png') }}" alt="Astra Infra Toll Road Tangerang-Merak" loading="lazy" decoding="async">
+                    <img src="{{ asset('images/astra.webp') }}" alt="Astra Infra Toll Road Tangerang-Merak"
+                        loading="lazy" decoding="async">
                 </div>
 
                 <div class="experience-content">
@@ -1324,7 +1489,8 @@
 
             <article class="experience-card">
                 <div class="experience-photo">
-                    <img src="{{ asset('images/hmsi.png') }}" alt="Himpunan Sistem Informasi ITS" loading="lazy" decoding="async">
+                    <img src="{{ asset('images/hmsi.webp') }}" alt="Himpunan Sistem Informasi ITS" loading="lazy"
+                        decoding="async">
                 </div>
 
                 <div class="experience-content">
@@ -1348,7 +1514,7 @@
 
             <article class="experience-card">
                 <div class="experience-photo">
-                    <img src="{{ asset('images/ise.png') }}" alt="ISE! 2025" loading="lazy" decoding="async">
+                    <img src="{{ asset('images/ise.webp') }}" alt="ISE! 2025" loading="lazy" decoding="async">
                 </div>
 
                 <div class="experience-content">
@@ -1372,7 +1538,8 @@
 
             <article class="experience-card">
                 <div class="experience-photo">
-                    <img src="{{ asset('images/asdos.png') }}" alt="Departemen Sistem Informasi ITS" loading="lazy" decoding="async">
+                    <img src="{{ asset('images/asdos.webp') }}" alt="Departemen Sistem Informasi ITS" loading="lazy"
+                        decoding="async">
                 </div>
 
                 <div class="experience-content">
@@ -1405,13 +1572,14 @@
         <div class="projects-folder-wrapper">
             <div class="projects-folder" id="projectsFolder">
                 <div class="folder-shell">
-                    <img src="{{ asset('images/folder.png') }}" alt="Folder" loading="lazy" decoding="async">
+                    <img src="{{ asset('images/folder.webp') }}" alt="Folder" loading="lazy" decoding="async">
                 </div>
 
                 <div class="project-card project-card-1">
                     <a href="{{ route('galeri') }}">
                         <div class="project-image">
-                            <img src="{{ asset('images/project1.png') }}" alt="Sentiment Analysis of Alfagift project" loading="lazy" decoding="async">
+                            <img src="{{ asset('images/project1.webp') }}"
+                                alt="Sentiment Analysis of Alfagift project" loading="lazy" decoding="async">
                         </div>
 
                         <div class="project-content">
@@ -1423,7 +1591,7 @@
                 <div class="project-card project-card-2">
                     <a href="{{ route('galeri') }}">
                         <div class="project-image">
-                            <img src="{{ asset('images/project2.png') }}"
+                            <img src="{{ asset('images/project2.webp') }}"
                                 alt="IT Balanced Scorecard Dashboard project" loading="lazy" decoding="async">
                         </div>
 
@@ -1436,7 +1604,7 @@
                 <div class="project-card project-card-3">
                     <a href="{{ route('galeri') }}">
                         <div class="project-image">
-                            <img src="{{ asset('images/project3.png') }}"
+                            <img src="{{ asset('images/project3.webp') }}"
                                 alt="Ali Khamenei sentiment analysis project" loading="lazy" decoding="async">
                         </div>
 
@@ -1449,7 +1617,8 @@
                 <div class="project-card project-card-4">
                     <a href="{{ route('galeri') }}">
                         <div class="project-image">
-                            <img src="{{ asset('images/project4.png') }}" alt="Health Burden Clustering project" loading="lazy" decoding="async">
+                            <img src="{{ asset('images/project4.webp') }}" alt="Health Burden Clustering project"
+                                loading="lazy" decoding="async">
                         </div>
 
                         <div class="project-content">
@@ -1461,7 +1630,8 @@
                 <div class="project-card project-card-5">
                     <a href="{{ route('galeri') }}">
                         <div class="project-image">
-                            <img src="{{ asset('images/project5.png') }}" alt="Data Warehouse Design project" loading="lazy" decoding="async">
+                            <img src="{{ asset('images/project5.webp') }}" alt="Data Warehouse Design project"
+                                loading="lazy" decoding="async">
                         </div>
 
                         <div class="project-content">

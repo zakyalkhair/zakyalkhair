@@ -17,4 +17,14 @@ class Controller
     {
         return view('galeri');
     }
+
+    public function viewkhamenei()
+    {
+        return view('khamenei');
+    }
+
+    public function viewclustering()
+    {
+        return view('clustering');
+    }
 }

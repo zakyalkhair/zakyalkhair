@@ -53,7 +53,7 @@
             font-family: 'DM Sans', sans-serif;
             background:
                 linear-gradient(rgba(0, 0, 0, .50), rgba(0, 0, 0, .62)),
-                url("{{ asset('images/background.jpg') }}") center / cover fixed no-repeat;
+                url("{{ asset('images/background.webp') }}") center / cover fixed no-repeat;
         }
 
         body::before {
@@ -200,7 +200,7 @@
 
         section {
             width: 100%;
-            padding: 110px 72px;
+            padding: 40px 72px;
         }
 
         .container {
@@ -269,11 +269,12 @@
         }
 
         h1 {
-            max-width: 660px;
-            font-size: clamp(3rem, 5vw, 4.75rem);
+            max-width: 720px;
+            font-size: clamp(3rem, 4.3vw, 3.2rem);
             line-height: .98;
             letter-spacing: -.055em;
         }
+
 
         .hero h1 span {
             font-family: 'Playfair Display', serif;
@@ -609,13 +610,13 @@
 
         .section-heading h2 {
             max-width: 720px;
-            font-size: clamp(2.3rem, 4vw, 4rem);
+            font-size: clamp(3rem, 4vw, 3rem);
             line-height: 1;
             letter-spacing: -.045em;
         }
 
         .section-heading p {
-            max-width: 420px;
+            max-width: 560px;
             color: rgba(255, 255, 255, .86);
             line-height: 1.7;
         }

@@ -73,7 +73,7 @@
             position: fixed;
             inset: 0;
             z-index: -2;
-            background: url("{{ asset('images/hero-bg.png') }}") center / cover no-repeat;
+            background: url("{{ asset('images/hero-bg.webp') }}") center / cover no-repeat;
         }
 
         .bg-fixed::after {
@@ -609,8 +609,8 @@
         <section class="gallery-section" id="gallery">
             <div class="section-heading reveal">
                 <div>
-                    <p class="section-kicker">Selected Works</p>
-                    <h2 class="section-title">Gallery of Portfolio Projects</h2>
+                    <p class="section-kicker">Zaky Al Khair</p>
+                    <h2 class="section-title">Portfolio</h2>
                 </div>
 
                 <p class="section-desc">
@@ -656,7 +656,7 @@
                             <i class="fa-solid fa-chart-pie"></i>
                             BI Dashboard
                         </span>
-                        <img src="{{ asset('images/project1.png') }}" alt="IT Balanced Scorecard Dashboard project" loading="lazy" decoding="async">
+                        <img src="{{ asset('images/project1.webp') }}" alt="IT Balanced Scorecard Dashboard project" loading="lazy" decoding="async">
                     </div>
 
                     <div class="project-body">
@@ -688,7 +688,7 @@
                             <i class="fa-solid fa-brain"></i>
                             ML / NLP
                         </span>
-                        <img src="{{ asset('images/project2.png') }}" alt="Sentiment Analysis of Alfagift project" loading="lazy" decoding="async">
+                        <img src="{{ asset('images/project2.webp') }}" alt="Sentiment Analysis of Alfagift project" loading="lazy" decoding="async">
                     </div>
 
                     <div class="project-body">
@@ -720,7 +720,7 @@
                             <i class="fa-solid fa-newspaper"></i>
                             Data / NLP
                         </span>
-                        <img src="{{ asset('images/project3.png') }}" alt="Indonesian news sentiment analysis project" loading="lazy" decoding="async">
+                        <img src="{{ asset('images/project3.webp') }}" alt="Indonesian news sentiment analysis project" loading="lazy" decoding="async">
                     </div>
 
                     <div class="project-body">
@@ -752,7 +752,7 @@
                             <i class="fa-solid fa-code"></i>
                             Software
                         </span>
-                        <img src="{{ asset('images/project4.png') }}" alt="IT Asset Management application project" loading="lazy" decoding="async">
+                        <img src="{{ asset('images/project4.webp') }}" alt="IT Asset Management application project" loading="lazy" decoding="async">
                     </div>
 
                     <div class="project-body">
@@ -784,7 +784,7 @@
                             <i class="fa-solid fa-database"></i>
                             Data Engineering
                         </span>
-                        <img src="{{ asset('images/project5.png') }}" alt="Data warehouse and lakehouse design project" loading="lazy" decoding="async">
+                        <img src="{{ asset('images/project5.webp') }}" alt="Data warehouse and lakehouse design project" loading="lazy" decoding="async">
                     </div>
 
                     <div class="project-body">
@@ -816,7 +816,7 @@
                             <i class="fa-solid fa-chart-simple"></i>
                             Data Science
                         </span>
-                        <img src="{{ asset('images/project6.png') }}" alt="Health burden clustering project" loading="lazy" decoding="async">
+                        <img src="{{ asset('images/project6.webp') }}" alt="Health burden clustering project" loading="lazy" decoding="async">
                     </div>
 
                     <div class="project-body">
@@ -848,7 +848,7 @@
                             <i class="fa-solid fa-laptop-code"></i>
                             Frontend
                         </span>
-                        <img src="{{ asset('images/gallery-software-1.png') }}" alt="Portfolio website frontend project" loading="lazy" decoding="async">
+                        <img src="{{ asset('images/gallery-software-1.webp') }}" alt="Portfolio website frontend project" loading="lazy" decoding="async">
                     </div>
 
                     <div class="project-body">
@@ -880,7 +880,7 @@
                             <i class="fa-solid fa-diagram-project"></i>
                             Software / UX
                         </span>
-                        <img src="{{ asset('images/gallery-software-2.png') }}" alt="Mentor mentee platform project" loading="lazy" decoding="async">
+                        <img src="{{ asset('images/gallery-software-2.webp') }}" alt="Mentor mentee platform project" loading="lazy" decoding="async">
                     </div>
 
                     <div class="project-body">
