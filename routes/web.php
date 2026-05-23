@@ -9,5 +9,10 @@ Route::get('/', function () {
 
 Route::get('/alfagift', [Controller::class, 'viewalfagift'])->name('alfagift');
 
+Route::get('/powerbi', [Controller::class, 'viewpowerbi'])->name('powerbi');
+
+Route::get('/galeri', [Controller::class, 'viewgaleri'])->name('galeri');
+
+
 
 

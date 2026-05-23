@@ -8,4 +8,13 @@ class Controller
     {
         return view('alfagift');
     }
+    public function viewpowerbi()
+    {
+        return view('powerbi');
+    }
+
+    public function viewgaleri()
+    {
+        return view('galeri');
+    }
 }

@@ -1,11 +1,11 @@
-{{-- resources/views/portfolio/projects/alfagift.blade.php --}}
+{{-- resources/views/portfolio/projects/powerbi.blade.php --}}
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alfagift Sentiment Analysis — Zaky</title>
+    <title>Power BI KPI Dashboard — Portfolio Project</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,17 +24,16 @@
 
         :root {
             --white: #ffffff;
-            --paper: #f5f1e7;
             --ink: #15202b;
             --muted: rgba(255, 255, 255, .88);
             --glass: rgba(20, 28, 38, .62);
-            --glass-strong: rgba(20, 28, 38, .78);
+            --glass-strong: rgba(20, 28, 38, .80);
             --line: rgba(255, 255, 255, .16);
             --accent: #f6cf61;
-            --accent-soft: rgba(246, 207, 97, .18);
-            --green: #8fd694;
-            --blue: #93c5fd;
-
+            --accent-strong: #ffcf24;
+            --accent-soft: rgba(246, 207, 97, .16);
+            --blue-soft: rgba(147, 197, 253, .14);
+            --green-soft: rgba(143, 214, 148, .14);
             --navy: #1b3a5c;
             --text-muted: #5a6a7a;
         }
@@ -52,7 +51,7 @@
             color: var(--white);
             font-family: 'DM Sans', sans-serif;
             background:
-                linear-gradient(rgba(0, 0, 0, .50), rgba(0, 0, 0, .62)),
+                linear-gradient(rgba(0, 0, 0, .54), rgba(0, 0, 0, .66)),
                 url("{{ asset('images/background.jpg') }}") center / cover fixed no-repeat;
         }
 
@@ -63,9 +62,9 @@
             z-index: 0;
             pointer-events: none;
             background:
-                radial-gradient(circle at 18% 18%, rgba(246, 207, 97, .16), transparent 26%),
-                radial-gradient(circle at 82% 24%, rgba(147, 197, 253, .13), transparent 25%),
-                radial-gradient(circle at 50% 92%, rgba(143, 214, 148, .12), transparent 30%);
+                radial-gradient(circle at 17% 18%, rgba(246, 207, 97, .18), transparent 28%),
+                radial-gradient(circle at 84% 24%, rgba(147, 197, 253, .14), transparent 25%),
+                radial-gradient(circle at 52% 94%, rgba(143, 214, 148, .12), transparent 31%);
         }
 
         .grain {
@@ -73,7 +72,7 @@
             inset: 0;
             z-index: 0;
             pointer-events: none;
-            opacity: .16;
+            opacity: .15;
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.45'/%3E%3C/svg%3E");
         }
 
@@ -208,15 +207,12 @@
             margin: 0 auto;
         }
 
-        /* =========================
-           SPOTLIGHT EFFECT
-        ========================= */
         .spotlight-card {
             position: relative;
             overflow: hidden;
             --mouse-x: 50%;
             --mouse-y: 50%;
-            --spotlight-color: #1b3a5c;
+            --spotlight-color: rgba(246, 207, 97, .12);
         }
 
         .spotlight-card::before {
@@ -224,13 +220,11 @@
             position: absolute;
             inset: 0;
             z-index: 0;
-
             background:
                 radial-gradient(circle 520px at var(--mouse-x) var(--mouse-y),
                     var(--spotlight-color),
-                    rgba(246, 207, 97, .06) 38%,
+                    rgba(246, 207, 97, .045) 36%,
                     transparent 78%);
-
             opacity: 0;
             pointer-events: none;
             transition: opacity .38s ease;
@@ -238,7 +232,7 @@
 
         .spotlight-card:hover::before,
         .spotlight-card:focus-within::before {
-            opacity: .85;
+            opacity: .75;
         }
 
         .spotlight-card>* {
@@ -246,9 +240,6 @@
             z-index: 1;
         }
 
-        /* =========================
-           HERO
-        ========================= */
         .hero {
             min-height: 100vh;
             display: grid;
@@ -264,12 +255,28 @@
             align-items: center;
         }
 
-        .hero-copy {
-            max-width: 660px;
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            margin-bottom: 18px;
+            color: rgba(255, 255, 255, .82);
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+        }
+
+        .eyebrow::before {
+            content: "";
+            width: 34px;
+            height: 2px;
+            border-radius: 999px;
+            background: var(--accent);
         }
 
         h1 {
-            max-width: 660px;
+            max-width: 720px;
             font-size: clamp(3rem, 5vw, 4.75rem);
             line-height: .98;
             letter-spacing: -.055em;
@@ -283,9 +290,9 @@
         }
 
         .lead {
-            max-width: 610px;
+            max-width: 640px;
             margin-top: 22px;
-            color: rgba(255, 255, 255, .90);
+            color: rgba(255, 255, 255, .91);
             font-size: clamp(15.5px, 1.25vw, 17px);
             line-height: 1.72;
         }
@@ -301,25 +308,14 @@
             display: inline-flex;
             align-items: center;
             gap: 7px;
-
             min-height: 32px;
             padding: 0 12px;
             border-radius: 999px;
-
             background: rgba(255, 255, 255, .10);
             color: rgba(255, 255, 255, .92);
-
             font-size: 11.5px;
             font-weight: 800;
             white-space: nowrap;
-        }
-
-        .tag img {
-            width: 15px;
-            height: 15px;
-            object-fit: contain;
-            display: block;
-            flex-shrink: 0;
         }
 
         .hero-actions {
@@ -329,27 +325,25 @@
             margin-top: 30px;
         }
 
-        .btn {
+        .btn,
+        .open-btn {
             display: inline-flex;
             align-items: center;
             justify-content: center;
             gap: 10px;
-
             min-height: 48px;
             padding: 0 19px;
             border-radius: 999px;
-
             color: var(--white);
             text-decoration: none;
             border: 1px solid rgba(255, 255, 255, .20);
             background: rgba(255, 255, 255, .10);
-
+            font-family: inherit;
             font-size: 14px;
             font-weight: 800;
-
+            cursor: pointer;
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-
             transition:
                 transform .22s ease,
                 background .22s ease,
@@ -357,20 +351,23 @@
                 box-shadow .22s ease;
         }
 
-        .btn:hover {
+        .btn:hover,
+        .open-btn:hover {
             transform: translateY(-3px);
             background: rgba(255, 255, 255, .16);
             border-color: rgba(255, 255, 255, .30);
             box-shadow: 0 14px 32px rgba(0, 0, 0, .18);
         }
 
-        .btn-primary {
+        .btn-primary,
+        .open-btn {
             color: #1b2a34;
             background: var(--accent);
             border-color: transparent;
         }
 
-        .btn-primary:hover {
+        .btn-primary:hover,
+        .open-btn:hover {
             background: #ffdc72;
             border-color: transparent;
             box-shadow: 0 14px 32px rgba(246, 207, 97, .22);
@@ -382,16 +379,14 @@
 
         .hero-panel {
             position: relative;
-            min-height: 500px;
+            min-height: 520px;
             border-radius: 40px;
             padding: 18px;
             overflow: visible;
-
             border: 1px solid rgba(255, 255, 255, .18);
             background:
                 linear-gradient(150deg, rgba(255, 255, 255, .18), rgba(255, 255, 255, .06));
             box-shadow: 0 26px 80px rgba(0, 0, 0, .35);
-
             backdrop-filter: blur(18px);
             -webkit-backdrop-filter: blur(18px);
         }
@@ -412,7 +407,7 @@
             position: relative;
             z-index: 1;
             height: 100%;
-            min-height: 464px;
+            min-height: 484px;
             border-radius: 30px;
             overflow: hidden;
             background: rgba(13, 18, 24, .78);
@@ -436,6 +431,13 @@
             gap: 8px;
         }
 
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, .32);
+        }
+
         .window-label {
             color: rgba(255, 255, 255, .70);
             font-size: 11px;
@@ -444,20 +446,85 @@
             text-transform: uppercase;
         }
 
-        .dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, .32);
-        }
-
         .window-content {
             padding: clamp(20px, 3vw, 28px);
         }
 
-        .chart-card {
-            border-radius: 24px;
+        .dashboard-preview {
+            display: grid;
+            gap: 16px;
+        }
+
+        .preview-header {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 14px;
+            align-items: center;
             padding: 22px;
+            border-radius: 24px;
+            background: rgba(255, 255, 255, .08);
+            border: 1px solid rgba(255, 255, 255, .10);
+        }
+
+        .preview-header p {
+            color: rgba(255, 255, 255, .74);
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: .10em;
+            text-transform: uppercase;
+        }
+
+        .preview-header strong {
+            display: block;
+            margin-top: 8px;
+            font-size: clamp(1.4rem, 2vw, 2rem);
+            line-height: 1.08;
+        }
+
+        .score-pill {
+            min-width: 96px;
+            min-height: 96px;
+            display: grid;
+            place-items: center;
+            border-radius: 50%;
+            color: #1b2a34;
+            background: var(--accent);
+            font-size: 26px;
+            font-weight: 900;
+            box-shadow: 0 18px 34px rgba(246, 207, 97, .20);
+        }
+
+        .mini-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
+        }
+
+        .mini-card {
+            min-height: 116px;
+            padding: 18px;
+            border-radius: 22px;
+            background: rgba(255, 255, 255, .08);
+            border: 1px solid rgba(255, 255, 255, .10);
+        }
+
+        .mini-card span {
+            color: rgba(255, 255, 255, .72);
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: .09em;
+            text-transform: uppercase;
+        }
+
+        .mini-card strong {
+            display: block;
+            margin-top: 10px;
+            font-size: 28px;
+        }
+
+        .bar-list {
+            padding: 22px;
+            border-radius: 24px;
             background: rgba(255, 255, 255, .08);
             border: 1px solid rgba(255, 255, 255, .10);
         }
@@ -473,7 +540,7 @@
 
         .bar-row {
             display: grid;
-            grid-template-columns: 112px 1fr 52px;
+            grid-template-columns: 150px 1fr 48px;
             gap: 12px;
             align-items: center;
             margin-bottom: 14px;
@@ -495,51 +562,19 @@
         .bar-fill {
             height: 100%;
             border-radius: inherit;
-            background: linear-gradient(90deg, var(--accent), var(--green));
+            background: linear-gradient(90deg, var(--accent), #f59e0b);
         }
 
-        .panel-note {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 14px;
-            margin-top: 14px;
-        }
-
-        .note-box {
-            border-radius: 20px;
-            padding: 18px;
-            background: rgba(255, 255, 255, .08);
-            border: 1px solid rgba(255, 255, 255, .10);
-        }
-
-        .note-box strong {
-            display: block;
-            margin-bottom: 8px;
-            font-size: 22px;
-        }
-
-        .note-box span {
-            color: rgba(255, 255, 255, .82);
-            font-size: 13px;
-            line-height: 1.5;
-        }
-
-        /* =========================
-           FLOATING RESOURCES
-        ========================= */
         .floating-resource-stack {
             position: absolute;
             right: -24px;
             bottom: 30px;
             z-index: 5;
-
             display: flex;
             flex-direction: column;
             gap: 10px;
-
             padding: 10px;
             border-radius: 24px;
-
             border: 1px solid rgba(255, 255, 255, .16);
             background: linear-gradient(160deg, rgba(255, 255, 255, .14), rgba(255, 255, 255, .06));
             box-shadow:
@@ -553,16 +588,13 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-
             width: 54px;
             height: 54px;
             border-radius: 18px;
-
             text-decoration: none;
             color: rgba(255, 255, 255, .90);
             border: 1px solid rgba(255, 255, 255, .14);
-            background: rgba(20, 28, 38, .82);
-
+            background: rgba(255, 255, 255, .10);
             transition:
                 transform .22s ease,
                 background .22s ease,
@@ -576,29 +608,14 @@
             height: 21px;
         }
 
-        .floating-resource-btn.github,
-        .floating-resource-btn.report {
-            color: rgba(255, 255, 255, .88);
-            background: rgba(255, 255, 255, .10);
-        }
-
         .floating-resource-btn:hover {
             transform: translateY(-3px) scale(1.03);
-            border-color: rgba(255, 255, 255, .28);
-            box-shadow: 0 14px 32px rgba(0, 0, 0, .18);
-        }
-
-        .floating-resource-btn.github:hover,
-        .floating-resource-btn.report:hover {
             color: #1b2a34;
             background: var(--accent);
             border-color: transparent;
             box-shadow: 0 14px 32px rgba(246, 207, 97, .22);
         }
 
-        /* =========================
-           SECTIONS
-        ========================= */
         .section-heading {
             display: flex;
             align-items: end;
@@ -608,14 +625,14 @@
         }
 
         .section-heading h2 {
-            max-width: 720px;
+            max-width: 740px;
             font-size: clamp(2.3rem, 4vw, 4rem);
             line-height: 1;
             letter-spacing: -.045em;
         }
 
         .section-heading p {
-            max-width: 420px;
+            max-width: 440px;
             color: rgba(255, 255, 255, .86);
             line-height: 1.7;
         }
@@ -626,25 +643,33 @@
             gap: 18px;
         }
 
-        .metric-card {
-            min-height: 170px;
-            padding: 24px;
-            border-radius: 30px;
+        .metric-card,
+        .step-card,
+        .takeaway-card,
+        .visual-card {
             border: 1px solid rgba(255, 255, 255, .14);
             background: var(--glass);
             box-shadow: 0 20px 60px rgba(0, 0, 0, .22);
             backdrop-filter: blur(14px);
             -webkit-backdrop-filter: blur(14px);
-
             transition:
-                background .22s ease,
                 border-color .22s ease,
-                box-shadow .22s ease;
+                box-shadow .22s ease,
+                background .22s ease;
         }
 
-        .metric-card:hover {
-            border-color: rgba(255, 255, 255, .20);
+        .metric-card:hover,
+        .step-card:hover,
+        .takeaway-card:hover,
+        .visual-card:hover {
+            border-color: rgba(255, 255, 255, .22);
             box-shadow: 0 24px 68px rgba(0, 0, 0, .26);
+        }
+
+        .metric-card {
+            min-height: 178px;
+            padding: 24px;
+            border-radius: 30px;
         }
 
         .metric-card span {
@@ -652,7 +677,7 @@
             margin-bottom: 22px;
             color: rgba(255, 255, 255, .78);
             font-size: 12px;
-            font-weight: 700;
+            font-weight: 800;
             letter-spacing: .08em;
             text-transform: uppercase;
         }
@@ -679,24 +704,9 @@
 
         .step-card {
             position: relative;
-            min-height: 240px;
+            min-height: 250px;
             padding: 28px;
             border-radius: 32px;
-            border: 1px solid rgba(255, 255, 255, .14);
-            background: var(--glass);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, .22);
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
-
-            transition:
-                background .22s ease,
-                border-color .22s ease,
-                box-shadow .22s ease;
-        }
-
-        .step-card:hover {
-            border-color: rgba(255, 255, 255, .20);
-            box-shadow: 0 24px 68px rgba(0, 0, 0, .26);
         }
 
         .step-card::after {
@@ -750,7 +760,6 @@
             font-family: inherit;
             cursor: pointer;
             overflow: hidden;
-
             transition:
                 transform .22s ease,
                 background .22s ease,
@@ -764,16 +773,13 @@
             position: absolute;
             top: 18px;
             left: 0;
-
             width: 4px;
             height: calc(100% - 36px);
             border-radius: 0 999px 999px 0;
-
             background: var(--accent);
             opacity: 0;
             transform: scaleY(.45);
             transform-origin: center;
-
             transition:
                 opacity .22s ease,
                 transform .22s ease;
@@ -789,8 +795,7 @@
 
         .tab-button.active {
             transform: translateY(-3px);
-            background:
-                linear-gradient(135deg, rgba(246, 207, 97, .18), rgba(255, 255, 255, .10));
+            background: linear-gradient(135deg, rgba(246, 207, 97, .18), rgba(255, 255, 255, .10));
             color: var(--white);
             border-color: rgba(246, 207, 97, .36);
             box-shadow:
@@ -827,19 +832,11 @@
             line-height: 1.5;
         }
 
-        .tab-button.active span {
-            color: rgba(255, 255, 255, .90);
-        }
-
         .visual-card {
-            min-height: 620px;
+            min-height: 650px;
             padding: 24px;
             border-radius: 38px;
-            border: 1px solid rgba(255, 255, 255, .14);
             background: rgba(20, 28, 38, .66);
-            box-shadow: 0 26px 80px rgba(0, 0, 0, .30);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
         }
 
         .visual-frame {
@@ -852,11 +849,10 @@
         .visual-frame img {
             display: block;
             width: 100%;
-            height: 520px;
+            height: 548px;
             object-fit: contain;
             background: #f7f7f7;
             cursor: zoom-in;
-
             transition:
                 transform .22s ease,
                 filter .22s ease;
@@ -885,35 +881,6 @@
             line-height: 1.65;
         }
 
-        .open-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-
-            min-height: 48px;
-            padding: 0 19px;
-            border: 0;
-            border-radius: 999px;
-
-            color: #1b2a34;
-            background: var(--accent);
-            font-family: inherit;
-            font-size: 14px;
-            font-weight: 800;
-            cursor: pointer;
-
-            transition:
-                transform .22s ease,
-                background .22s ease,
-                box-shadow .22s ease;
-        }
-
-        .open-btn:hover {
-            transform: translateY(-3px);
-            background: #ffdc72;
-            box-shadow: 0 14px 32px rgba(246, 207, 97, .22);
-        }
-
         .takeaway-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -923,21 +890,6 @@
         .takeaway-card {
             padding: 34px;
             border-radius: 36px;
-            border: 1px solid rgba(255, 255, 255, .14);
-            background: var(--glass);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, .22);
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
-
-            transition:
-                background .22s ease,
-                border-color .22s ease,
-                box-shadow .22s ease;
-        }
-
-        .takeaway-card:hover {
-            border-color: rgba(255, 255, 255, .20);
-            box-shadow: 0 24px 68px rgba(0, 0, 0, .26);
         }
 
         .takeaway-card h3 {
@@ -1004,7 +956,6 @@
             background: rgba(20, 28, 38, .80);
             cursor: pointer;
             font-size: 20px;
-
             transition:
                 transform .22s ease,
                 background .22s ease,
@@ -1017,9 +968,6 @@
             box-shadow: 0 14px 32px rgba(0, 0, 0, .22);
         }
 
-        /* =========================
-           RESPONSIVE
-        ========================= */
         @media (max-width: 1080px) {
             section {
                 padding-inline: 28px;
@@ -1027,21 +975,12 @@
 
             .hero-grid,
             .gallery-layout,
-            .takeaway-grid,
-            .cta-card {
+            .takeaway-grid {
                 grid-template-columns: 1fr;
             }
 
-            .hero-grid {
-                gap: 34px;
-            }
-
-            .hero-copy {
-                max-width: 760px;
-            }
-
             .hero-panel {
-                max-width: 680px;
+                max-width: 720px;
             }
 
             .floating-resource-stack {
@@ -1057,13 +996,15 @@
             .gallery-tabs {
                 position: static;
             }
-
-            .cta-actions {
-                justify-content: flex-start;
-            }
         }
 
         @media (max-width: 720px) {
+            body {
+                background:
+                    linear-gradient(rgba(0, 0, 0, .62), rgba(0, 0, 0, .70)),
+                    url("{{ asset('images/background.jpg') }}") center / cover fixed no-repeat;
+            }
+
             .project-topbar {
                 top: 16px;
                 padding: 6px;
@@ -1075,21 +1016,19 @@
                 font-size: 13px;
             }
 
-            .prev-arrow,
-            .next-arrow {
+            .project-arrow {
                 width: 38px;
                 height: 38px;
                 flex-basis: 38px;
             }
 
-            .prev-arrow svg,
-            .next-arrow svg {
+            .project-arrow svg {
                 width: 19px;
                 height: 19px;
             }
 
             section {
-                padding: 30px 20px;
+                padding: 64px 20px;
             }
 
             .hero {
@@ -1099,10 +1038,6 @@
 
             .hero-grid {
                 gap: 28px;
-            }
-
-            .hero-copy {
-                max-width: 100%;
             }
 
             h1 {
@@ -1135,14 +1070,22 @@
                 padding: 18px;
             }
 
-            .panel-note,
+            .preview-header,
+            .mini-grid,
             .metrics-grid,
             .pipeline-grid {
                 grid-template-columns: 1fr;
             }
 
+            .score-pill {
+                width: 86px;
+                height: 86px;
+                min-width: 86px;
+                min-height: 86px;
+            }
+
             .bar-row {
-                grid-template-columns: 84px 1fr 46px;
+                grid-template-columns: 96px 1fr 42px;
                 font-size: 12px;
             }
 
@@ -1158,11 +1101,6 @@
                 width: 48px;
                 height: 48px;
                 border-radius: 15px;
-            }
-
-            .floating-resource-btn svg {
-                width: 19px;
-                height: 19px;
             }
 
             .visual-card {
@@ -1182,11 +1120,6 @@
             .section-heading {
                 align-items: flex-start;
                 flex-direction: column;
-            }
-
-            .cta-card {
-                padding: 26px;
-                border-radius: 30px;
             }
         }
 
@@ -1223,7 +1156,7 @@
     </div>
 
     <div class="project-topbar" aria-label="Project navigation">
-        <a class="prev-arrow" href="" aria-label="Previous project">
+        <a class="prev-arrow" href="{{ url('alfagift') }}" aria-label="Previous project">
             <svg viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M15 5l-7 7 7 7" />
             </svg>
@@ -1233,7 +1166,7 @@
             Home
         </a>
 
-        <a class="next-arrow" href="{{ route('powerbi') }}" aria-label="Next project">
+        <a class="next-arrow" href="" aria-label="Next project">
             <svg viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M9 5l7 7-7 7" />
             </svg>
@@ -1244,100 +1177,113 @@
         <section id="overview" class="hero">
             <div class="container hero-grid">
                 <div class="hero-copy">
-                    <h1>Sentiment Analysis of <span>Alfagift</span> Reviews.</h1>
+                    <h1>Power BI KPI Dashboard for <span>United Tractors</span>.</h1>
 
                     <p class="lead">
-                        An end-to-end sentiment analysis project that turns Alfagift Google Play reviews into clearer
-                        customer signals. The workflow cleans Indonesian review text, converts it with TF-IDF, trains
-                        sentiment models, and summarizes which parts of the app experience users praise or complain
-                        about most.
+                        A performance dashboard prototype that translates IT Balanced Scorecard indicators into a clear,
+                        interactive monitoring experience. The dashboard helps compare corporate contribution, customer
+                        orientation, operational excellence, and future orientation through structured KPI pages,
+                        slicers, score cards, trends, and target-based visuals.
                     </p>
 
                     <div class="tag-row">
-                        <span class="tag">Python</span>
-                        <span class="tag">Pandas</span>
-                        <span class="tag">Sastrawi</span>
-                        <span class="tag">TF-IDF</span>
-                        <span class="tag">Scikit-learn</span>
-                        <span class="tag">LightGBM</span>
+                        <span class="tag">Power BI</span>
+                        <span class="tag">KPI Dashboard</span>
+                        <span class="tag">IT Balanced Scorecard</span>
+                        <span class="tag">Excel Dataset</span>
+                        <span class="tag">Data Modeling</span>
+                        <span class="tag">Performance Analytics</span>
                     </div>
 
                     <div class="hero-actions">
-                        <a class="btn btn-primary" href="#visuals">View Analysis Visuals</a>
-                        <a class="btn btn-primary" href="#process">See Workflow</a>
+                        <a class="btn btn-primary" href="#visuals">View Dashboard Screens</a>
+                        <a class="btn" href="#process">See Design Process</a>
                     </div>
                 </div>
 
-                <aside class="hero-panel" data-spotlight-color="rgba(246, 207, 97, .14)"
-                    aria-label="Project dashboard preview">
+                <aside class="hero-panel" aria-label="Power BI project preview">
                     <div class="mock-window">
                         <div class="window-bar">
-                            <div class="window-dots"></div>
+                            <div class="window-dots" aria-hidden="true">
+                                <span class="dot"></span>
+                                <span class="dot"></span>
+                                <span class="dot"></span>
+                            </div>
+                            <span class="window-label">Power BI Prototype</span>
                         </div>
 
                         <div class="window-content">
-                            <div class="chart-card spotlight-card" data-spotlight-color="rgba(143, 214, 148, .16)">
-                                <p class="mini-title">Review Signal Preview</p>
-
-                                <div class="bar-row">
-                                    <span>App Flow</span>
-                                    <div class="bar-track">
-                                        <div class="bar-fill" style="width: 88%"></div>
+                            <div class="dashboard-preview">
+                                <div class="preview-header spotlight-card">
+                                    <div>
+                                        <p>Dashboard Scope</p>
+                                        <strong>IT Balanced Scorecard Performance Control</strong>
                                     </div>
-                                    <strong>High</strong>
+                                    <div class="score-pill">4</div>
                                 </div>
 
-                                <div class="bar-row">
-                                    <span>Login</span>
-                                    <div class="bar-track">
-                                        <div class="bar-fill" style="width: 76%"></div>
+                                <div class="mini-grid">
+                                    <div class="mini-card spotlight-card">
+                                        <span>KPI Groups</span>
+                                        <strong>4</strong>
                                     </div>
-                                    <strong>Med</strong>
-                                </div>
 
-                                <div class="bar-row">
-                                    <span>Promo</span>
-                                    <div class="bar-track">
-                                        <div class="bar-fill" style="width: 70%"></div>
+                                    <div class="mini-card spotlight-card">
+                                        <span>Dashboard Levels</span>
+                                        <strong>2</strong>
                                     </div>
-                                    <strong>Med</strong>
                                 </div>
 
-                                <div class="bar-row">
-                                    <span>Checkout</span>
-                                    <div class="bar-track">
-                                        <div class="bar-fill" style="width: 82%"></div>
+                                <div class="bar-list spotlight-card">
+                                    <p class="mini-title">Perspective Coverage</p>
+
+                                    <div class="bar-row">
+                                        <span>Corporate Contribution</span>
+                                        <div class="bar-track">
+                                            <div class="bar-fill" style="width: 92%"></div>
+                                        </div>
+                                        <strong>CC</strong>
                                     </div>
-                                    <strong>High</strong>
-                                </div>
-                            </div>
 
-                            <div class="panel-note">
-                                <div class="note-box spotlight-card" data-spotlight-color="rgba(246, 207, 97, .16)">
-                                    <strong>TF-IDF</strong>
-                                    <span>Weighted text features used to capture important review terms.</span>
-                                </div>
+                                    <div class="bar-row">
+                                        <span>Customer Orientation</span>
+                                        <div class="bar-track">
+                                            <div class="bar-fill" style="width: 84%"></div>
+                                        </div>
+                                        <strong>CO</strong>
+                                    </div>
 
-                                <div class="note-box spotlight-card" data-spotlight-color="rgba(143, 214, 148, .16)">
-                                    <strong>3-Class</strong>
-                                    <span>Feedback grouped into positive, neutral, and negative sentiment.</span>
+                                    <div class="bar-row">
+                                        <span>Operational Excellence</span>
+                                        <div class="bar-track">
+                                            <div class="bar-fill" style="width: 88%"></div>
+                                        </div>
+                                        <strong>OE</strong>
+                                    </div>
+
+                                    <div class="bar-row">
+                                        <span>Future Orientation</span>
+                                        <div class="bar-track">
+                                            <div class="bar-fill" style="width: 80%"></div>
+                                        </div>
+                                        <strong>FO</strong>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <div class="floating-resource-stack" aria-label="Project resources">
-                        <a class="floating-resource-btn github"
-                            href="https://github.com/zakyalkhair/alfagift-sentiment-analysis" target="_blank"
-                            rel="noopener" aria-label="Open GitHub repository">
+                        <a class="floating-resource-btn" href="LINK_GITHUB_KAMU" target="_blank" rel="noopener"
+                            aria-label="Open GitHub repository">
                             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                                 <path
-                                    d="M12 .5A12 12 0 0 0 8.2 23.9c.6.1.8-.2.8-.6v-2.1c-3.3.7-4-1.4-4-1.4-.5-1.3-1.2-1.7-1.2-1.7-1-.7.1-.7.1-.7 1.1.1 1.7 1.2 1.7 1.2 1 .1.6 2.8 3.4 2 .1-.7.4-1.2.7-1.5-2.6-.3-5.4-1.3-5.4-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.6.1-3.2 0 0 1-.3 3.3 1.2a11.4 11.4 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.4 5.9.4.4.8 1.1.8 2.2v3.2c0 .4.2.7.8.6A12 12 0 0 0 12 .5Z" />
+                                    d="M12 .5A12 12 0 0 0 8.2 23.9c.6.1.8-.2.8-.6v-2.1c-3.3.7-4-1.4-4-1.4-.5-1.3-1.2-1.7-1.2-1.7-1-.7.1-.7.1-.7 1.1.1 1.7 1.2 1.7 1.2 1 1.7 2.6 1.2 3.4 1 .1-.7.4-1.2.7-1.5-2.6-.3-5.4-1.3-5.4-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.6.1-3.2 0 0 1-.3 3.3 1.2a11.4 11.4 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.4 5.9.4.4.8 1.1.8 2.2v3.2c0 .4.2.7.8.6A12 12 0 0 0 12 .5Z" />
                             </svg>
                         </a>
 
-                        <a class="floating-resource-btn report" href="LINK_LAPORAN_KAMU" target="_blank"
-                            rel="noopener" aria-label="Open project report">
+                        <a class="floating-resource-btn" href="LINK_LAPORAN_KAMU" target="_blank" rel="noopener"
+                            aria-label="Open project report">
                             <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
                                 <path d="M7 3.5h7.2L19 8.3v12.2H7V3.5Z" stroke="currentColor" stroke-width="1.8"
                                     stroke-linejoin="round" />
@@ -1355,38 +1301,36 @@
         <section aria-label="Project summary">
             <div class="container">
                 <div class="section-heading">
-                    <h2>What this project is about.</h2>
+                    <h2>What this dashboard solves.</h2>
                     <p>
-                        This project starts from raw app reviews and ends with a simple question: what are Alfagift
-                        users actually feeling, and which issues appear often enough to deserve attention?
+                        The project turns scattered KPI definitions and representative data into a dashboard structure
+                        that is easier to monitor, compare, and explain for management-level performance evaluation.
                     </p>
                 </div>
 
                 <div class="metrics-grid">
-                    <article class="metric-card spotlight-card" data-spotlight-color="rgba(246, 207, 97, .16)">
-                        <span>Dataset</span>
-                        <strong>Google Play</strong>
-                        <p>User feedback collected from Alfagift reviews on Google Play.</p>
+                    <article class="metric-card spotlight-card">
+                        <span>Framework</span>
+                        <strong>IT-BSC</strong>
+                        <p>Uses IT Balanced Scorecard perspectives to connect digital initiatives with business impact.</p>
                     </article>
 
-                    <article class="metric-card spotlight-card" data-spotlight-color="rgba(143, 214, 148, .16)">
-                        <span>Problem</span>
-                        <strong>Sentiment</strong>
-                        <p>Separating positive, neutral, and negative reviews so the feedback is easier to read at
-                            scale.</p>
+                    <article class="metric-card spotlight-card">
+                        <span>Data Source</span>
+                        <strong>Excel</strong>
+                        <p>Built from structured KPI tables and mockup performance data prepared for dashboard modeling.</p>
                     </article>
 
-                    <article class="metric-card spotlight-card" data-spotlight-color="rgba(147, 197, 253, .16)">
-                        <span>Method</span>
-                        <strong>TF-IDF</strong>
-                        <p>Transforming cleaned review text into weighted features that machine learning models can
-                            understand.</p>
+                    <article class="metric-card spotlight-card">
+                        <span>Tool</span>
+                        <strong>Power BI</strong>
+                        <p>Designed with slicers, cards, line charts, column charts, gauge visuals, and page navigation.</p>
                     </article>
 
-                    <article class="metric-card spotlight-card" data-spotlight-color="rgba(255, 255, 255, .14)">
+                    <article class="metric-card spotlight-card">
                         <span>Output</span>
-                        <strong>Insights</strong>
-                        <p>Charts and explanations that connect model output with product-level user feedback.</p>
+                        <strong>2 Levels</strong>
+                        <p>Includes a central dashboard view and branch-level dashboard views for more contextual analysis.</p>
                     </article>
                 </div>
             </div>
@@ -1395,85 +1339,83 @@
         <section id="process">
             <div class="container">
                 <div class="section-heading">
-                    <h2>How the review data was processed.</h2>
+                    <h2>From KPI structure to dashboard experience.</h2>
                     <p>
-                        The analysis follows a practical NLP workflow: collect the reviews, clean the text, build
-                        features, train the model, then interpret the prediction results in a way that is useful for
-                        product evaluation.
+                        The workflow focuses on making the dashboard practical: define the right indicators, prepare the
+                        dataset, transform the data, then design a visual flow that guides users from overview to detail.
                     </p>
                 </div>
 
                 <div class="pipeline-grid">
                     <article class="step-card spotlight-card" data-step="01">
-                        <h3>Scraping & Dataset Preparation</h3>
+                        <h3>KPI Definition</h3>
                         <p>
-                            Collected Alfagift reviews from Google Play, stored the review text and metadata, then
-                            organized the dataset so it was ready for cleaning and analysis.
+                            Mapped KPI indicators into four IT-BSC perspectives: Corporate Contribution, Customer
+                            Orientation, Operational Excellence, and Future Orientation.
                         </p>
                         <div class="tag-row">
-                            <span class="tag">Scraping</span>
-                            <span class="tag">CSV</span>
+                            <span class="tag">KPI Mapping</span>
+                            <span class="tag">IT-BSC</span>
                         </div>
                     </article>
 
                     <article class="step-card spotlight-card" data-step="02">
-                        <h3>Text Preprocessing</h3>
+                        <h3>Dataset Preparation</h3>
                         <p>
-                            Prepared Indonesian review text by removing noise, normalizing words, filtering stopwords,
-                            applying stemming, and shaping the labels for training.
+                            Organized mockup KPI data in Excel so each indicator had the needed period, target, score,
+                            branch, and measurement fields for visualization.
                         </p>
                         <div class="tag-row">
-                            <span class="tag">Cleaning</span>
-                            <span class="tag">Sastrawi</span>
+                            <span class="tag">Excel</span>
+                            <span class="tag">Mockup Data</span>
                         </div>
                     </article>
 
                     <article class="step-card spotlight-card" data-step="03">
-                        <h3>Feature Engineering</h3>
+                        <h3>ETL & Data Modeling</h3>
                         <p>
-                            Converted each review into TF-IDF features so frequent and meaningful terms could be used as
-                            model input, while still keeping the result interpretable.
+                            Cleaned, transformed, and connected the data inside Power BI so dashboard visuals could read
+                            consistent KPI values across multiple pages.
                         </p>
                         <div class="tag-row">
-                            <span class="tag">TF-IDF</span>
-                            <span class="tag">Top Terms</span>
+                            <span class="tag">Power Query</span>
+                            <span class="tag">Data Model</span>
                         </div>
                     </article>
 
                     <article class="step-card spotlight-card" data-step="04">
-                        <h3>Model Comparison</h3>
+                        <h3>Dashboard Wireframe</h3>
                         <p>
-                            Tested several algorithms and compared their evaluation results to choose the sentiment
-                            classifier with the most stable performance.
+                            Planned a navigation-first layout with a main overview page, perspective pages, year slicers,
+                            KPI score panels, and target comparison areas.
                         </p>
                         <div class="tag-row">
-                            <span class="tag">SVM</span>
-                            <span class="tag">LR</span>
-                            <span class="tag">LightGBM</span>
+                            <span class="tag">Figma</span>
+                            <span class="tag">Layout</span>
                         </div>
                     </article>
 
                     <article class="step-card spotlight-card" data-step="05">
-                        <h3>Model Improvement</h3>
+                        <h3>Visual Development</h3>
                         <p>
-                            Refined the selected pipeline through tuning and review of evaluation results before using
-                            it for final prediction.
+                            Built charts based on KPI behavior: cards for summary numbers, line charts for trends,
+                            column charts for comparison, and gauges for target status.
                         </p>
                         <div class="tag-row">
-                            <span class="tag">Tuning</span>
-                            <span class="tag">Evaluation</span>
+                            <span class="tag">Charts</span>
+                            <span class="tag">Targets</span>
                         </div>
                     </article>
 
                     <article class="step-card spotlight-card" data-step="06">
-                        <h3>Inference & Interpretation</h3>
+                        <h3>Interpretation</h3>
                         <p>
-                            Applied the trained model to predict sentiment, checked confidence patterns, and turned the
-                            results into insights about user experience.
+                            Framed each dashboard page so users can quickly identify which indicators are on target,
+                            below target, or showing important performance movement.
                         </p>
                         <div class="tag-row">
-                            <span class="tag">Prediction</span>
-                            <span class="tag">Confidence</span>
+                            <span class="tag">Insights</span>
+                            <span class="tag">Monitoring</span>
                         </div>
                     </article>
                 </div>
@@ -1483,63 +1425,63 @@
         <section id="visuals">
             <div class="container">
                 <div class="section-heading">
-                    <h2>Analysis visuals and interpretation.</h2>
+                    <h2>Dashboard screens and interaction flow.</h2>
                     <p>
-                        The visuals below show how the text data behaves, how the model performs, and which review
-                        patterns are most useful to explain the final sentiment results.
+                        Each screen is structured around a specific decision-making need, from executive context to KPI
+                        monitoring by perspective.
                     </p>
                 </div>
 
                 <div class="gallery-layout">
-                    <div class="gallery-tabs" role="tablist" aria-label="Analysis visuals">
-                        <button class="tab-button active" type="button" data-title="Model Comparison"
-                            data-desc="Compares baseline and candidate models to determine the most reliable sentiment classifier."
-                            data-img="{{ asset('images/projects/alfagift/model_comparison.png') }}">
-                            <strong>Model Comparison</strong>
-                            <span>Performance comparison across candidate algorithms.</span>
+                    <div class="gallery-tabs" role="tablist" aria-label="Dashboard screens">
+                        <button class="tab-button active" type="button" data-title="Main Dashboard"
+                            data-desc="Introduces the dashboard context, company values, vision, and mission before users explore KPI performance pages."
+                            data-img="{{ asset('images/projects/powerbi/dashboard-main.png') }}">
+                            <strong>Main Dashboard</strong>
+                            <span>Opening screen for context and navigation.</span>
                         </button>
 
-                        <button class="tab-button" type="button" data-title="Best Model Confusion Matrix"
-                            data-desc="Shows which sentiment classes are predicted correctly and where the model still makes mistakes."
-                            data-img="{{ asset('images/projects/alfagift/best_model_test_cm.png') }}">
-                            <strong>Confusion Matrix</strong>
-                            <span>Class-level view of correct and incorrect predictions.</span>
+                        <button class="tab-button" type="button" data-title="Corporate Contribution"
+                            data-desc="Shows the contribution of digital initiatives through KPI scores, ROI cards, revenue movement, strategic alliance performance, and budget utilization."
+                            data-img="{{ asset('images/projects/powerbi/corporate-contribution.png') }}">
+                            <strong>Corporate Contribution</strong>
+                            <span>Business contribution and digital value indicators.</span>
                         </button>
 
-                        <button class="tab-button" type="button" data-title="TF-IDF Top Terms"
-                            data-desc="Highlights the strongest TF-IDF terms, making it easier to understand which words shape the sentiment signal."
-                            data-img="{{ asset('images/projects/alfagift/top20_tfidf.png') }}">
-                            <strong>Top TF-IDF Terms</strong>
-                            <span>Key review terms that influence the text features.</span>
+                        <button class="tab-button" type="button" data-title="Customer Orientation"
+                            data-desc="Tracks digital customer experience through satisfaction, complaints, active users, completion time, and customer data security trust."
+                            data-img="{{ asset('images/projects/powerbi/customer-orientation.png') }}">
+                            <strong>Customer Orientation</strong>
+                            <span>Customer-facing service and experience metrics.</span>
                         </button>
 
-                        <button class="tab-button" type="button" data-title="Word Cloud"
-                            data-desc="Summarizes frequent words from user reviews, giving a quick sense of what users talk about most."
-                            data-img="{{ asset('images/projects/alfagift/wordcloud_tfidf.png') }}">
-                            <strong>Word Cloud</strong>
-                            <span>Fast overview of common words in the reviews.</span>
+                        <button class="tab-button" type="button" data-title="Operational Excellence"
+                            data-desc="Monitors operational reliability through system downtime, cost efficiency, website uptime, incident ratio, and UT Connect uptime."
+                            data-img="{{ asset('images/projects/powerbi/operational-excellence.png') }}">
+                            <strong>Operational Excellence</strong>
+                            <span>System stability, downtime, and incident indicators.</span>
                         </button>
 
-                        <button class="tab-button" type="button" data-title="Inference Confidence"
-                            data-desc="Shows the model confidence during inference, helping check whether the predictions are strong or uncertain."
-                            data-img="{{ asset('images/projects/alfagift/inference_confidence.png') }}">
-                            <strong>Inference Confidence</strong>
-                            <span>Confidence pattern of the final sentiment predictions.</span>
+                        <button class="tab-button" type="button" data-title="Future Orientation"
+                            data-desc="Highlights digital readiness through implemented innovations, audit completion, approval rate, legacy modernization, and IT employee certification."
+                            data-img="{{ asset('images/projects/powerbi/future-orientation.png') }}">
+                            <strong>Future Orientation</strong>
+                            <span>Innovation, modernization, and capability growth.</span>
                         </button>
                     </div>
 
-                    <article class="visual-card spotlight-card" data-spotlight-color="rgba(246, 207, 97, .12)">
+                    <article class="visual-card spotlight-card">
                         <div class="visual-frame">
-                            <img id="visualImage" src="{{ asset('images/projects/alfagift/model_improvement.png') }}"
-                                alt="Model Improvement visual">
+                            <img id="visualImage" src="{{ asset('images/projects/powerbi/dashboard-main.png') }}"
+                                alt="Main Dashboard visual">
                         </div>
 
                         <div class="visual-caption">
                             <div>
-                                <h3 id="visualTitle">Model Improvement</h3>
+                                <h3 id="visualTitle">Main Dashboard</h3>
                                 <p id="visualDesc">
-                                    Shows how the selected model improves after refinement, so the final prediction
-                                    pipeline is easier to trust.
+                                    Introduces the dashboard context, company values, vision, and mission before users
+                                    explore KPI performance pages.
                                 </p>
                             </div>
 
@@ -1553,31 +1495,30 @@
         <section id="takeaways">
             <div class="container">
                 <div class="section-heading">
-                    <h2>What this project shows.</h2>
+                    <h2>What this project demonstrates.</h2>
                     <p>
-                        The goal is not only to build a classifier, but also to make the review data easier to
-                        understand and act on.
+                        Beyond making charts, this project shows how dashboard design can make complex performance data
+                        easier to read, compare, and discuss.
                     </p>
                 </div>
 
                 <div class="takeaway-grid">
-                    <article class="takeaway-card spotlight-card" data-spotlight-color="rgba(246, 207, 97, .15)">
+                    <article class="takeaway-card spotlight-card">
                         <h3>Analytical Value</h3>
                         <p>
-                            This project helps translate long, scattered user reviews into sentiment groups and
-                            recurring feedback themes, so product teams can quickly see what users appreciate and what
-                            still creates friction.
+                            The dashboard gives users a structured way to monitor digital performance across multiple
+                            perspectives. Instead of reading KPI tables one by one, users can immediately see trends,
+                            target achievement, and performance gaps from one visual interface.
                         </p>
                     </article>
 
-                    <article class="takeaway-card spotlight-card" data-spotlight-color="rgba(143, 214, 148, .15)">
+                    <article class="takeaway-card spotlight-card">
                         <h3>Technical Strength</h3>
                         <ul>
-                            <li>Built a complete Indonesian text-processing workflow, from raw reviews to sentiment
-                                prediction.</li>
-                            <li>Used preprocessing and TF-IDF to make user comments usable for machine learning.</li>
-                            <li>Explained the result through evaluation charts, important terms, and inference
-                                confidence.</li>
+                            <li>Translated KPI documents into a dashboard-ready data model.</li>
+                            <li>Designed a multi-page Power BI dashboard with clear navigation and visual hierarchy.</li>
+                            <li>Matched chart types to KPI behavior so each metric is easier to interpret.</li>
+                            <li>Used target lines, score cards, slicers, and summary panels to support quick monitoring.</li>
                         </ul>
                     </article>
                 </div>
@@ -1588,17 +1529,102 @@
     <div class="image-modal" id="imageModal" aria-hidden="true">
         <div class="modal-inner">
             <button class="modal-close" type="button" id="closeModal" aria-label="Close image preview">×</button>
-            <img id="modalImage" src="{{ asset('images/projects/alfagift/model_improvement.png') }}"
-                alt="Expanded analysis visual">
+            <img id="modalImage" src="{{ asset('images/projects/powerbi/dashboard-main.png') }}"
+                alt="Expanded dashboard visual">
         </div>
     </div>
 
     <script>
+        const backgroundCanvas = document.getElementById('backgroundCanvas');
+        const backgroundCtx = backgroundCanvas.getContext('2d');
+
+        let backgroundParticles = [];
+        let backgroundMouse = {
+            x: null,
+            y: null
+        };
+
+        const backgroundSettings = {
+            count: 180,
+            color: '255, 255, 255',
+            speed: 0.45,
+            baseSize: 2.8,
+            hoverDistance: 280,
+            hoverForce: 2.4
+        };
+
+        function resizeBackgroundCanvas() {
+            backgroundCanvas.width = window.innerWidth;
+            backgroundCanvas.height = window.innerHeight;
+            createBackgroundParticles();
+        }
+
+        function createBackgroundParticles() {
+            backgroundParticles = [];
+
+            for (let i = 0; i < backgroundSettings.count; i++) {
+                backgroundParticles.push({
+                    x: Math.random() * backgroundCanvas.width,
+                    y: Math.random() * backgroundCanvas.height,
+                    vx: (Math.random() - 0.5) * backgroundSettings.speed,
+                    vy: (Math.random() - 0.5) * backgroundSettings.speed,
+                    size: Math.random() * backgroundSettings.baseSize + 0.6,
+                    alpha: Math.random() * 0.45 + 0.22
+                });
+            }
+        }
+
+        function drawBackgroundParticles() {
+            backgroundCtx.clearRect(0, 0, backgroundCanvas.width, backgroundCanvas.height);
+
+            backgroundParticles.forEach(particle => {
+                const dx = backgroundMouse.x - particle.x;
+                const dy = backgroundMouse.y - particle.y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+
+                if (backgroundMouse.x !== null && distance < backgroundSettings.hoverDistance && distance > 0) {
+                    const force = (backgroundSettings.hoverDistance - distance) / backgroundSettings.hoverDistance;
+
+                    particle.x -= (dx / distance) * force * backgroundSettings.hoverForce;
+                    particle.y -= (dy / distance) * force * backgroundSettings.hoverForce;
+                }
+
+                particle.x += particle.vx;
+                particle.y += particle.vy;
+
+                if (particle.x < 0) particle.x = backgroundCanvas.width;
+                if (particle.x > backgroundCanvas.width) particle.x = 0;
+                if (particle.y < 0) particle.y = backgroundCanvas.height;
+                if (particle.y > backgroundCanvas.height) particle.y = 0;
+
+                backgroundCtx.beginPath();
+                backgroundCtx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+                backgroundCtx.fillStyle = `rgba(${backgroundSettings.color}, ${particle.alpha})`;
+                backgroundCtx.fill();
+            });
+
+            requestAnimationFrame(drawBackgroundParticles);
+        }
+
+        window.addEventListener('resize', resizeBackgroundCanvas);
+
+        window.addEventListener('mousemove', event => {
+            backgroundMouse.x = event.clientX;
+            backgroundMouse.y = event.clientY;
+        });
+
+        window.addEventListener('mouseleave', () => {
+            backgroundMouse.x = null;
+            backgroundMouse.y = null;
+        });
+
+        resizeBackgroundCanvas();
+        drawBackgroundParticles();
+
         const spotlightCards = document.querySelectorAll('.spotlight-card');
 
         spotlightCards.forEach(card => {
-            const spotlightColor = card.dataset.spotlightColor || 'rgba(246, 207, 97, .16)';
-            card.style.setProperty('--spotlight-color', spotlightColor);
+            card.style.setProperty('--spotlight-color', 'rgba(246, 207, 97, .13)');
 
             card.addEventListener('mousemove', event => {
                 const rect = card.getBoundingClientRect();
@@ -1658,96 +1684,6 @@
         window.addEventListener('keydown', event => {
             if (event.key === 'Escape') hideModal();
         });
-    </script>
-
-    <script>
-        const backgroundCanvas = document.getElementById('backgroundCanvas');
-        const backgroundCtx = backgroundCanvas.getContext('2d');
-
-        let backgroundParticles = [];
-        let backgroundMouse = {
-            x: null,
-            y: null
-        };
-
-        const backgroundSettings = {
-            count: 180,
-            color: '255, 255, 255',
-            speed: 0.45,
-            baseSize: 2.8,
-            hoverDistance: 280,
-            hoverForce: 2.4
-        };
-
-        function resizeBackgroundCanvas() {
-            backgroundCanvas.width = window.innerWidth;
-            backgroundCanvas.height = window.innerHeight;
-            createBackgroundParticles();
-        }
-
-        function createBackgroundParticles() {
-            backgroundParticles = [];
-
-            for (let i = 0; i < backgroundSettings.count; i++) {
-                backgroundParticles.push({
-                    x: Math.random() * backgroundCanvas.width,
-                    y: Math.random() * backgroundCanvas.height,
-                    vx: (Math.random() - 0.5) * backgroundSettings.speed,
-                    vy: (Math.random() - 0.5) * backgroundSettings.speed,
-                    size: Math.random() * backgroundSettings.baseSize + 0.6,
-                    alpha: Math.random() * 0.45 + 0.22
-                });
-            }
-        }
-
-        function drawBackgroundParticles() {
-            backgroundCtx.clearRect(0, 0, backgroundCanvas.width, backgroundCanvas.height);
-
-            backgroundParticles.forEach(particle => {
-                const dx = backgroundMouse.x - particle.x;
-                const dy = backgroundMouse.y - particle.y;
-                const distance = Math.sqrt(dx * dx + dy * dy);
-
-                if (backgroundMouse.x !== null && distance < backgroundSettings.hoverDistance) {
-                    const force = (backgroundSettings.hoverDistance - distance) / backgroundSettings.hoverDistance;
-
-                    if (distance > 0) {
-                        particle.x -= (dx / distance) * force * backgroundSettings.hoverForce;
-                        particle.y -= (dy / distance) * force * backgroundSettings.hoverForce;
-                    }
-                }
-
-                particle.x += particle.vx;
-                particle.y += particle.vy;
-
-                if (particle.x < 0) particle.x = backgroundCanvas.width;
-                if (particle.x > backgroundCanvas.width) particle.x = 0;
-                if (particle.y < 0) particle.y = backgroundCanvas.height;
-                if (particle.y > backgroundCanvas.height) particle.y = 0;
-
-                backgroundCtx.beginPath();
-                backgroundCtx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
-                backgroundCtx.fillStyle = `rgba(${backgroundSettings.color}, ${particle.alpha})`;
-                backgroundCtx.fill();
-            });
-
-            requestAnimationFrame(drawBackgroundParticles);
-        }
-
-        window.addEventListener('resize', resizeBackgroundCanvas);
-
-        window.addEventListener('mousemove', event => {
-            backgroundMouse.x = event.clientX;
-            backgroundMouse.y = event.clientY;
-        });
-
-        window.addEventListener('mouseleave', () => {
-            backgroundMouse.x = null;
-            backgroundMouse.y = null;
-        });
-
-        resizeBackgroundCanvas();
-        drawBackgroundParticles();
     </script>
 </body>
 

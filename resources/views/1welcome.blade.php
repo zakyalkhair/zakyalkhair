@@ -49,7 +49,7 @@
             position: relative;
             min-height: 100%;
             overflow-x: hidden;
-            background: url("{{ asset('images/background.webp') }}") center/cover no-repeat fixed;
+            background: url("{{ asset('images/background.jpg') }}") center/cover no-repeat fixed;
             color: var(--text);
             font-family: 'DM Sans', sans-serif;
         }
@@ -81,6 +81,43 @@
             font-size: clamp(2.35rem, 4vw, 3.5rem);
             line-height: 1.08;
             text-align: center;
+        }
+
+        /* =========================
+           COMPONENT ENTER ANIMATION
+        ========================= */
+        .reveal {
+            opacity: 0;
+            transform: translateY(34px);
+            transition:
+                opacity 0.75s ease,
+                transform 0.75s cubic-bezier(0.2, 0.8, 0.2, 1);
+            will-change: opacity, transform;
+        }
+
+        .reveal.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-delay-1 {
+            transition-delay: 0.08s;
+        }
+
+        .reveal-delay-2 {
+            transition-delay: 0.16s;
+        }
+
+        .reveal-delay-3 {
+            transition-delay: 0.24s;
+        }
+
+        .reveal-delay-4 {
+            transition-delay: 0.32s;
+        }
+
+        .reveal-delay-5 {
+            transition-delay: 0.4s;
         }
 
         /* =========================
@@ -123,6 +160,7 @@
             transform: translateX(-50%);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
+            animation: navEnter 0.8s 0.08s cubic-bezier(0.2, 0.8, 0.2, 1) both;
         }
 
         nav a {
@@ -162,7 +200,7 @@
             width: min(560px, 42vw);
             min-width: 440px;
             aspect-ratio: 56 / 55;
-            animation: fadeUp 0.7s ease both;
+            animation: heroCardEnter 0.85s 0.18s cubic-bezier(0.2, 0.8, 0.2, 1) both;
         }
 
         .card-bg {
@@ -251,7 +289,7 @@
             width: min(480px, 39vw);
             min-width: 380px;
             aspect-ratio: 8 / 9;
-            animation: fadeUp 0.7s 0.15s ease both;
+            animation: heroPhotoEnter 0.85s 0.28s cubic-bezier(0.2, 0.8, 0.2, 1) both;
         }
 
         .polaroid {
@@ -302,7 +340,7 @@
             flex-direction: column;
             justify-content: center;
             min-height: 80svh;
-            padding: 40px var(--section-x) 20px;
+            padding: 20px var(--section-x) 60px;
         }
 
         .projects-header {
@@ -319,7 +357,7 @@
 
         .projects-folder {
             position: relative;
-            top: -105px;
+            top: -175px;
             width: 420px;
             height: 320px;
         }
@@ -334,7 +372,7 @@
         }
 
         .folder-shell img {
-            width: 650px;
+            width: 800px;
             max-width: none;
             height: auto;
             object-fit: contain;
@@ -480,8 +518,8 @@
             flex-direction: column;
             align-items: center;
             justify-content: flex-start;
-            min-height: 40svh;
-            padding: 20px var(--section-x) 20px;
+            min-height: 80svh;
+            padding: 110px var(--section-x) 60px;
         }
 
         .skills-header {
@@ -504,13 +542,28 @@
             padding: 34px;
             border-radius: 28px;
             background: rgba(20, 28, 38, 0.58);
-            transition: transform 0.3s ease, background 0.3s ease;
+            transition:
+                opacity 0.75s ease,
+                transform 0.75s cubic-bezier(0.2, 0.8, 0.2, 1),
+                background 0.3s ease;
             backdrop-filter: blur(14px);
             -webkit-backdrop-filter: blur(14px);
         }
 
         .skill-card:hover {
             background: rgba(20, 28, 38, 0.68);
+            transform: translateY(-8px);
+        }
+
+        .skill-card.reveal {
+            transform: translateY(34px);
+        }
+
+        .skill-card.reveal.is-visible {
+            transform: translateY(0);
+        }
+
+        .skill-card.reveal.is-visible:hover {
             transform: translateY(-8px);
         }
 
@@ -544,9 +597,9 @@
         .experiences-section {
             display: flex;
             flex-direction: column;
-            justify-content: flex-start;
+            justify-content: center;
             min-height: 100svh;
-            padding: 70px 64px;
+            padding: 110px 64px;
         }
 
         .experiences-header {
@@ -578,13 +631,28 @@
             background: var(--dark-glass);
             box-shadow: 0 18px 55px rgba(0, 0, 0, 0.32);
             color: var(--white);
-            transition: transform 0.3s ease, background 0.3s ease;
+            transition:
+                opacity 0.75s ease,
+                transform 0.75s cubic-bezier(0.2, 0.8, 0.2, 1),
+                background 0.3s ease;
             backdrop-filter: blur(14px);
             -webkit-backdrop-filter: blur(14px);
         }
 
         .experience-card:hover {
             background: var(--dark-glass-2);
+            transform: translateY(-8px);
+        }
+
+        .experience-card.reveal {
+            transform: translateY(34px);
+        }
+
+        .experience-card.reveal.is-visible {
+            transform: translateY(0);
+        }
+
+        .experience-card.reveal.is-visible:hover {
             transform: translateY(-8px);
         }
 
@@ -672,6 +740,46 @@
         /* =========================
            ANIMATIONS
         ========================= */
+        @keyframes navEnter {
+            from {
+                opacity: 0;
+                transform: translate(-50%, -18px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translate(-50%, 0);
+            }
+        }
+
+        @keyframes heroCardEnter {
+            from {
+                opacity: 0;
+                transform: translateX(-34px) translateY(16px) scale(0.98);
+                filter: blur(6px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0) translateY(0) scale(1);
+                filter: blur(0);
+            }
+        }
+
+        @keyframes heroPhotoEnter {
+            from {
+                opacity: 0;
+                transform: translateX(34px) translateY(16px) scale(0.98);
+                filter: blur(6px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0) translateY(0) scale(1);
+                filter: blur(0);
+            }
+        }
+
         @keyframes fadeUp {
             from {
                 opacity: 0;
@@ -686,7 +794,7 @@
 
         @media (max-width: 1440px) {
             .experiences-section {
-                padding-top: 60px;
+                padding-top: 130px;
             }
 
             .experiences-grid {
@@ -739,7 +847,6 @@
                 grid-template-columns: 1fr;
                 gap: 24px;
                 padding-top: 112px;
-                padding-bottom: 60px
             }
 
             .card-wrapper {
@@ -831,9 +938,8 @@
             }
 
             /* =========================
-   MOBILE FIXED BACKGROUND
-========================= */
-
+               MOBILE FIXED BACKGROUND
+            ========================= */
             body {
                 background-image: none;
                 background-color: #7fb8df;
@@ -862,7 +968,6 @@
                         rgba(0, 0, 0, 0.36),
                         rgba(0, 0, 0, 0.54));
             }
-
 
             nav {
                 top: 14px;
@@ -953,7 +1058,7 @@
             .skills-section,
             .experiences-section {
                 min-height: auto;
-                padding-top: 20px;
+                padding-top: 92px;
                 padding-bottom: 56px;
             }
 
@@ -1174,8 +1279,6 @@
             }
         }
 
-
-
         @media (prefers-reduced-motion: reduce) {
             html {
                 scroll-behavior: auto;
@@ -1189,6 +1292,11 @@
                 scroll-behavior: auto !important;
                 transition-duration: 0.01ms !important;
             }
+
+            .reveal {
+                opacity: 1 !important;
+                transform: none !important;
+            }
         }
     </style>
 </head>
@@ -1200,14 +1308,14 @@
 
     <nav aria-label="Main navigation">
         <a class="active" href="#about">About</a>
+        <a href="#projects">Projects</a>
         <a href="#skills">Skills</a>
         <a href="#experiences">Experiences</a>
-        <a href="{{ route('galeri') }}">Projects</a>
     </nav>
 
     <section id="about" class="hero-section">
         <div class="card-wrapper">
-            <img class="card-bg" src="{{ asset('images/card-stack.webp') }}" alt="" aria-hidden="true" decoding="async">
+            <img class="card-bg" src="{{ asset('images/card-stack.png') }}" alt="" aria-hidden="true">
 
             <div class="card-content">
                 <h1 class="card-name">Hi, I'm Zaky</h1>
@@ -1224,15 +1332,15 @@
 
                 <div class="socials">
                     <a href="mailto:alzakykhair@email.com" aria-label="Gmail">
-                        <img src="{{ asset('icons/gmail.png') }}" alt="Gmail" loading="lazy" decoding="async">
+                        <img src="{{ asset('icons/gmail.png') }}" alt="Gmail">
                     </a>
 
                     <a href="https://linkedin.com/in/zakyalkhair/" target="_blank" rel="noopener" aria-label="LinkedIn">
-                        <img src="{{ asset('icons/linkedin.png') }}" alt="LinkedIn" loading="lazy" decoding="async">
+                        <img src="{{ asset('icons/linkedin.png') }}" alt="LinkedIn">
                     </a>
 
                     <a href="https://github.com/zakyalkhair" target="_blank" rel="noopener" aria-label="GitHub">
-                        <img src="{{ asset('icons/github.png') }}" alt="GitHub" loading="lazy" decoding="async">
+                        <img src="{{ asset('icons/github.png') }}" alt="GitHub">
                     </a>
                 </div>
             </div>
@@ -1240,23 +1348,99 @@
 
         <div class="photo-collage" aria-label="Foto Zaky">
             <div class="polaroid polaroid-1">
-                <img src="{{ asset('images/about1.jpg') }}" alt="Zaky presenting at ANFORCOM 2024" loading="lazy" decoding="async">
+                <img src="{{ asset('images/about1.jpg') }}" alt="Zaky presenting at ANFORCOM 2024" loading="lazy">
             </div>
 
             <div class="polaroid polaroid-2">
                 <img src="{{ asset('images/about2.jpg') }}" alt="Zaky presenting in front of a whiteboard"
-                    loading="lazy" decoding="async">
+                    loading="lazy">
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="projects-section">
+        <div class="projects-header">
+            <h2 class="section-title reveal">My Projects</h2>
+        </div>
+
+        <div class="projects-folder-wrapper">
+            <div class="projects-folder reveal reveal-delay-1" id="projectsFolder">
+                <div class="folder-shell">
+                    <img src="{{ asset('images/folder.png') }}" alt="Folder">
+                </div>
+
+                <div class="project-card project-card-1">
+                    <a href="{{ route('alfagift') }}">
+                        <div class="project-image">
+                            <img src="{{ asset('images/project1.png') }}" alt="Sentiment Analysis of Alfagift project">
+                        </div>
+
+                        <div class="project-content">
+                            <h3>Sentiment Analysis of Alfagift on Google Play Reviews</h3>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="project-card project-card-2">
+                    <a href="{{ route('powerbi') }}">
+                        <div class="project-image">
+                            <img src="{{ asset('images/project2.png') }}"
+                                alt="IT Balanced Scorecard Dashboard project">
+                        </div>
+
+                        <div class="project-content">
+                            <h3>IT Balanced Scorecard Dashboard Development for Company Performance Monitoring</h3>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="project-card project-card-3">
+                    <a href="#">
+                        <div class="project-image">
+                            <img src="{{ asset('images/project3.png') }}"
+                                alt="Ali Khamenei sentiment analysis project">
+                        </div>
+
+                        <div class="project-content">
+                            <h3>Sentiment Analysis of Ali Khamenei's Death on Indonesian News Media</h3>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="project-card project-card-4">
+                    <a href="#">
+                        <div class="project-image">
+                            <img src="{{ asset('images/project4.png') }}" alt="Health Burden Clustering project">
+                        </div>
+
+                        <div class="project-content">
+                            <h3>Health Burden Clustering in South Korea Using K-Means</h3>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="project-card project-card-5">
+                    <a href="#">
+                        <div class="project-image">
+                            <img src="{{ asset('images/project5.png') }}" alt="Data Warehouse Design project">
+                        </div>
+
+                        <div class="project-content">
+                            <h3>Data Warehouse Design for Information System Academic</h3>
+                        </div>
+                    </a>
+                </div>
             </div>
         </div>
     </section>
 
     <section id="skills" class="skills-section">
         <div class="skills-header">
-            <h2 class="section-title">Skills & Tools</h2>
+            <h2 class="section-title reveal">Skills & Tools</h2>
         </div>
 
         <div class="skills-grid">
-            <div class="skill-card">
+            <div class="skill-card reveal reveal-delay-1">
                 <h3>Data Analytics</h3>
 
                 <div class="skill-list">
@@ -1268,7 +1452,7 @@
                 </div>
             </div>
 
-            <div class="skill-card">
+            <div class="skill-card reveal reveal-delay-2">
                 <h3>Data Visualization</h3>
 
                 <div class="skill-list">
@@ -1279,7 +1463,7 @@
                 </div>
             </div>
 
-            <div class="skill-card">
+            <div class="skill-card reveal reveal-delay-3">
                 <h3>Web Development</h3>
 
                 <div class="skill-list">
@@ -1294,13 +1478,13 @@
 
     <section id="experiences" class="experiences-section">
         <div class="experiences-header">
-            <h2 class="section-title">Experiences</h2>
+            <h2 class="section-title reveal">Experiences</h2>
         </div>
 
         <div class="experiences-grid">
-            <article class="experience-card">
+            <article class="experience-card reveal reveal-delay-1">
                 <div class="experience-photo">
-                    <img src="{{ asset('images/astra.png') }}" alt="Astra Infra Toll Road Tangerang-Merak" loading="lazy" decoding="async">
+                    <img src="{{ asset('images/astra.png') }}" alt="Astra Infra Toll Road Tangerang-Merak">
                 </div>
 
                 <div class="experience-content">
@@ -1322,9 +1506,9 @@
                 </div>
             </article>
 
-            <article class="experience-card">
+            <article class="experience-card reveal reveal-delay-2">
                 <div class="experience-photo">
-                    <img src="{{ asset('images/hmsi.png') }}" alt="Himpunan Sistem Informasi ITS" loading="lazy" decoding="async">
+                    <img src="{{ asset('images/hmsi.png') }}" alt="Himpunan Sistem Informasi ITS">
                 </div>
 
                 <div class="experience-content">
@@ -1346,9 +1530,9 @@
                 </div>
             </article>
 
-            <article class="experience-card">
+            <article class="experience-card reveal reveal-delay-3">
                 <div class="experience-photo">
-                    <img src="{{ asset('images/ise.png') }}" alt="ISE! 2025" loading="lazy" decoding="async">
+                    <img src="{{ asset('images/ise.png') }}" alt="ISE! 2025">
                 </div>
 
                 <div class="experience-content">
@@ -1370,9 +1554,9 @@
                 </div>
             </article>
 
-            <article class="experience-card">
+            <article class="experience-card reveal reveal-delay-4">
                 <div class="experience-photo">
-                    <img src="{{ asset('images/asdos.png') }}" alt="Departemen Sistem Informasi ITS" loading="lazy" decoding="async">
+                    <img src="{{ asset('images/asdos.png') }}" alt="Departemen Sistem Informasi ITS">
                 </div>
 
                 <div class="experience-content">
@@ -1397,82 +1581,6 @@
         </div>
     </section>
 
-    <section id="projects" class="projects-section">
-        <div class="projects-header">
-            <h2 class="section-title">My Projects</h2>
-        </div>
-
-        <div class="projects-folder-wrapper">
-            <div class="projects-folder" id="projectsFolder">
-                <div class="folder-shell">
-                    <img src="{{ asset('images/folder.png') }}" alt="Folder" loading="lazy" decoding="async">
-                </div>
-
-                <div class="project-card project-card-1">
-                    <a href="{{ route('galeri') }}">
-                        <div class="project-image">
-                            <img src="{{ asset('images/project1.png') }}" alt="Sentiment Analysis of Alfagift project" loading="lazy" decoding="async">
-                        </div>
-
-                        <div class="project-content">
-                            <h3>Sentiment Analysis of Alfagift on Google Play Reviews</h3>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="project-card project-card-2">
-                    <a href="{{ route('galeri') }}">
-                        <div class="project-image">
-                            <img src="{{ asset('images/project2.png') }}"
-                                alt="IT Balanced Scorecard Dashboard project" loading="lazy" decoding="async">
-                        </div>
-
-                        <div class="project-content">
-                            <h3>IT Balanced Scorecard Dashboard Development for Company Performance Monitoring</h3>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="project-card project-card-3">
-                    <a href="{{ route('galeri') }}">
-                        <div class="project-image">
-                            <img src="{{ asset('images/project3.png') }}"
-                                alt="Ali Khamenei sentiment analysis project" loading="lazy" decoding="async">
-                        </div>
-
-                        <div class="project-content">
-                            <h3>Sentiment Analysis of Ali Khamenei's Death on Indonesian News Media</h3>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="project-card project-card-4">
-                    <a href="{{ route('galeri') }}">
-                        <div class="project-image">
-                            <img src="{{ asset('images/project4.png') }}" alt="Health Burden Clustering project" loading="lazy" decoding="async">
-                        </div>
-
-                        <div class="project-content">
-                            <h3>Health Burden Clustering in South Korea Using K-Means</h3>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="project-card project-card-5">
-                    <a href="{{ route('galeri') }}">
-                        <div class="project-image">
-                            <img src="{{ asset('images/project5.png') }}" alt="Data Warehouse Design project" loading="lazy" decoding="async">
-                        </div>
-
-                        <div class="project-content">
-                            <h3>Data Warehouse Design for Information System Academic</h3>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <script>
         const projectsFolder = document.getElementById('projectsFolder');
         const navLinks = document.querySelectorAll('nav a');
@@ -1482,26 +1590,16 @@
         const ctx = canvas?.getContext('2d');
 
         let particles = [];
-        let animationFrameId = null;
-        let lastFrameTime = 0;
-        let isParticlesRunning = false;
-        let navTicking = false;
 
         const mouse = {
             x: null,
             y: null
         };
 
-        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-        const mobileViewport = window.matchMedia('(max-width: 960px)');
-
-        const shouldRunParticles = () => {
-            return canvas && ctx && !mobileViewport.matches && !prefersReducedMotion.matches;
-        };
-
         const getParticleCount = () => {
-            if (window.innerWidth <= 1280) return 190;
-            return 220;
+            if (window.innerWidth <= 560) return 70;
+            if (window.innerWidth <= 960) return 110;
+            return 200;
         };
 
         const particleSettings = {
@@ -1509,8 +1607,7 @@
             speed: 0.6,
             baseSize: 3,
             hoverDistance: 300,
-            hoverForce: 2.8,
-            fps: 36
+            hoverForce: 2.8
         };
 
         if (projectsFolder) {
@@ -1534,17 +1631,6 @@
                         link.classList.toggle('active', link.getAttribute('href') === `#${sectionId}`);
                     });
                 }
-            });
-        }
-
-        function requestNavUpdate() {
-            if (navTicking) return;
-
-            navTicking = true;
-
-            requestAnimationFrame(() => {
-                setActiveNav();
-                navTicking = false;
             });
         }
 
@@ -1585,33 +1671,22 @@
                 y: Math.random() * canvas.height,
                 vx: (Math.random() - 0.5) * particleSettings.speed,
                 vy: (Math.random() - 0.5) * particleSettings.speed,
-                size: Math.random() * particleSettings.baseSize + 0.5,
-                alpha: Math.random() * 0.38 + 0.22
+                size: Math.random() * particleSettings.baseSize + 0.6,
+                alpha: Math.random() * 0.45 + 0.25
             }));
         }
 
         function resizeCanvas() {
-            if (!canvas || !shouldRunParticles()) return;
+            if (!canvas) return;
 
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
             createParticles();
         }
 
-        function drawParticles(timestamp = 0) {
-            if (!shouldRunParticles() || !isParticlesRunning) {
-                animationFrameId = null;
-                return;
-            }
+        function drawParticles() {
+            if (!ctx || !canvas) return;
 
-            const frameInterval = 1000 / particleSettings.fps;
-
-            if (timestamp - lastFrameTime < frameInterval) {
-                animationFrameId = requestAnimationFrame(drawParticles);
-                return;
-            }
-
-            lastFrameTime = timestamp;
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
             particles.forEach(particle => {
@@ -1639,54 +1714,19 @@
                 ctx.fill();
             });
 
-            animationFrameId = requestAnimationFrame(drawParticles);
+            requestAnimationFrame(drawParticles);
         }
 
-        function startParticles() {
-            if (!shouldRunParticles() || isParticlesRunning) return;
-
-            isParticlesRunning = true;
-            resizeCanvas();
-            animationFrameId = requestAnimationFrame(drawParticles);
-        }
-
-        function stopParticles() {
-            isParticlesRunning = false;
-
-            if (animationFrameId) {
-                cancelAnimationFrame(animationFrameId);
-                animationFrameId = null;
-            }
-
-            if (ctx && canvas) {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-            }
-        }
-
-        window.addEventListener('scroll', requestNavUpdate, {
+        window.addEventListener('scroll', setActiveNav, {
             passive: true
         });
 
         window.addEventListener('load', () => {
             setActiveNav();
             initRevealAnimation();
-            startParticles();
         });
 
-        window.addEventListener('resize', () => {
-            stopParticles();
-            startParticles();
-        }, {
-            passive: true
-        });
-
-        document.addEventListener('visibilitychange', () => {
-            if (document.hidden) {
-                stopParticles();
-            } else {
-                startParticles();
-            }
-        });
+        window.addEventListener('resize', resizeCanvas);
 
         window.addEventListener('mousemove', event => {
             mouse.x = event.clientX;
@@ -1700,10 +1740,8 @@
             mouse.y = null;
         });
 
-        mobileViewport.addEventListener('change', () => {
-            stopParticles();
-            startParticles();
-        });
+        resizeCanvas();
+        drawParticles();
     </script>
 </body>
 
