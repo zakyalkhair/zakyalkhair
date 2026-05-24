@@ -55,11 +55,12 @@
             scroll-behavior: smooth;
         }
 
+
         body {
             overflow-x: hidden;
             color: var(--white);
             font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
-            background: #07101f;
+            background-color: #111827;
         }
 
         img {
@@ -80,15 +81,19 @@
         .bg-fixed {
             position: fixed;
             inset: 0;
-            z-index: -2;
-            background: url("{{ asset('images/hero-bg.webp') }}") center / cover no-repeat;
+            z-index: 0;
+            pointer-events: none;
+            background:
+                radial-gradient(circle at 18% 18%, rgba(246, 207, 97, .46), transparent 40%),
+                radial-gradient(circle at 82% 24%, rgba(147, 197, 253, .43), transparent 40%),
+                radial-gradient(circle at 50% 92%, rgba(143, 214, 148, .42), transparent 40%);
         }
 
         .bg-fixed::after {
             content: "";
             position: absolute;
             inset: 0;
-            z-index: -1;
+            z-index: 1;
             background:
                 linear-gradient(180deg, rgba(0, 0, 0, 0.26), rgba(0, 0, 0, 0.54)),
                 radial-gradient(circle at 22% 18%, rgba(255, 212, 0, 0.26), transparent 34%),
@@ -97,6 +102,7 @@
 
         .page {
             position: relative;
+            z-index: 2;
             min-height: 100vh;
         }
 
@@ -148,10 +154,11 @@
             min-height: 100vh;
             padding: 110px var(--section-x) 90px;
             border-top: 1px solid rgba(255, 255, 255, 0.18);
-            background: rgba(255, 255, 255, 0.12);
+            background: rgba(255, 255, 255, 0);
             box-shadow: 0 -40px 80px rgba(0, 0, 0, 0.26);
-            backdrop-filter: blur(18px);
-            -webkit-backdrop-filter: blur(18px);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+
         }
 
         .section-heading {
@@ -180,7 +187,7 @@
         }
 
         .section-desc {
-            color: rgba(255, 255, 255, 0.72);
+            color: rgba(255, 255, 255);
             font-size: 15px;
             line-height: 1.75;
         }
@@ -210,7 +217,7 @@
             border: 1px solid rgba(255, 255, 255, 0.18);
             border-radius: 999px;
             background: rgba(255, 255, 255, 0.10);
-            color: rgba(255, 255, 255, 0.76);
+            color: rgba(255, 255, 255);
             cursor: pointer;
             transition: background 0.25s ease, transform 0.25s ease, color 0.25s ease, border-color 0.25s ease;
         }
@@ -238,7 +245,7 @@
             position: absolute;
             top: 50%;
             left: 16px;
-            color: rgba(255, 255, 255, 0.5);
+            color: rgb(255, 255, 255);
             transform: translateY(-50%);
         }
 
@@ -262,7 +269,7 @@
         }
 
         .search-box input::placeholder {
-            color: rgba(255, 255, 255, 0.52);
+            color: rgba(255, 255, 255);
         }
 
         .project-grid {
@@ -328,7 +335,7 @@
             border: 1px solid rgba(255, 255, 255, 0.18);
             border-radius: 999px;
             background: rgba(4, 10, 20, 0.48);
-            color: rgba(255, 255, 255, 0.88);
+            color: rgba(255, 255, 255);
             font-size: 12px;
             font-weight: 800;
             backdrop-filter: blur(10px);
@@ -353,7 +360,7 @@
             padding: 0 10px;
             border-radius: 999px;
             background: rgba(255, 255, 255, 0.10);
-            color: rgba(255, 255, 255, 0.72);
+            color: rgba(255, 255, 255);
             font-size: 12px;
             font-weight: 700;
         }
@@ -368,7 +375,7 @@
 
         .project-desc {
             min-height: 78px;
-            color: rgba(255, 255, 255, 0.70);
+            color: rgba(255, 255, 255);
             font-size: 14px;
             line-height: 1.65;
         }
@@ -402,7 +409,7 @@
         }
 
         .project-year {
-            color: rgba(255, 255, 255, 0.54);
+            color: rgba(255, 255, 255);
             font-size: 13px;
             font-weight: 800;
         }
@@ -415,7 +422,7 @@
             border: 1px dashed rgba(255, 255, 255, 0.24);
             border-radius: 24px;
             background: rgba(255, 255, 255, 0.08);
-            color: rgba(255, 255, 255, 0.72);
+            color: rgba(255, 255, 255);
             text-align: center;
         }
 
@@ -613,7 +620,7 @@
         <a href="{{ url('/') }}#about">About</a>
         <a href="{{ url('/') }}#skills">Skills</a>
         <a href="{{ url('/') }}#experiences">Experiences</a>
-        <a class="active" href="{{ url('/galeri') }}">Projects</a>
+        <a class="active" href="{{ route('galeri') }}">Projects</a>
     </nav>
 
     <main class="page">
@@ -661,45 +668,16 @@
             </div>
 
             <div class="project-grid" id="projectGrid">
-                <article class="project-card reveal delay-1" data-category="bi data" data-url="{{ route('powerbi') }}" data-keywords="power bi dashboard it balanced scorecard kpi etl business intelligence data visualization">
-                    <div class="project-image">
-                        <span class="project-category">
-                            <i class="fa-solid fa-chart-pie"></i>
-                            BI Dashboard
-                        </span>
-                        <img src="{{ asset('images/project1.webp') }}" alt="IT Balanced Scorecard Dashboard project" loading="lazy" decoding="async">
-                    </div>
-
-                    <div class="project-body">
-                        <div class="project-meta">
-                            <span>Power BI</span>
-                            <span>ETL</span>
-                            <span>KPI</span>
-                        </div>
-
-                        <h3 class="project-title">IT Balanced Scorecard Dashboard</h3>
-                        <p class="project-desc">
-                            Dashboard monitoring performa berbasis IT Balanced Scorecard untuk membantu membaca KPI,
-                            perspektif bisnis, dan evaluasi performa perusahaan secara lebih terstruktur.
-                        </p>
-
-                        <div class="project-footer">
-                            <a href="{{ route('powerbi') }}" class="project-link">
-                                View Project
-                                <i class="fa-solid fa-arrow-right"></i>
-                            </a>
-                            <span class="project-year">2026</span>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="project-card reveal delay-2" data-category="data ml" data-url="{{ route('alfagift') }}" data-keywords="sentiment analysis alfagift google play reviews python nlp classification machine learning">
+                <article class="project-card reveal delay-2" data-category="data ml"
+                    data-url="{{ route('projects.alfagift') }}"
+                    data-keywords="sentiment analysis alfagift google play reviews python nlp classification machine learning">
                     <div class="project-image">
                         <span class="project-category">
                             <i class="fa-solid fa-brain"></i>
                             ML / NLP
                         </span>
-                        <img src="{{ asset('images/project2.webp') }}" alt="Sentiment Analysis of Alfagift project" loading="lazy" decoding="async">
+                        <img src="{{ asset('images/project1.webp') }}" alt="Sentiment Analysis of Alfagift project"
+                            loading="lazy" decoding="async">
                     </div>
 
                     <div class="project-body">
@@ -709,14 +687,14 @@
                             <span>Classification</span>
                         </div>
 
-                        <h3 class="project-title">Alfagift Review Sentiment Analysis</h3>
+                        <h3 class="project-title">Sentiment Analysis of Alfagift Reviews.</h3>
                         <p class="project-desc">
                             Analisis sentimen ulasan Google Play untuk memahami persepsi pengguna terhadap aplikasi
                             Alfagift dan mengubah review menjadi insight yang lebih mudah dibaca.
                         </p>
 
                         <div class="project-footer">
-                            <a href="{{ route('alfagift') }}" class="project-link">
+                            <a href="{{ route('projects.alfagift') }}" class="project-link">
                                 View Project
                                 <i class="fa-solid fa-arrow-right"></i>
                             </a>
@@ -725,62 +703,33 @@
                     </div>
                 </article>
 
-                <article class="project-card reveal delay-3" data-category="data ml" data-url="{{ url('/projects/news-sentiment') }}" data-keywords="sentiment analysis news media indonesian nlp indobert entity extraction python">
+                <article class="project-card reveal delay-1" data-category="bi data"
+                    data-url="{{ route('projects.powerbi') }}"
+                    data-keywords="power bi dashboard it balanced scorecard kpi etl business intelligence data visualization">
                     <div class="project-image">
                         <span class="project-category">
-                            <i class="fa-solid fa-newspaper"></i>
-                            Data / NLP
+                            <i class="fa-solid fa-chart-pie"></i>
+                            BI Dashboard
                         </span>
-                        <img src="{{ asset('images/project3.webp') }}" alt="Indonesian news sentiment analysis project" loading="lazy" decoding="async">
+                        <img src="{{ asset('images/project2.webp') }}" alt="IT Balanced Scorecard Dashboard project"
+                            loading="lazy" decoding="async">
                     </div>
 
                     <div class="project-body">
                         <div class="project-meta">
-                            <span>IndoBERT</span>
-                            <span>Python</span>
-                            <span>NER</span>
+                            <span>Power BI</span>
+                            <span>ETL</span>
+                            <span>KPI</span>
                         </div>
 
-                        <h3 class="project-title">Indonesian News Sentiment Analysis</h3>
+                        <h3 class="project-title">Power BI KPI Dashboard for Company Performance</h3>
                         <p class="project-desc">
-                            Pipeline NLP untuk mengolah artikel berita, melakukan sentiment analysis, dan mengekstrak
-                            entitas penting dari media berita Indonesia.
+                            Dashboard monitoring performa berbasis IT Balanced Scorecard untuk membantu membaca KPI,
+                            perspektif bisnis, dan evaluasi performa perusahaan secara lebih terstruktur.
                         </p>
 
                         <div class="project-footer">
-                            <a href="{{ url('/projects/news-sentiment') }}" class="project-link">
-                                View Project
-                                <i class="fa-solid fa-arrow-right"></i>
-                            </a>
-                            <span class="project-year">2025</span>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="project-card reveal delay-1" data-category="software" data-url="{{ url('/projects/it-asset-management') }}" data-keywords="laravel php jwt authentication it asset management crud web application software development">
-                    <div class="project-image">
-                        <span class="project-category">
-                            <i class="fa-solid fa-code"></i>
-                            Software
-                        </span>
-                        <img src="{{ asset('images/project4.webp') }}" alt="IT Asset Management application project" loading="lazy" decoding="async">
-                    </div>
-
-                    <div class="project-body">
-                        <div class="project-meta">
-                            <span>Laravel</span>
-                            <span>PHP</span>
-                            <span>JWT</span>
-                        </div>
-
-                        <h3 class="project-title">IT Asset Management App</h3>
-                        <p class="project-desc">
-                            Aplikasi manajemen aset IT berbasis Laravel untuk mendukung pencatatan aset, autentikasi,
-                            dan alur pengelolaan data internal secara lebih rapi.
-                        </p>
-
-                        <div class="project-footer">
-                            <a href="{{ url('/projects/it-asset-management') }}" class="project-link">
+                            <a href="{{ route('projects.powerbi') }}" class="project-link">
                                 View Project
                                 <i class="fa-solid fa-arrow-right"></i>
                             </a>
@@ -789,13 +738,16 @@
                     </div>
                 </article>
 
-                <article class="project-card reveal delay-2" data-category="data" data-url="{{ url('/projects/data-lakehouse') }}" data-keywords="data warehouse data lakehouse mysql python etl kimball medallion architecture data engineering">
+                <article class="project-card reveal delay-2" data-category="data"
+                    data-url="{{ url('/projects/data-lakehouse') }}"
+                    data-keywords="data warehouse data lakehouse mysql python etl kimball medallion architecture data engineering">
                     <div class="project-image">
                         <span class="project-category">
                             <i class="fa-solid fa-database"></i>
                             Data Engineering
                         </span>
-                        <img src="{{ asset('images/project5.webp') }}" alt="Data warehouse and lakehouse design project" loading="lazy" decoding="async">
+                        <img src="{{ asset('images/project5.webp') }}"
+                            alt="Data warehouse and lakehouse design project" loading="lazy" decoding="async">
                     </div>
 
                     <div class="project-body">
@@ -812,7 +764,7 @@
                         </p>
 
                         <div class="project-footer">
-                            <a href="{{ url('/projects/data-lakehouse') }}" class="project-link">
+                            <a href="" class="project-link">
                                 View Project
                                 <i class="fa-solid fa-arrow-right"></i>
                             </a>
@@ -821,13 +773,56 @@
                     </div>
                 </article>
 
-                <article class="project-card reveal delay-3" data-category="data ml" data-url="{{ url('/projects/health-burden-clustering') }}" data-keywords="clustering kmeans rstudio health burden south korea data science silhouette elbow method">
+
+                <article class="project-card reveal delay-3" data-category="data ml"
+                    data-url="{{ route('projects.khamenei') }}"
+                    data-keywords="sentiment analysis news media indonesian nlp indobert entity extraction python">
+                    <div class="project-image">
+                        <span class="project-category">
+                            <i class="fa-solid fa-newspaper"></i>
+                            Data / NLP
+                        </span>
+                        <img src="{{ asset('images/project3.webp') }}"
+                            alt="Indonesian news sentiment analysis project" loading="lazy" decoding="async">
+                    </div>
+
+                    <div class="project-body">
+                        <div class="project-meta">
+                            <span>IndoBERT</span>
+                            <span>Python</span>
+                            <span>NER</span>
+                        </div>
+
+                        <h3 class="project-title">Analisis Sentimen Kematian Ali Khamenei.</h3>
+                        <p class="project-desc">
+                            Pipeline NLP untuk mengolah artikel berita, melakukan sentiment analysis, dan mengekstrak
+                            entitas penting dari media berita Indonesia.
+                        </p>
+
+                        <div class="project-footer">
+                            <a href="{{ route('projects.khamenei') }}" class="project-link">
+                                View Project
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </a>
+                            <span class="project-year">2025</span>
+                        </div>
+                    </div>
+                </article>
+
+
+
+
+
+                <article class="project-card reveal delay-3" data-category="data ml"
+                    data-url="{{ route('projects.clustering') }}"
+                    data-keywords="clustering kmeans rstudio health burden south korea data science silhouette elbow method">
                     <div class="project-image">
                         <span class="project-category">
                             <i class="fa-solid fa-chart-simple"></i>
                             Data Science
                         </span>
-                        <img src="{{ asset('images/project6.webp') }}" alt="Health burden clustering project" loading="lazy" decoding="async">
+                        <img src="{{ asset('images/project4.webp') }}" alt="Health burden clustering project"
+                            loading="lazy" decoding="async">
                     </div>
 
                     <div class="project-body">
@@ -837,14 +832,14 @@
                             <span>Clustering</span>
                         </div>
 
-                        <h3 class="project-title">Health Burden Clustering</h3>
+                        <h3 class="project-title">Clustering Health Burden in South Korea.</h3>
                         <p class="project-desc">
                             Clustering data health burden Korea Selatan untuk melihat pola variasi penyakit, mortalitas,
                             dan beban kesehatan menggunakan K-Means.
                         </p>
 
                         <div class="project-footer">
-                            <a href="{{ url('/projects/health-burden-clustering') }}" class="project-link">
+                            <a href="{{ route('projects.clustering') }}" class="project-link">
                                 View Project
                                 <i class="fa-solid fa-arrow-right"></i>
                             </a>
@@ -853,13 +848,18 @@
                     </div>
                 </article>
 
-                <article class="project-card reveal delay-1" data-category="software" data-url="{{ url('/projects/personal-portfolio') }}" data-keywords="portfolio website frontend html css javascript laravel responsive ui ux software development">
+
+
+                <article class="project-card reveal delay-1" data-category="software"
+                    data-url="{{ url('/projects/personal-portfolio') }}"
+                    data-keywords="portfolio website frontend html css javascript laravel responsive ui ux software development">
                     <div class="project-image">
                         <span class="project-category">
                             <i class="fa-solid fa-laptop-code"></i>
                             Frontend
                         </span>
-                        <img src="{{ asset('images/gallery-software-1.webp') }}" alt="Portfolio website frontend project" loading="lazy" decoding="async">
+                        <img src="{{ asset('images/gallery-software-1.webp') }}"
+                            alt="Portfolio website frontend project" loading="lazy" decoding="async">
                     </div>
 
                     <div class="project-body">
@@ -885,13 +885,16 @@
                     </div>
                 </article>
 
-                <article class="project-card reveal delay-2" data-category="software data" data-url="{{ url('/projects/mentor-mentee-platform') }}" data-keywords="mentor mentee application ux design web application information system software data education platform">
+                <article class="project-card reveal delay-2" data-category="software data"
+                    data-url="{{ url('/projects/mentor-mentee-platform') }}"
+                    data-keywords="mentor mentee application ux design web application information system software data education platform">
                     <div class="project-image">
                         <span class="project-category">
                             <i class="fa-solid fa-diagram-project"></i>
                             Software / UX
                         </span>
-                        <img src="{{ asset('images/gallery-software-2.webp') }}" alt="Mentor mentee platform project" loading="lazy" decoding="async">
+                        <img src="{{ asset('images/gallery-software-2.webp') }}" alt="Mentor mentee platform project"
+                            loading="lazy" decoding="async">
                     </div>
 
                     <div class="project-body">
@@ -962,7 +965,8 @@
                     const categories = card.dataset.category || '';
                     const keywords = normalizeText(card.dataset.keywords || '');
                     const title = normalizeText(card.querySelector('.project-title')?.textContent || '');
-                    const description = normalizeText(card.querySelector('.project-desc')?.textContent || '');
+                    const description = normalizeText(card.querySelector('.project-desc')?.textContent ||
+                        '');
                     const searchableText = `${keywords} ${title} ${description}`;
 
                     const matchCategory = activeFilter === 'all' || categories.includes(activeFilter);

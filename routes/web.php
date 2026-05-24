@@ -1,24 +1,25 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Controller;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::view('/', 'welcome')->name('home');
 
-Route::get('/alfagift', [Controller::class, 'viewalfagift'])->name('alfagift');
+Route::view('/galeri', 'galeri')->name('galeri');
+Route::redirect('/projects', '/galeri')->name('projects.index');
+Route::redirect('/project', '/galeri');
 
-Route::get('/powerbi', [Controller::class, 'viewpowerbi'])->name('powerbi');
+Route::view('/projects/alfagift', 'alfagift')->name('projects.alfagift');
+Route::view('/projects/powerbi', 'powerbi')->name('projects.powerbi');
+Route::view('/projects/khamenei', 'khamenei')->name('projects.khamenei');
+Route::view('/projects/clustering', 'clustering')->name('projects.clustering');
 
-Route::get('/galeri', [Controller::class, 'viewgaleri'])->name('galeri');
-Route::get('/khamenei', [Controller::class, 'viewkhamenei'])->name('khamenei');
-Route::get('/clustering', [Controller::class, 'viewclustering'])->name('clustering');
-
-
-
-
-
-
-
-
+/*
+|--------------------------------------------------------------------------
+| Backward compatible aliases
+|--------------------------------------------------------------------------
+| Link lama tetap aman, tapi route canonical berada di /projects/...
+*/
+Route::redirect('/alfagift', '/projects/alfagift')->name('alfagift');
+Route::redirect('/powerbi', '/projects/powerbi')->name('powerbi');
+Route::redirect('/khamenei', '/projects/khamenei')->name('khamenei');
+Route::redirect('/clustering', '/projects/clustering')->name('clustering');

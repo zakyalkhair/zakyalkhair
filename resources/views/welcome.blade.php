@@ -39,32 +39,42 @@
         }
 
         html {
-    min-height: 100%;
-    scroll-behavior: smooth;
-    scroll-padding-top: var(--nav-height-offset);
-    overflow-x: clip;
-    overflow-y: auto;
-    scrollbar-gutter: stable;
-    font-family: 'DM Sans', sans-serif;
-}
+            min-height: 100%;
+            scroll-behavior: smooth;
+            scroll-padding-top: var(--nav-height-offset);
+            overflow-x: clip;
+            overflow-y: auto;
+            scrollbar-gutter: stable;
+            font-family: 'DM Sans', sans-serif;
+        }
 
-body {
-    position: relative;
-    width: 100%;
-    max-width: 100%;
-    min-height: 100%;
-    overflow-x: clip;
-    background: url("{{ asset('images/background.webp') }}") center/cover no-repeat fixed;
-    color: var(--text);
-    font-family: 'DM Sans', sans-serif;
-}
+        body {
+            position: relative;
+            width: 100%;
+            max-width: 100%;
+            min-height: 100%;
+            overflow-x: clip;
+            background-color: #111827;
+            color: var(--text);
+            font-family: 'DM Sans', sans-serif;
+        }
 
-@supports not (overflow: clip) {
-    html,
-    body {
-        overflow-x: hidden;
-    }
-}
+        body::after {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: -2;
+
+            background:
+                radial-gradient(circle at 18% 18%, rgba(246, 207, 97, .46), transparent 40%),
+                radial-gradient(circle at 82% 24%, rgba(147, 197, 253, .43), transparent 40%),
+                radial-gradient(circle at 50% 92%, rgba(143, 214, 148, .42), transparent 40%);
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            pointer-events: none;
+            transform: translateZ(0);
+        }
 
         body::before {
             content: "";
@@ -72,12 +82,30 @@ body {
             inset: 0;
             z-index: -1;
             background: rgba(0, 0, 0, 0.4);
+            pointer-events: none;
+        }
+
+        @supports not (overflow: clip) {
+
+            html,
+            body {
+                overflow-x: hidden;
+            }
         }
 
         section {
             position: relative;
             z-index: 2;
             width: 100%;
+        }
+
+        @supports (content-visibility: auto) {
+
+            .skills-section,
+            .experiences-section {
+                content-visibility: auto;
+                contain-intrinsic-size: 900px;
+            }
         }
 
         img {
@@ -106,6 +134,7 @@ body {
             height: 100%;
             overflow: hidden;
             pointer-events: none;
+            contain: strict;
         }
 
         #particlesCanvas {
@@ -307,14 +336,256 @@ body {
         }
 
         /* =========================
+           SKILLS
+        ========================= */
+        .skills-section {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 60svh;
+            padding: 0 var(--section-x);
+            overflow: hidden;
+        }
+
+        .skills-header {
+            max-width: 790px;
+            margin: 0 auto 22px;
+            text-align: center;
+        }
+
+        .skills-marquee-shell {
+            position: relative;
+            display: grid;
+            gap: 18px;
+            width: min(1220px, 100%);
+            height: 160px;
+            margin: 0 auto;
+        }
+
+        .skills-marquee {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            padding-block: 10px;
+            margin-block: -10px;
+            border-radius: 999px;
+            mask-image: linear-gradient(90deg, transparent 0%, #000 9%, #000 91%, transparent 100%);
+            -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 9%, #000 91%, transparent 100%);
+        }
+
+        .skills-track {
+            display: flex;
+            align-items: center;
+            width: max-content;
+            gap: 14px;
+            padding-block: 10px;
+            animation: skillMarqueeLeft 34s linear infinite;
+            will-change: transform;
+        }
+
+        .skills-marquee.reverse .skills-track {
+            animation-name: skillMarqueeRight;
+            animation-duration: 38s;
+        }
+
+        .skill-pill {
+            flex: 0 0 auto;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 11px;
+            min-width: 156px;
+            height: 58px;
+            padding: 0 22px;
+            border: 1px solid rgba(255, 255, 255, 0.48);
+            border-radius: 999px;
+            background: var(--dark-glass);
+            color: rgba(255, 255, 255, 0.92);
+            font-size: 17px;
+            font-weight: 800;
+            white-space: nowrap;
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            transition: transform 0.25s ease, color 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+        }
+
+        .skill-pill:hover {
+            transform: translateY(-5px) scale(1.025);
+            color: var(--white);
+            background: linear-gradient(135deg, rgba(228, 217, 148, 0.22), rgba(255, 255, 255, 0.10));
+            border-color: rgba(228, 217, 148, 0.42);
+        }
+
+        .skill-pill img {
+            width: 28px;
+            height: 28px;
+            object-fit: contain;
+            filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.22));
+        }
+
+        @keyframes skillMarqueeLeft {
+            from {
+                transform: translate3d(0, 0, 0);
+            }
+
+            to {
+                transform: translate3d(-50%, 0, 0);
+            }
+        }
+
+        @keyframes skillMarqueeRight {
+            from {
+                transform: translate3d(-50%, 0, 0);
+            }
+
+            to {
+                transform: translate3d(0, 0, 0);
+            }
+        }
+
+        /* =========================
+           EXPERIENCES
+        ========================= */
+        .experiences-section {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            min-height: 100svh;
+            padding: 70px 64px;
+        }
+
+        .experiences-header {
+            max-width: 760px;
+            margin: 0 auto 24px;
+            text-align: center;
+        }
+
+        .experiences-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 28px;
+            width: 100%;
+            max-width: 1580px;
+            margin: 0 auto;
+        }
+
+        .experience-card {
+            position: relative;
+            display: grid;
+            grid-template-columns: minmax(150px, 190px) minmax(0, 1fr);
+            align-items: start;
+            gap: clamp(18px, 2vw, 30px);
+            min-height: 325px;
+            height: auto;
+            overflow: hidden;
+            padding: clamp(22px, 2vw, 28px);
+            border: 1px solid rgba(255, 255, 255, 0.38);
+            border-radius: 36px;
+            background: var(--dark-glass);
+            box-shadow: 0 18px 55px rgba(0, 0, 0, 0.32);
+            color: var(--white);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            transition: transform 0.3s ease, background 0.3s ease;
+            contain: layout paint;
+        }
+
+        .experience-card:hover {
+            background: var(--dark-glass-2);
+            transform: translateY(-8px);
+        }
+
+        .experience-photo {
+            width: 100%;
+            aspect-ratio: 3 / 4;
+            overflow: hidden;
+            border-radius: 22px;
+            background: rgba(255, 255, 255, 0.12);
+            box-shadow: 0 14px 35px rgba(0, 0, 0, 0.24);
+        }
+
+        .experience-photo img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .experience-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            height: 100%;
+            padding-top: 4px;
+        }
+
+        .experience-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 26px;
+            padding-right: 54px;
+        }
+
+        .experience-period {
+            display: inline-flex;
+            padding: 8px 18px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.14);
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .experience-number {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            color: rgba(255, 255, 255, 0.18);
+            font-size: 42px;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        .experience-company {
+            margin-bottom: 10px;
+            color: rgba(255, 255, 255, 0.68);
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .experience-main h3 {
+            max-width: 560px;
+            margin-bottom: 14px;
+            color: var(--white);
+            font-size: clamp(1.35rem, 2vw, 2rem);
+            line-height: 1.12;
+        }
+
+        .experience-description {
+            max-width: 560px;
+            padding-left: 18px;
+            color: rgba(255, 255, 255, 0.78);
+            font-size: 14px;
+            line-height: 1.65;
+        }
+
+        .experience-description li:not(:last-child) {
+            margin-bottom: 8px;
+        }
+
+        /* =========================
            PROJECTS
         ========================= */
         .projects-section {
             display: flex;
             flex-direction: column;
             justify-content: center;
-            min-height: 60svh;
-            padding: 40px var(--section-x) 0px;
+            min-height: 95svh;
+            padding: 70px var(--section-x) 120px;
+            overflow: visible;
         }
 
         .projects-header {
@@ -327,13 +598,15 @@ body {
             display: flex;
             justify-content: center;
             width: 100%;
+            overflow: visible;
         }
 
         .projects-folder {
             position: relative;
-            top: -165px;
+            top: -145px;
             width: 420px;
             height: 320px;
+            overflow: visible;
         }
 
         .folder-shell {
@@ -352,8 +625,7 @@ body {
             object-fit: contain;
         }
 
-        .projects-folder:hover .folder-shell,
-        .projects-folder.mobile-open .folder-shell {
+        .projects-folder:hover .folder-shell {
             opacity: 0;
             transform: scale(0.85);
         }
@@ -362,7 +634,7 @@ body {
             position: absolute;
             top: 50%;
             left: 50%;
-            width: 560px;
+            width: clamp(400px, 38vw, 540px);
             aspect-ratio: 16 / 9;
             overflow: hidden;
             border-radius: 24px;
@@ -374,6 +646,7 @@ body {
                 transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1),
                 opacity 0.4s ease,
                 box-shadow 0.25s ease;
+            will-change: transform, opacity;
         }
 
         .project-card a {
@@ -485,302 +758,6 @@ body {
         }
 
         /* =========================
-           SKILLS
-        ========================= */
-        .skills-section {
-            min-height: 60svh;
-            padding: 0px var(--section-x);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            overflow: hidden;
-        }
-
-        .skills-header {
-            max-width: 790px;
-            margin: 0 auto 22px;
-            text-align: center;
-        }
-
-        .section-kicker {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 14px;
-            padding: 8px 15px;
-            border-radius: 999px;
-            color: rgba(255, 255, 255, 0.9);
-            background: rgba(255, 255, 255, 0.11);
-            border: 1px solid rgba(255, 255, 255, 0.14);
-            font-size: 12px;
-            font-weight: 800;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
-        }
-
-        .skills-header p {
-            max-width: 730px;
-            margin: 18px auto 0;
-            color: rgba(255, 255, 255, 0.82);
-            font-size: clamp(14px, 1.25vw, 17px);
-            line-height: 1.75;
-        }
-
-        .skills-marquee-shell {
-            position: relative;
-            width: min(1220px, 100%);
-            height: 160px;
-            margin: 0 auto;
-            display: grid;
-            gap: 18px;
-            background: transparent;
-            border: 0;
-            box-shadow: none;
-        }
-
-        .skills-marquee-shell::before {
-            display: none;
-        }
-
-        .skills-marquee {
-            position: relative;
-            width: 100%;
-            overflow: hidden;
-            padding-block: 10px;
-            margin-block: -10px;
-            border-radius: 999px;
-
-            mask-image: linear-gradient(90deg,
-                    transparent 0%,
-                    #000 9%,
-                    #000 91%,
-                    transparent 100%);
-            -webkit-mask-image: linear-gradient(90deg,
-                    transparent 0%,
-                    #000 9%,
-                    #000 91%,
-                    transparent 100%);
-        }
-
-        .skills-track {
-            display: flex;
-            align-items: center;
-            width: max-content;
-            gap: 14px;
-            padding-block: 10px;
-            animation: skillMarqueeLeft 34s linear infinite;
-            will-change: transform;
-        }
-
-        .skills-marquee.reverse .skills-track {
-            animation-name: skillMarqueeRight;
-            animation-duration: 38s;
-        }
-
-
-        .skill-pill {
-            flex: 0 0 auto;
-    min-width: 156px;
-    height: 58px;
-    padding: 0 22px;
-    border-radius: 999px;
-
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 11px;
-
-    color: rgba(255, 255, 255, 0.92);
-    background: var(--dark-glass);
-    border: 1px solid rgba(255, 255, 255, 0.488);
-            box-shadow: none;
-
-            font-size: 17px;
-            font-weight: 800;
-            white-space: nowrap;
-
-            backdrop-filter: blur(18px);
-            -webkit-backdrop-filter: blur(18px);
-
-            transition:
-                transform 0.25s ease,
-                color 0.25s ease,
-                background 0.25s ease,
-                border-color 0.25s ease;
-        }
-
-        .skill-pill:hover {
-            transform: translateY(-5px) scale(1.025);
-            color: var(--white);
-            background: linear-gradient(135deg,
-                    rgba(228, 217, 148, 0.22),
-                    rgba(255, 255, 255, 0.10));
-            border-color: rgba(228, 217, 148, 0.42);
-        }
-
-        .skill-pill img {
-            width: 28px;
-            height: 28px;
-            object-fit: contain;
-            filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.22));
-        }
-
-
-        @keyframes skillMarqueeLeft {
-            from {
-                transform: translate3d(0, 0, 0);
-            }
-
-            to {
-                transform: translate3d(-50%, 0, 0);
-            }
-        }
-
-        @keyframes skillMarqueeRight {
-            from {
-                transform: translate3d(-50%, 0, 0);
-            }
-
-            to {
-                transform: translate3d(0, 0, 0);
-            }
-        }
-
-        /* =========================
-           EXPERIENCES
-        ========================= */
-        .experiences-section {
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            min-height: 100svh;
-            padding: 70px 64px;
-        }
-
-        .experiences-header {
-            max-width: 760px;
-            margin: 0 auto 24px;
-            text-align: center;
-        }
-
-        .experiences-grid {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 28px;
-            width: 100%;
-            max-width: 1580px;
-            margin: 0 auto;
-        }
-
-        .experience-card {
-            position: relative;
-            display: grid;
-            grid-template-columns: minmax(150px, 190px) minmax(0, 1fr);
-            align-items: start;
-            gap: clamp(18px, 2vw, 30px);
-            min-height: 325px;
-            height: auto;
-            overflow: hidden;
-            padding: clamp(22px, 2vw, 28px);
-            border: 1px solid rgba(255, 255, 255, 0.388);
-            border-radius: 36px;
-            background: var(--dark-glass);
-            box-shadow: 0 18px 55px rgba(0, 0, 0, 0.32);
-            color: var(--white);
-            transition: transform 0.3s ease, background 0.3s ease;
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
-        }
-
-        .experience-card:hover {
-            background: var(--dark-glass-2);
-            transform: translateY(-8px);
-        }
-
-        .experience-photo {
-            width: 100%;
-            aspect-ratio: 3 / 4;
-            overflow: hidden;
-            border-radius: 22px;
-            background: rgba(255, 255, 255, 0.12);
-            box-shadow: 0 14px 35px rgba(0, 0, 0, 0.24);
-        }
-
-        .experience-photo img {
-            display: block;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .experience-content {
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            height: 100%;
-            padding-top: 4px;
-        }
-
-        .experience-top {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 26px;
-            padding-right: 54px;
-        }
-
-        .experience-period {
-            display: inline-flex;
-            padding: 8px 18px;
-            border-radius: 999px;
-            background: rgba(255, 255, 255, 0.14);
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 12px;
-            font-weight: 600;
-        }
-
-        .experience-number {
-            position: absolute;
-            top: 24px;
-            right: 24px;
-            color: rgba(255, 255, 255, 0.18);
-            font-size: 42px;
-            font-weight: 700;
-            line-height: 1;
-        }
-
-        .experience-company {
-            margin-bottom: 10px;
-            color: rgba(255, 255, 255, 0.68);
-            font-size: 13px;
-            font-weight: 700;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-        }
-
-        .experience-main h3 {
-            max-width: 560px;
-            margin-bottom: 14px;
-            color: var(--white);
-            font-size: clamp(1.35rem, 2vw, 2rem);
-            line-height: 1.12;
-        }
-
-        .experience-description {
-            max-width: 560px;
-            padding-left: 18px;
-            color: rgba(255, 255, 255, 0.78);
-            font-size: 14px;
-            line-height: 1.65;
-        }
-
-        .experience-description li:not(:last-child) {
-            margin-bottom: 8px;
-        }
-
-        /* =========================
            ANIMATIONS
         ========================= */
         @keyframes fadeUp {
@@ -850,7 +827,7 @@ body {
                 grid-template-columns: 1fr;
                 gap: 24px;
                 padding-top: 112px;
-                padding-bottom: 60px
+                padding-bottom: 60px;
             }
 
             .card-wrapper {
@@ -867,6 +844,8 @@ body {
             .projects-section {
                 min-height: auto;
                 padding-top: 110px;
+                padding-bottom: 70px;
+                overflow: hidden;
             }
 
             .projects-header {
@@ -875,6 +854,7 @@ body {
 
             .projects-folder-wrapper {
                 display: block;
+                overflow: visible;
             }
 
             .projects-folder {
@@ -894,17 +874,11 @@ body {
 
             .project-card,
             .projects-folder:hover .project-card,
-            .projects-folder.mobile-open .project-card,
             .projects-folder:hover .project-card-1,
             .projects-folder:hover .project-card-2,
             .projects-folder:hover .project-card-3,
             .projects-folder:hover .project-card-4,
-            .projects-folder:hover .project-card-5,
-            .projects-folder.mobile-open .project-card-1,
-            .projects-folder.mobile-open .project-card-2,
-            .projects-folder.mobile-open .project-card-3,
-            .projects-folder.mobile-open .project-card-4,
-            .projects-folder.mobile-open .project-card-5 {
+            .projects-folder:hover .project-card-5 {
                 position: relative;
                 top: auto;
                 left: auto;
@@ -941,30 +915,16 @@ body {
             }
 
             body {
-                background-image: none;
                 background-color: #7fb8df;
             }
 
             body::after {
-                content: "";
-                position: fixed;
-                inset: 0;
-                z-index: -2;
                 background-image: url("{{ asset('images/mobilebg.webp') }}");
                 background-position: center top;
-                background-size: cover;
-                background-repeat: no-repeat;
-                pointer-events: none;
-                transform: translateZ(0);
-                will-change: transform;
             }
 
             body::before {
-                z-index: -1;
-                background:
-                    linear-gradient(to bottom,
-                        rgba(0, 0, 0, 0.36),
-                        rgba(0, 0, 0, 0.54));
+                background: linear-gradient(to bottom, rgba(0, 0, 0, 0.36), rgba(0, 0, 0, 0.54));
             }
 
             nav {
@@ -1103,11 +1063,6 @@ body {
                 height: 25px;
             }
 
-            .skills-focus-row {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-                gap: 24px 18px;
-            }
-
             .experiences-section {
                 padding-inline: var(--section-x);
             }
@@ -1206,8 +1161,8 @@ body {
 
             .card-bio {
                 max-width: 240px;
-                margin-bottom: 7px;
                 margin-top: 7px;
+                margin-bottom: 7px;
                 padding-left: 2px;
                 font-size: 11px;
                 line-height: 1.48;
@@ -1262,11 +1217,6 @@ body {
                 padding-bottom: 58px;
             }
 
-            .skills-header p {
-                font-size: 14px;
-                line-height: 1.65;
-            }
-
             .skills-marquee-shell {
                 width: calc(100% + 36px);
                 margin-left: -18px;
@@ -1296,16 +1246,6 @@ body {
             .skill-pill img {
                 width: 23px;
                 height: 23px;
-            }
-
-            .skills-focus-row {
-                grid-template-columns: 1fr;
-                margin-top: 32px;
-                gap: 20px;
-            }
-
-            .skill-focus-item p {
-                max-width: 92%;
             }
 
             .experience-card {
@@ -1353,7 +1293,7 @@ body {
 </head>
 
 <body>
-    <div class="particles-container">
+    <div class="particles-container" aria-hidden="true">
         <canvas id="particlesCanvas"></canvas>
     </div>
 
@@ -1367,7 +1307,7 @@ body {
     <section id="about" class="hero-section">
         <div class="card-wrapper">
             <img class="card-bg" src="{{ asset('images/card-stack.webp') }}" alt="" aria-hidden="true"
-                decoding="async">
+                decoding="async" fetchpriority="high">
 
             <div class="card-content">
                 <h1 class="card-name">Hi, I'm Zaky</h1>
@@ -1465,7 +1405,6 @@ body {
                 </div>
             </div>
         </div>
-
     </section>
 
     <section id="experiences" class="experiences-section">
@@ -1507,7 +1446,7 @@ body {
 
                 <div class="experience-content">
                     <div class="experience-top">
-                        <span class="experience-period">March 2025 — Desember 2025</span>
+                        <span class="experience-period">March 2025 — December 2025</span>
                         <span class="experience-number">02</span>
                     </div>
 
@@ -1531,7 +1470,7 @@ body {
 
                 <div class="experience-content">
                     <div class="experience-top">
-                        <span class="experience-period">April 2025 — Desember 2025</span>
+                        <span class="experience-period">April 2025 — December 2025</span>
                         <span class="experience-number">03</span>
                     </div>
 
@@ -1540,7 +1479,7 @@ body {
                         <h3>Marketing Expert Staff</h3>
 
                         <ul class="experience-description">
-                            <li>Guided marketing team to creating digital marketing content on instagram and tiktok that
+                            <li>Guided marketing team to creating digital marketing content on Instagram and TikTok that
                                 achieved 10M+ total views and increased audience engagement by more than 100% across
                                 platforms.</li>
                         </ul>
@@ -1556,7 +1495,7 @@ body {
 
                 <div class="experience-content">
                     <div class="experience-top">
-                        <span class="experience-period">August 2025 — Oktober 2025</span>
+                        <span class="experience-period">August 2025 — October 2025</span>
                         <span class="experience-number">04</span>
                     </div>
 
@@ -1582,7 +1521,7 @@ body {
         </div>
 
         <div class="projects-folder-wrapper">
-            <div class="projects-folder" id="projectsFolder">
+            <div class="projects-folder">
                 <div class="folder-shell">
                     <img src="{{ asset('images/folder.webp') }}" alt="Folder" loading="lazy" decoding="async">
                 </div>
@@ -1656,66 +1595,59 @@ body {
     </section>
 
     <script>
-        const projectsFolder = document.getElementById('projectsFolder');
-        const navLinks = document.querySelectorAll('nav a');
-        const sections = document.querySelectorAll('section[id]');
-        const revealElements = document.querySelectorAll('.reveal');
+        const navLinks = [...document.querySelectorAll('nav a[href^="#"]')];
+        const sections = [...document.querySelectorAll('section[id]')];
         const canvas = document.getElementById('particlesCanvas');
-        const ctx = canvas?.getContext('2d');
+        const ctx = canvas?.getContext('2d', {
+            alpha: true
+        });
+
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+        const mobileViewport = window.matchMedia('(max-width: 960px)');
+
+        const mouse = {
+            x: null,
+            y: null
+        };
+        const particleSettings = {
+            color: '255, 255, 255',
+            speed: 0.45,
+            baseSize: 2.4,
+            hoverDistance: 240,
+            hoverForce: 1.8,
+            fps: 30
+        };
 
         let particles = [];
         let animationFrameId = null;
         let lastFrameTime = 0;
         let isParticlesRunning = false;
         let navTicking = false;
+        let resizeTimer = null;
+        let canvasWidth = 0;
+        let canvasHeight = 0;
 
-        const mouse = {
-            x: null,
-            y: null
-        };
+        function shouldRunParticles() {
+            return Boolean(canvas && ctx && !mobileViewport.matches && !prefersReducedMotion.matches);
+        }
 
-        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-        const mobileViewport = window.matchMedia('(max-width: 960px)');
-
-        const shouldRunParticles = () => {
-            return canvas && ctx && !mobileViewport.matches && !prefersReducedMotion.matches;
-        };
-
-        const getParticleCount = () => {
-            if (window.innerWidth <= 1280) return 190;
-            return 220;
-        };
-
-        const particleSettings = {
-            color: '255, 255, 255',
-            speed: 0.6,
-            baseSize: 3,
-            hoverDistance: 300,
-            hoverForce: 2.8,
-            fps: 36
-        };
-
-        if (projectsFolder) {
-            projectsFolder.addEventListener('click', event => {
-                if (window.innerWidth <= 1280 && event.target.closest('.folder-shell')) {
-                    projectsFolder.classList.toggle('mobile-open');
-                }
-            });
+        function getParticleCount() {
+            if (window.innerWidth <= 1280) return 95;
+            return 130;
         }
 
         function setActiveNav() {
             const scrollPosition = window.scrollY + 180;
+            let activeId = sections[0]?.id || null;
 
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionBottom = sectionTop + section.offsetHeight;
-                const sectionId = section.getAttribute('id');
-
-                if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
-                    navLinks.forEach(link => {
-                        link.classList.toggle('active', link.getAttribute('href') === `#${sectionId}`);
-                    });
+            for (const section of sections) {
+                if (scrollPosition >= section.offsetTop) {
+                    activeId = section.id;
                 }
+            }
+
+            navLinks.forEach(link => {
+                link.classList.toggle('active', link.hash === `#${activeId}`);
             });
         }
 
@@ -1723,60 +1655,38 @@ body {
             if (navTicking) return;
 
             navTicking = true;
-
             requestAnimationFrame(() => {
                 setActiveNav();
                 navTicking = false;
             });
         }
 
-        function initRevealAnimation() {
-            if (!revealElements.length) return;
-
-            if (!('IntersectionObserver' in window)) {
-                revealElements.forEach(element => {
-                    element.classList.add('is-visible');
-                });
-                return;
-            }
-
-            const revealObserver = new IntersectionObserver(entries => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('is-visible');
-                        revealObserver.unobserve(entry.target);
-                    }
-                });
-            }, {
-                threshold: 0.16,
-                rootMargin: '0px 0px -80px 0px'
-            });
-
-            revealElements.forEach(element => {
-                revealObserver.observe(element);
-            });
-        }
-
         function createParticles() {
-            if (!canvas) return;
-
             particles = Array.from({
                 length: getParticleCount()
             }, () => ({
-                x: Math.random() * canvas.width,
-                y: Math.random() * canvas.height,
+                x: Math.random() * canvasWidth,
+                y: Math.random() * canvasHeight,
                 vx: (Math.random() - 0.5) * particleSettings.speed,
                 vy: (Math.random() - 0.5) * particleSettings.speed,
                 size: Math.random() * particleSettings.baseSize + 0.5,
-                alpha: Math.random() * 0.38 + 0.22
+                alpha: Math.random() * 0.34 + 0.18
             }));
         }
 
         function resizeCanvas() {
-            if (!canvas || !shouldRunParticles()) return;
+            if (!shouldRunParticles()) return;
 
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
+            const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+            canvasWidth = window.innerWidth;
+            canvasHeight = window.innerHeight;
+
+            canvas.width = Math.floor(canvasWidth * dpr);
+            canvas.height = Math.floor(canvasHeight * dpr);
+            canvas.style.width = `${canvasWidth}px`;
+            canvas.style.height = `${canvasHeight}px`;
+
+            ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
             createParticles();
         }
 
@@ -1787,39 +1697,43 @@ body {
             }
 
             const frameInterval = 1000 / particleSettings.fps;
-
             if (timestamp - lastFrameTime < frameInterval) {
                 animationFrameId = requestAnimationFrame(drawParticles);
                 return;
             }
 
             lastFrameTime = timestamp;
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.clearRect(0, 0, canvasWidth, canvasHeight);
 
-            particles.forEach(particle => {
-                const dx = mouse.x - particle.x;
-                const dy = mouse.y - particle.y;
-                const distance = Math.sqrt(dx * dx + dy * dy);
+            const hoverDistanceSquared = particleSettings.hoverDistance * particleSettings.hoverDistance;
 
-                if (mouse.x !== null && distance > 0 && distance < particleSettings.hoverDistance) {
-                    const force = (particleSettings.hoverDistance - distance) / particleSettings.hoverDistance;
-                    particle.x -= (dx / distance) * force * particleSettings.hoverForce;
-                    particle.y -= (dy / distance) * force * particleSettings.hoverForce;
+            for (const particle of particles) {
+                if (mouse.x !== null) {
+                    const dx = mouse.x - particle.x;
+                    const dy = mouse.y - particle.y;
+                    const distanceSquared = dx * dx + dy * dy;
+
+                    if (distanceSquared > 0 && distanceSquared < hoverDistanceSquared) {
+                        const distance = Math.sqrt(distanceSquared);
+                        const force = (particleSettings.hoverDistance - distance) / particleSettings.hoverDistance;
+                        particle.x -= (dx / distance) * force * particleSettings.hoverForce;
+                        particle.y -= (dy / distance) * force * particleSettings.hoverForce;
+                    }
                 }
 
                 particle.x += particle.vx;
                 particle.y += particle.vy;
 
-                if (particle.x < 0) particle.x = canvas.width;
-                if (particle.x > canvas.width) particle.x = 0;
-                if (particle.y < 0) particle.y = canvas.height;
-                if (particle.y > canvas.height) particle.y = 0;
+                if (particle.x < 0) particle.x = canvasWidth;
+                if (particle.x > canvasWidth) particle.x = 0;
+                if (particle.y < 0) particle.y = canvasHeight;
+                if (particle.y > canvasHeight) particle.y = 0;
 
                 ctx.beginPath();
                 ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
                 ctx.fillStyle = `rgba(${particleSettings.color}, ${particle.alpha})`;
                 ctx.fill();
-            });
+            }
 
             animationFrameId = requestAnimationFrame(drawParticles);
         }
@@ -1841,8 +1755,13 @@ body {
             }
 
             if (ctx && canvas) {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.clearRect(0, 0, canvasWidth, canvasHeight);
             }
+        }
+
+        function restartParticles() {
+            stopParticles();
+            startParticles();
         }
 
         window.addEventListener('scroll', requestNavUpdate, {
@@ -1851,41 +1770,35 @@ body {
 
         window.addEventListener('load', () => {
             setActiveNav();
-            initRevealAnimation();
             startParticles();
         });
 
         window.addEventListener('resize', () => {
-            stopParticles();
-            startParticles();
+            window.clearTimeout(resizeTimer);
+            resizeTimer = window.setTimeout(restartParticles, 160);
         }, {
             passive: true
         });
 
         document.addEventListener('visibilitychange', () => {
-            if (document.hidden) {
-                stopParticles();
-            } else {
-                startParticles();
-            }
+            document.hidden ? stopParticles() : startParticles();
         });
 
-        window.addEventListener('mousemove', event => {
+        window.addEventListener('pointermove', event => {
+            if (!shouldRunParticles()) return;
             mouse.x = event.clientX;
             mouse.y = event.clientY;
         }, {
             passive: true
         });
 
-        window.addEventListener('mouseleave', () => {
+        window.addEventListener('pointerleave', () => {
             mouse.x = null;
             mouse.y = null;
         });
 
-        mobileViewport.addEventListener('change', () => {
-            stopParticles();
-            startParticles();
-        });
+        mobileViewport.addEventListener('change', restartParticles);
+        prefersReducedMotion.addEventListener('change', restartParticles);
     </script>
 </body>
 
