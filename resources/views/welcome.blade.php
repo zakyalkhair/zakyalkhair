@@ -50,39 +50,14 @@
 
         body {
             position: relative;
+            isolation: isolate;
             width: 100%;
             max-width: 100%;
-            min-height: 100%;
+            min-height: 100svh;
             overflow-x: clip;
             background-color: #111827;
             color: var(--text);
             font-family: 'DM Sans', sans-serif;
-        }
-
-        body::after {
-            content: "";
-            position: fixed;
-            inset: 0;
-            z-index: -2;
-
-            background:
-                radial-gradient(circle at 18% 18%, rgba(246, 207, 97, .46), transparent 40%),
-                radial-gradient(circle at 82% 24%, rgba(147, 197, 253, .43), transparent 40%),
-                radial-gradient(circle at 50% 92%, rgba(143, 214, 148, .42), transparent 40%);
-            background-position: center;
-            background-size: cover;
-            background-repeat: no-repeat;
-            pointer-events: none;
-            transform: translateZ(0);
-        }
-
-        body::before {
-            content: "";
-            position: fixed;
-            inset: 0;
-            z-index: -1;
-            background: rgba(0, 0, 0, 0.4);
-            pointer-events: none;
         }
 
         @supports not (overflow: clip) {
@@ -93,9 +68,34 @@
             }
         }
 
+        .site-bg {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            background:
+                radial-gradient(circle at 18% 18%, rgba(246, 207, 97, .46), transparent 40%),
+                radial-gradient(circle at 82% 24%, rgba(147, 197, 253, .43), transparent 40%),
+                radial-gradient(circle at 50% 92%, rgba(143, 214, 148, .42), transparent 40%),
+                #111827;
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            pointer-events: none;
+            transform: translateZ(0);
+        }
+
+        .site-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 1;
+            background: rgba(0, 0, 0, 0.4);
+            pointer-events: none;
+            transform: translateZ(0);
+        }
+
         section {
             position: relative;
-            z-index: 2;
+            z-index: 4;
             width: 100%;
         }
 
@@ -129,12 +129,12 @@
         .particles-container {
             position: fixed;
             inset: 0;
-            z-index: 0;
+            z-index: 2;
             width: 100%;
-            height: 100%;
+            height: 100svh;
             overflow: hidden;
             pointer-events: none;
-            contain: strict;
+            contain: layout paint;
         }
 
         #particlesCanvas {
@@ -819,9 +819,6 @@
             }
         }
 
-        /* =========================
-           RESPONSIVE - LARGE LAPTOP / TABLET LANDSCAPE
-        ========================= */
         @media (max-width: 1280px) {
             .hero-section {
                 grid-template-columns: 1fr;
@@ -915,16 +912,11 @@
             }
 
             body {
-                background-color: #7fb8df;
+                background-color: #111827;
             }
 
-            body::after {
-                background-image: url("{{ asset('images/mobilebg.webp') }}");
-                background-position: center top;
-            }
-
-            body::before {
-                background: linear-gradient(to bottom, rgba(0, 0, 0, 0.36), rgba(0, 0, 0, 0.54));
+            .site-overlay {
+                background: rgba(0, 0, 0, 0.4);
             }
 
             nav {
@@ -1293,6 +1285,9 @@
 </head>
 
 <body>
+    <div class="site-bg" aria-hidden="true"></div>
+    <div class="site-overlay" aria-hidden="true"></div>
+
     <div class="particles-container" aria-hidden="true">
         <canvas id="particlesCanvas"></canvas>
     </div>
@@ -1385,8 +1380,8 @@
                 <div class="skills-track">
                     @foreach (array_merge($skillRowOne, $skillRowOne) as $skill)
                         <div class="skill-pill">
-                            <img src="{{ asset('icons/' . $skill['icon']) }}" alt="{{ $skill['name'] }}" loading="lazy"
-                                decoding="async">
+                            <img src="{{ asset('icons/' . $skill['icon']) }}" alt="{{ $skill['name'] }}"
+                                loading="lazy" decoding="async">
                             <span>{{ $skill['name'] }}</span>
                         </div>
                     @endforeach
@@ -1514,71 +1509,75 @@
             </article>
 
             <article class="experience-card">
-    <div class="experience-photo">
-        <img src="{{ asset('images/arkavidia.png') }}" alt="Arkavidia ITB 2025" loading="lazy" decoding="async">
-    </div>
+                <div class="experience-photo">
+                    <img src="{{ asset('images/arkavidia.png') }}" alt="Arkavidia ITB 2025" loading="lazy"
+                        decoding="async">
+                </div>
 
-    <div class="experience-content">
-        <div class="experience-top">
-            <span class="experience-period">2025</span>
-            <span class="experience-number">05</span>
-        </div>
+                <div class="experience-content">
+                    <div class="experience-top">
+                        <span class="experience-period">2025</span>
+                        <span class="experience-number">05</span>
+                    </div>
 
-        <div class="experience-main">
-            <p class="experience-company">Arkavidia ITB 2025</p>
-            <h3>Best Video Winner and Finalist UX Design Competition</h3>
+                    <div class="experience-main">
+                        <p class="experience-company">Arkavidia ITB 2025</p>
+                        <h3>Best Video Winner and Finalist UX Design Competition</h3>
 
-            <ul class="experience-description">
-                <li>Achieved Best Video Winner and became a Finalist in the UX Design Competition at Arkavidia ITB 2025.</li>
-            </ul>
-        </div>
-    </div>
-</article>
+                        <ul class="experience-description">
+                            <li>Achieved Best Video Winner and became a Finalist in the UX Design Competition at
+                                Arkavidia ITB 2025.</li>
+                        </ul>
+                    </div>
+                </div>
+            </article>
 
-<article class="experience-card">
-    <div class="experience-photo">
-        <img src="{{ asset('images/anforcom.png') }}" alt="Anforcom UNDIP 2024" loading="lazy" decoding="async">
-    </div>
+            <article class="experience-card">
+                <div class="experience-photo">
+                    <img src="{{ asset('images/anforcom.png') }}" alt="Anforcom UNDIP 2024" loading="lazy"
+                        decoding="async">
+                </div>
 
-    <div class="experience-content">
-        <div class="experience-top">
-            <span class="experience-period">2024</span>
-            <span class="experience-number">06</span>
-        </div>
+                <div class="experience-content">
+                    <div class="experience-top">
+                        <span class="experience-period">2024</span>
+                        <span class="experience-number">06</span>
+                    </div>
 
-        <div class="experience-main">
-            <p class="experience-company">Anforcom UNDIP 2024</p>
-            <h3>4th Place Winner UI/UX Design Competition</h3>
+                    <div class="experience-main">
+                        <p class="experience-company">Anforcom UNDIP 2024</p>
+                        <h3>4th Place Winner UI/UX Design Competition</h3>
 
-            <ul class="experience-description">
-                <li>Achieved 4th Place Winner in the UI/UX Design Competition at Anforcom UNDIP 2024.</li>
-            </ul>
-        </div>
-    </div>
-</article>
+                        <ul class="experience-description">
+                            <li>Achieved 4th Place Winner in the UI/UX Design Competition at Anforcom UNDIP 2024.</li>
+                        </ul>
+                    </div>
+                </div>
+            </article>
 
-<article class="experience-card">
-    <div class="experience-photo">
-        <img src="{{ asset('images/kimhackathon.png') }}" alt="KIM Hackathon 2023 JCI East Java" loading="lazy" decoding="async">
-    </div>
+            <article class="experience-card">
+                <div class="experience-photo">
+                    <img src="{{ asset('images/kimhackathon.png') }}" alt="KIM Hackathon 2023 JCI East Java"
+                        loading="lazy" decoding="async">
+                </div>
 
-    <div class="experience-content">
-        <div class="experience-top">
-            <span class="experience-period">2023</span>
-            <span class="experience-number">07</span>
-        </div>
+                <div class="experience-content">
+                    <div class="experience-top">
+                        <span class="experience-period">2023</span>
+                        <span class="experience-number">07</span>
+                    </div>
 
-        <div class="experience-main">
-            <p class="experience-company">KIM Hackathon 2023 — JCI East Java</p>
-            <h3>Business Case Competition Finalist</h3>
+                    <div class="experience-main">
+                        <p class="experience-company">KIM Hackathon 2023 — JCI East Java</p>
+                        <h3>Business Case Competition Finalist</h3>
 
-            <ul class="experience-description">
-                <li>Became a finalist in the Business Case Competition at East Java KIM Hackathon 2023 by JCI East Java.</li>
-            </ul>
-        </div>
-    </div>
-</article>
-
+                        <ul class="experience-description">
+                            <li>Became a finalist in the Business Case Competition at East Java KIM Hackathon 2023 by
+                                JCI East Java.</li>
+                        </ul>
+                    </div>
+                </div>
+            </article>
         </div>
     </section>
 
@@ -1676,6 +1675,7 @@
             x: null,
             y: null
         };
+
         const particleSettings = {
             color: '255, 255, 255',
             speed: 0.45,
@@ -1745,6 +1745,7 @@
             if (!shouldRunParticles()) return;
 
             const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+
             canvasWidth = window.innerWidth;
             canvasHeight = window.innerHeight;
 
@@ -1764,6 +1765,7 @@
             }
 
             const frameInterval = 1000 / particleSettings.fps;
+
             if (timestamp - lastFrameTime < frameInterval) {
                 animationFrameId = requestAnimationFrame(drawParticles);
                 return;
@@ -1783,6 +1785,7 @@
                     if (distanceSquared > 0 && distanceSquared < hoverDistanceSquared) {
                         const distance = Math.sqrt(distanceSquared);
                         const force = (particleSettings.hoverDistance - distance) / particleSettings.hoverDistance;
+
                         particle.x -= (dx / distance) * force * particleSettings.hoverForce;
                         particle.y -= (dy / distance) * force * particleSettings.hoverForce;
                     }
@@ -1853,6 +1856,7 @@
 
         window.addEventListener('pointermove', event => {
             if (!shouldRunParticles()) return;
+
             mouse.x = event.clientX;
             mouse.y = event.clientY;
         }, {
