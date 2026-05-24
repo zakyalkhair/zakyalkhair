@@ -1512,6 +1512,73 @@
                     </div>
                 </div>
             </article>
+
+            <article class="experience-card">
+    <div class="experience-photo">
+        <img src="{{ asset('images/arkavidia.png') }}" alt="Arkavidia ITB 2025" loading="lazy" decoding="async">
+    </div>
+
+    <div class="experience-content">
+        <div class="experience-top">
+            <span class="experience-period">2025</span>
+            <span class="experience-number">05</span>
+        </div>
+
+        <div class="experience-main">
+            <p class="experience-company">Arkavidia ITB 2025</p>
+            <h3>Best Video Winner and Finalist UX Design Competition</h3>
+
+            <ul class="experience-description">
+                <li>Achieved Best Video Winner and became a Finalist in the UX Design Competition at Arkavidia ITB 2025.</li>
+            </ul>
+        </div>
+    </div>
+</article>
+
+<article class="experience-card">
+    <div class="experience-photo">
+        <img src="{{ asset('images/anforcom.png') }}" alt="Anforcom UNDIP 2024" loading="lazy" decoding="async">
+    </div>
+
+    <div class="experience-content">
+        <div class="experience-top">
+            <span class="experience-period">2024</span>
+            <span class="experience-number">06</span>
+        </div>
+
+        <div class="experience-main">
+            <p class="experience-company">Anforcom UNDIP 2024</p>
+            <h3>4th Place Winner UI/UX Design Competition</h3>
+
+            <ul class="experience-description">
+                <li>Achieved 4th Place Winner in the UI/UX Design Competition at Anforcom UNDIP 2024.</li>
+            </ul>
+        </div>
+    </div>
+</article>
+
+<article class="experience-card">
+    <div class="experience-photo">
+        <img src="{{ asset('images/kimhackathon.png') }}" alt="KIM Hackathon 2023 JCI East Java" loading="lazy" decoding="async">
+    </div>
+
+    <div class="experience-content">
+        <div class="experience-top">
+            <span class="experience-period">2023</span>
+            <span class="experience-number">07</span>
+        </div>
+
+        <div class="experience-main">
+            <p class="experience-company">KIM Hackathon 2023 — JCI East Java</p>
+            <h3>Business Case Competition Finalist</h3>
+
+            <ul class="experience-description">
+                <li>Became a finalist in the Business Case Competition at East Java KIM Hackathon 2023 by JCI East Java.</li>
+            </ul>
+        </div>
+    </div>
+</article>
+
         </div>
     </section>
 
